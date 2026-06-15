@@ -1,0 +1,6 @@
+{
+  "name": "石屋さん.com",
+  "description": "High-end e-commerce homepage for rare natural stones and minerals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

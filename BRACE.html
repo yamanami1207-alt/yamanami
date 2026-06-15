@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自分だけのデザイン | 石屋さん.com</title>
+    <meta name="description" content="天然石を自由に組み合わせて、あなただけのオリジナルブレスレットを作成できます。完成したデザインは自動でお見積もりされ、オンラインでご注文が可能です。">
+
+    <meta property="og:title" content="自分だけのデザイン | 石屋さん.com">
+    <meta property="og:description" content="天然石を自由に組み合わせて、オリジナルブレスレットを作成できるシミュレーター。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ishiyasan.com/BRACE.html">
+    <meta property="og:image" content="https://ishiyasan.com/images/ogp-create.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style id="fouc-brace">
+        body { opacity: 0; visibility: hidden; }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#1B2A47', accent: '#434343', light: '#F9FAFB' }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], serif: ['"Playfair Display"', 'serif'] } } } }
+    </script>
+    <script>
+        window.addEventListener('load', () => {
+            const fouc = document.getElementById('fouc-brace');
+            if (fouc) fouc.remove();
+            document.body.style.opacity = '1';
+            document.body.style.visibility = 'visible';
+            document.body.style.transition = 'opacity 0.3s ease-in-out';
+        });
+    </script>
+
+    <style>
+        :root {
+            --white: #FFFFFF; --textGray: #333333; --mutedGray: #777777;
+            --navy: #1B2A47; --gold: #C5B382; --border: #EAEAEA;
+            --bgLight: #F8F9FA; --bgWarm: #F5F1EA; --danger: #A94442;
+            --success: #2D8659; --successBg: #E8F5E9; --successBorder: #C8E6C9;
+        }
+        body { color: #434343; background-color: #F9FAFB; overflow-x: hidden; }
+        
+        * { -webkit-tap-highlight-color: transparent !important; outline: none !important; }
+
+        /* Navigation Styles */
+        .nav-link { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .nav-en { font-family: 'Playfair Display', serif; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.1em; transition: color 0.3s; }
+        .nav-ja { font-size: 0.65rem; color: #9ca3af; margin-top: 2px; transition: color 0.3s; }
+        .nav-link:hover .nav-en, .nav-link:hover .nav-ja { color: #1B2A47; }
+        .nav-active .nav-en { color: #1B2A47; font-weight: 700; border-bottom: 2px solid #1B2A47; }
+
+        /* App Styles */
+        .app-container { font-family: 'Noto Serif JP', 'Yu Mincho', serif; background: var(--white); color: var(--textGray); min-height: calc(100vh - 80px); display: flex; flex-direction: column; }
+        .app-header { padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--white); position: sticky; top: 80px; z-index: 40; display: flex; justify-content: space-between; align-items: center; }
+        .main-layout { display: flex; flex-direction: column; width: 100%; max-width: 1200px; margin: 0 auto; flex: 1; }
+        .preview-section { position: sticky; top: 146px; z-index: 30; background: var(--white); transition: all 0.3s ease; }
+        .preview-section.scrolled { padding: 10px 14px; border-bottom: 1px solid var(--border); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .preview-inner { transition: transform 0.3s ease, margin-bottom 0.3s ease; transform-origin: top center; max-width: 500px; margin: 0 auto; }
+        .preview-section.scrolled .preview-inner { transform: scale(0.65); margin-bottom: -90px; }
+        .controls-section { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+        .stone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .stone-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 4px; border: 1px solid var(--border); background: var(--white); cursor: pointer; min-height: 100px; transition: all 0.2s ease; border-radius: 4px; }
+        .stone-btn:hover { border-color: var(--navy); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .stone-btn.expanded { border-color: var(--navy); background: var(--bgWarm); }
+        
+        @media (min-width: 800px) {
+            .main-layout { flex-direction: row; padding: 32px 24px; gap: 40px; align-items: flex-start; }
+            .preview-section { width: 45%; position: sticky; top: 100px; padding: 0; border: none !important; box-shadow: none !important; background: transparent; }
+            .preview-section.scrolled .preview-inner { transform: none; margin-bottom: 0; }
+            .preview-inner { max-width: 100%; }
+            .controls-section { width: 55%; padding: 0; }
+            .stone-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 12px; }
+        }
+        
+        .size-panel { grid-column: 1 / -1; background: var(--bgLight); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-top: 4px; margin-bottom: 12px; animation: fadeIn 0.2s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 16px; }
+        .modal-content { background: var(--white); width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto; border-radius: 4px; position: relative; padding: 32px 24px; border-top: 4px solid var(--navy); }
+    </style>
+</head>
+<body class="font-sans antialiased text-accent bg-light pt-20">
+
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-serif text-2xl font-semibold text-primary tracking-wider">やまなみ銘石</a>
+                </div>
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="index.html" class="nav-link group"><span class="nav-en text-gray-600">HOME</span><span class="nav-ja">ホーム</span></a>
+                    <a href="index.html#works" class="nav-link group"><span class="nav-en text-gray-600">WORKS</span><span class="nav-ja">石の加工</span></a>
+                    <a href="BRACE.html" class="nav-link nav-active"><span class="nav-en">CUSTOM</span><span class="nav-ja">自分だけのデザイン</span></a>
+                    <a href="index.html#item" class="nav-link group"><span class="nav-en text-gray-600">ITEM</span><span class="nav-ja">商品一覧</span></a>
+                    <a href="index.html#info" class="nav-link group"><span class="nav-en text-gray-600">INFO</span><span class="nav-ja">店舗案内・FAQ</span></a>
+                    <a href="index.html#contact" class="nav-link group"><span class="nav-en text-gray-600">CONTACT</span><span class="nav-ja">お問い合わせ</span></a>
+                </nav>
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-accent hover:text-primary p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-lg absolute w-full border-t border-gray-100">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">HOME</span><span class="text-xs text-gray-500">ホーム</span></a>
+                <a href="index.html#works" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">WORKS</span><span class="text-xs text-gray-500">石の加工</span></a>
+                <a href="BRACE.html" class="block px-4 py-3 bg-gray-50 rounded text-primary font-bold flex justify-between items-center"><span class="tracking-widest">CUSTOM</span><span class="text-xs text-gray-500">自分だけのデザイン</span></a>
+                <a href="index.html#item" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">ITEM</span><span class="text-xs text-gray-500">商品一覧</span></a>
+                <a href="index.html#info" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">INFO</span><span class="text-xs text-gray-500">店舗案内・FAQ</span></a>
+                <a href="index.html#contact" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">CONTACT</span><span class="text-xs text-gray-500">お問い合わせ</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ■ ここが原因でした！最初は表示しておくように修正しました ■ -->
+    <div class="app-container" id="app-root">
+        <div id="guide-modal" class="modal-overlay">
+            <div class="modal-content" style="font-family: serif; text-align: center;">
+                <button id="guide-close-btn" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
+                <div style="font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 8px;">HOW TO MEASURE</div>
+                <h2 style="color: var(--navy); font-weight: normal; letter-spacing: 3px; font-size: 18px; margin: 0;">手首サイズの測り方</h2>
+                <div style="text-align: left; margin-top: 28px; color: var(--textGray);">
+                    <div style="margin-bottom: 24px;">
+                        <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 01</div>
+                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="https://placehold.co/600x338/E5E7EB/434343?text=Measure+Step+1" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                        <p style="font-size: 14px; line-height: 1.8; margin: 0;">細長く切った紙を手首の骨のすぐ横に、隙間なくピッタリと巻き付けます。紙が重なった部分がずれないよう、セロハンテープ等でしっかりととめます。</p>
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 02</div>
+                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="https://placehold.co/600x338/E5E7EB/434343?text=Measure+Step+2" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                        <p style="font-size: 14px; line-height: 1.8; margin: 0;">テープでとめた輪の部分をハサミで切り、手首から紙を外します。<br /><small style="color: var(--mutedGray);">※お怪我のないよう、ハサミの取り扱いには十分ご注意ください。</small></p>
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 03</div>
+                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="https://placehold.co/600x338/E5E7EB/434343?text=Measure+Step+3" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                        <p style="font-size: 14px; line-height: 1.8; margin: 0;">切り離した紙をまっすぐに伸ばし、定規で端から端までの長さを測ります。その数値がお客様の「手首実寸」となります。</p>
+                    </div>
+                    <div style="padding: 16px; border: 1px solid var(--border); background: var(--bgWarm); border-radius: 4px;">
+                        <p style="font-size: 13px; line-height: 1.8; margin: 0;"><strong>【ブレスレットの内周目安】</strong><br />内周目安 ＝ 手首実寸 ＋ 1.0cm ～ 1.5cm<br /><span style="font-size: 11px; color: var(--mutedGray);">※標準的なゆとりを持たせる場合は「＋1.5cm」をおすすめしております。</span></p>
+                    </div>
+                </div>
+                <button id="guide-action-btn" style="margin-top: 24px; width: 100%; padding: 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; cursor: pointer; letter-spacing: 3px; font-size: 13px; font-family: serif;">作成を始める</button>
+            </div>
+        </div>
+
+        <div id="order-modal" class="modal-overlay">
+            <div class="modal-content" style="border-top-color: var(--gold); padding: 28px 24px; font-family: serif;">
+                <button id="order-close-btn" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 6px;">CONFIRMATION</div>
+                    <h2 style="color: var(--navy); font-size: 16px; font-weight: normal; letter-spacing: 3px; margin: 0;">ご注文内容</h2>
+                </div>
+                <div id="order-shipping-alert"></div>
+                <div style="font-size: 11px; color: var(--mutedGray); margin-bottom: 12px; letter-spacing: 1px;">管理番号:<span id="order-management-code"></span></div>
+                <div style="border: 1px solid var(--border); padding: 16px 14px; background: var(--bgLight); margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px;"><span>合計 玉数</span><strong id="order-total-beads"></strong></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;"><span>内周目安</span><strong id="order-inner-circ"></strong></div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div style="font-size: 11px; color: var(--navy); letter-spacing: 2px; margin-bottom: 8px;">STONES</div>
+                    <div id="order-stone-list" style="max-height: 180px; overflow-y: auto; border: 1px solid var(--border); padding: 10px;"></div>
+                </div>
+                <div id="review-box" style="padding: 14px; background: var(--bgWarm); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 16px; transition: all 0.2s;">
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--navy); cursor: pointer; font-weight: bold;">
+                        <input type="checkbox" id="review-checkbox" style="transform: scale(1.3); accent-color: var(--navy);" />
+                        商品到着後、レビューを書いて5%OFF!
+                    </label>
+                </div>
+                <div style="border-top: 1px solid var(--border); padding-top: 14px; margin-bottom: 20px;" id="order-price-summary"></div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button id="btn-submit-base" style="width: 100%; padding: 16px; border-radius: 4px; background: var(--navy); color: var(--white); border: none; font-size: 13px; letter-spacing: 3px; cursor: pointer; font-family: serif;">BASEで注文する</button>
+                    <button id="btn-order-back" style="width: 100%; padding: 12px; background: none; color: var(--mutedGray); border: none; font-size: 12px; cursor: pointer; font-family: serif;">戻る</button>
+                </div>
+            </div>
+        </div>
+
+        <div aria-hidden="true" style="position: fixed; left: 200%; top: 0; z-index: -10000;">
+            <div id="export-wrap" style="width: 700px; padding: 40px; background: var(--bgLight); border: 1px solid var(--border); box-sizing: border-box;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h2 style="margin: 0; color: var(--navy); letter-spacing: 4px; font-family: serif;">デザイン仕様書</h2>
+                    <p style="margin: 8px 0 0; font-size: 12px; color: var(--mutedGray);">ITEM NO: <span id="export-code"></span></p>
+                </div>
+                <div style="display: flex; gap: 30px;">
+                    <div style="width: 400px;">
+                        <div style="background: var(--white); border: 1px solid var(--border); padding: 20px; position: relative;" id="export-svg-container"></div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 16px; padding: 14px; background: var(--white); border: 1px solid var(--border);">
+                            <span style="font-size: 13px; color: var(--textGray);">内周目安: <strong id="export-inner-circ"></strong></span>
+                            <span style="font-size: 13px; color: var(--navy);">合計金額: <strong id="export-total-price"></strong></span>
+                        </div>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="margin: 0 0 12px 0; font-size: 13px; color: var(--navy); border-bottom: 2px solid var(--navy); padding-bottom: 8px;">使用ストーン一覧</h3>
+                        <div id="export-stone-list" style="display: flex; flex-direction: column; gap: 6px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="app-header">
+            <div>
+                <h1 style="font-size: 14px; font-weight: bold; letter-spacing: 2px; margin: 0; color: var(--navy);">オリジナルブレス作成</h1>
+                <div style="font-size: 9px; color: var(--mutedGray); letter-spacing: 1px; margin-top: 4px;">NO: <span id="header-code"></span></div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 10px; color: var(--mutedGray); font-family: serif;">お見積り</div>
+                <div style="font-size: 18px; color: var(--navy); font-weight: bold; font-family: serif;" id="header-price"></div>
+            </div>
+        </header>
+
+        <main class="main-layout">
+            <div id="preview-section" class="preview-section">
+                <div class="preview-inner">
+                    <div id="bracelet-capture-area" style="background: var(--bgLight); border: 1px solid var(--border); border-radius: 4px; position: relative;">
+                        <div id="main-svg-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+                    <div>
+                        <div style="display: inline-flex; align-items: center; border: 1px solid var(--border); border-radius: 4px; background: var(--white);">
+                            <button id="btn-minus" style="width: 44px; height: 40px; border: none; background: none; cursor: pointer; color: var(--textGray); font-size: 18px;">－</button>
+                            <span id="bead-count" style="padding: 0 14px; font-size: 13px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); color: var(--textGray); min-width: 56px; text-align: center; line-height: 40px;"></span>
+                            <button id="btn-plus" style="width: 44px; height: 40px; border: none; background: none; cursor: pointer; color: var(--textGray); font-size: 18px;">＋</button>
+                        </div>
+                        <div style="font-size: 10px; color: var(--mutedGray); margin-top: 6px; letter-spacing: 0.5px;">※目安：8mmは24玉、10mmは20玉前後</div>
+                    </div>
+                    <div style="display: flex; gap: 6px;">
+                        <button id="btn-save" style="background: var(--white); color: var(--navy); border: 1px solid var(--border); border-radius: 4px; padding: 0 14px; font-size: 11px; cursor: pointer; letter-spacing: 1px; height: 40px; display: flex; align-items: center; gap: 4px;">
+                            <span style="font-size: 14px;">📷</span> 保存
+                        </button>
+                        <button id="btn-reset" style="background: var(--white); color: var(--danger); border: 1px solid var(--border); border-radius: 4px; padding: 0 14px; font-size: 11px; cursor: pointer; letter-spacing: 1px; height: 40px;">リセット</button>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+                    <label id="sym-label" style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--mutedGray); cursor: pointer;">
+                        <input type="checkbox" id="sym-checkbox" style="accent-color: var(--navy); transform: scale(1.2);" />
+                        左右対称に配置する
+                    </label>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--bgWarm); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 16px;">
+                    <div>
+                        <div style="font-size: 10px; color: var(--mutedGray); margin-bottom: 4px;">配置状況</div>
+                        <div style="font-size: 16px; color: var(--navy); font-weight: bold;" id="fill-status"></div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 10px; color: var(--mutedGray); margin-bottom: 4px;">内周目安</div>
+                        <div style="font-size: 18px; color: var(--navy); font-weight: bold;"><span id="inner-circ"></span><span style="font-size: 12px; margin-left: 2px; font-weight: normal;">cm</span></div>
+                        <button id="btn-open-guide" style="background: none; border: none; color: var(--mutedGray); font-size: 11px; padding: 0; text-decoration: underline; cursor: pointer; margin-top: 4px;">サイズの測り方</button>
+                    </div>
+                </div>
+
+                <div id="shipping-banner"></div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 0 4px 4px 0; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div id="current-bead-img" style="width: 32px; height: 32px; border-radius: 50%; background: var(--bgLight); overflow: hidden; flex-shrink: 0;"></div>
+                        <div>
+                            <div style="font-size: 10px; color: var(--mutedGray); letter-spacing: 1px;" id="current-bead-no"></div>
+                            <div style="font-size: 14px; color: var(--navy); font-weight: bold;" id="current-bead-name"></div>
+                        </div>
+                    </div>
+                    <button id="btn-delete-bead" style="display:none; background: var(--white); border: 1px solid var(--border); border-radius: 4px; color: var(--danger); font-size: 11px; padding: 8px 12px; cursor: pointer; letter-spacing: 1px;">削除</button>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; align-items: flex-end;">
+                    <span style="font-size: 14px; font-weight: bold; letter-spacing: 1px; color: var(--navy);">石を選択 <span style="color: var(--gold); margin-left: 4px;" id="select-target-no"></span></span>
+                </div>
+
+                <div id="stone-grid" class="stone-grid"></div>
+
+                <div style="margin: 40px 0 24px; display: flex; flex-direction: column; gap: 12px;">
+                    <div id="alert-incomplete" style="text-align: center; font-size: 12px; color: var(--navy); padding: 10px; background: var(--bgWarm); border: 1px solid var(--border); border-radius: 4px; letter-spacing: 1px;"></div>
+                    <button id="btn-order" style="width: 100%; padding: 20px; border-radius: 4px; background: #ccc; color: var(--white); border: none; font-size: 14px; letter-spacing: 4px; cursor: not-allowed; font-weight: bold; font-family: inherit; transition: all 0.2s;">注文に進む</button>
+                </div>
+            </div>
+        </main>
+        <footer style="border-top: 1px solid var(--border); padding: 24px 20px; text-align: center; background: var(--bgLight); margin-top: auto;">
+            <div style="font-size: 11px; color: var(--mutedGray); letter-spacing: 1px;">© 有限会社 やまなみ銘石 All Rights Reserved.</div>
+        </footer>
+    </div>
+
+    <!-- Vanilla JS Logic -->
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        const STONE_TYPES = [
+            { id: "suisho_maru",     name: "水晶 丸",             color: "#f8f9fa", prices: { 8: 120, 10: 180 } },
+            { id: "suisho_crack",    name: "水晶 クラック",       color: "#f8f9fa", prices: { 8: 120, 10: 180 } },
+            { id: "suisho_cut",      name: "水晶 カット",         color: "#f8f9fa", prices: { 8: 160, 10: 200 } },
+            { id: "moonstone",       name: "ムーンストーン",      color: "#fdfdfd", prices: { 8: 240, 10: 800 } },
+            { id: "labradorite",     name: "ラブラドライト",      color: "#a0b0b0", prices: { 8: 900, 10: 1200 } },
+            { id: "rosequartz",      name: "ローズクォーツ",      color: "#ffe0eb", prices: { 8: 110, 10: 200 } },
+            { id: "incarose",        name: "インカローズ",        color: "#ff8da1", prices: { 8: 1300, 10: 2800 } },
+            { id: "agate_red",       name: "レッドアゲート",      color: "#d9534f", prices: { 8: 120, 10: 180 } },
+            { id: "rutile",          name: "ルチルクォーツ",      color: "#fdf8ec", prices: { 8: 330, 10: 600 } },
+            { id: "fluorite",        name: "フローライト",        color: "#ccf0cc", prices: { 8: 120, 10: null } },
+            { id: "aventurine",      name: "アベンチュリン",      color: "#99cc99", prices: { 8: 120, 10: 200 } },
+            { id: "malachite",       name: "マラカイト",          color: "#1e6b3f", prices: { 8: 380, 10: 630 } },
+            { id: "amazonite",       name: "アマゾナイト",        color: "#8bd9c7", prices: { 8: 120, 10: null } },
+            { id: "aquamarine",      name: "アクアマリン",        color: "#d1edf2", prices: { 8: 1100, 10: 1800 } },
+            { id: "blue_topaz",      name: "ブルートパーズ",      color: "#c2e6f9", prices: { 8: 1200, 10: null } },
+            { id: "turquoise",       name: "ターコイズ",          color: "#40e0d0", prices: { 8: 580, 10: null } },
+            { id: "lapis",           name: "ラピスラズリ",        color: "#254182", prices: { 8: 800, 10: 1200 } },
+            { id: "lavender_ame",    name: "ラベンダーアメジスト", color: "#e6e0f5", prices: { 8: 200, 10: 300 } },
+            { id: "amethyst",        name: "アメジスト",          color: "#d2c2f0", prices: { 8: 500, 10: 950 } },
+            { id: "tigereye_yellow", name: "タイガーアイ",        color: "#6e4b26", prices: { 8: 90, 10: 180 } },
+            { id: "tigereye_red",    name: "レッドタイガーアイ",   color: "#8d6a4c", prices: { 8: 90, 10: 180 } },
+            { id: "tigereye_blue",   name: "ブルータイガーアイ",   color: "#3a4a6e", prices: { 8: 170, 10: 300 } },
+            { id: "onyx_maru",       name: "オニキス 丸",          color: "#333333", prices: { 8: 110, 10: 180 } },
+            { id: "onyx_cut",        name: "オニキス カット",        color: "#333333", prices: { 8: 160, 10: 260 } },
+            { id: "yakusugi",        name: "屋久杉",              color: "#b58d5f", prices: { 8: 500, 10: 700 } },
+            { id: "eye_agate",       name: "アイアゲート",        color: "#8c7366", prices: { 8: 130, 10: 180 } },
+        ].map(s => ({ ...s, image: `/src/assets/${s.id}.png` }));
+
+        const SIZES = [8, 10];
+        const SHIPPING_FREE_THRESHOLD = 5000;
+        const SHIPPING_FEE = 400;
+        const MIN_BEADS = 10;
+        const MAX_BEADS = 35;
+        const DEFAULT_BEADS = 24;
+        const REVIEW_DISCOUNT_RATE = 0.05;
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbxxeRcA8qzLofDAQ_OowI3lWHZjA2C_FHaaJT5u7qYhXimM6cAN-2AMyVYIfBloCq39/exec";
+        const EMPTY = { id: "empty", type: "empty", name: "未選択", size: 8, price: 0, color: null, image: null };
+
+        let beads = Array(DEFAULT_BEADS).fill(null).map(() => ({ ...EMPTY }));
+        let selectedIdx = 0;
+        let isSymmetry = false;
+        let expandedStoneId = null;
+        let isReviewDiscount = false;
+        let managementCode = "";
+        let isSavingImg = false;
+        let isSubmitting = false;
+
+        function generateCode() {
+            const now = new Date(), yy = String(now.getFullYear()).slice(2), mm = String(now.getMonth() + 1).padStart(2, "0"), dd = String(now.getDate()).padStart(2, "0");
+            return `GR-${yy}${mm}${dd}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+        }
+        function formatPrice(num) { return num.toLocaleString(); }
+        function calculateInnerCirc() {
+            const nonEmpty = beads.filter(b => b.type !== "empty");
+            if (nonEmpty.length === 0) return "0.0";
+            const totalDiam = nonEmpty.reduce((s, b) => s + b.size, 0);
+            const avgSize = totalDiam / nonEmpty.length;
+            const radius = totalDiam / (2 * Math.PI);
+            return Math.max(0, (((radius - avgSize / 2) * 2 * Math.PI) / 10) - 0.5).toFixed(1);
+        }
+        function getSymmetryIdx() {
+            if (!isSymmetry || selectedIdx === 0) return -1;
+            const sym = beads.length - selectedIdx;
+            return (sym !== selectedIdx && sym >= 0 && sym < beads.length) ? sym : -1;
+        }
+
+        function renderApp() {
+            const filledBeads = beads.filter(b => b.type !== "empty");
+            const totalPrice = filledBeads.reduce((s, b) => s + b.price, 0);
+            const innerCirc = calculateInnerCirc();
+            const isComplete = beads.every(b => b.type !== "empty");
+            
+            document.getElementById('header-price').textContent = `¥${formatPrice(totalPrice)}`;
+            document.getElementById('bead-count').textContent = `${beads.length} 玉`;
+            document.getElementById('fill-status').textContent = `${filledBeads.length} / ${beads.length} 玉`;
+            document.getElementById('inner-circ').textContent = innerCirc;
+            
+            document.getElementById('btn-minus').style.color = beads.length <= MIN_BEADS ? '#ccc' : 'var(--textGray)';
+            document.getElementById('btn-minus').style.cursor = beads.length <= MIN_BEADS ? 'not-allowed' : 'pointer';
+            document.getElementById('btn-plus').style.color = beads.length >= MAX_BEADS ? '#ccc' : 'var(--textGray)';
+            document.getElementById('btn-plus').style.cursor = beads.length >= MAX_BEADS ? 'not-allowed' : 'pointer';
+            
+            const btnReset = document.getElementById('btn-reset');
+            btnReset.style.color = filledBeads.length === 0 ? '#ccc' : 'var(--danger)';
+            btnReset.style.cursor = filledBeads.length === 0 ? 'not-allowed' : 'pointer';
+            
+            const btnOrder = document.getElementById('btn-order');
+            btnOrder.style.background = isComplete ? 'var(--navy)' : '#ccc';
+            btnOrder.style.cursor = isComplete ? 'pointer' : 'not-allowed';
+            btnOrder.disabled = !isComplete || isSubmitting;
+            
+            const alertInc = document.getElementById('alert-incomplete');
+            if (!isComplete) {
+                alertInc.style.display = 'block';
+                alertInc.innerHTML = `残り <strong>${beads.length - filledBeads.length} 玉</strong> を配置してください`;
+            } else {
+                alertInc.style.display = 'none';
+            }
+
+            const banner = document.getElementById('shipping-banner');
+            if (filledBeads.length > 0) {
+                if (totalPrice >= SHIPPING_FREE_THRESHOLD) {
+                    banner.innerHTML = `<div style="padding: 12px; background: var(--successBg); border: 1px solid var(--successBorder); border-radius: 4px; margin-bottom: 16px; font-size: 12px; color: var(--success); letter-spacing: 1px; text-align: center; font-weight: bold;">✓ 送料無料対象です</div>`;
+                } else {
+                    const prog = Math.min(100, (totalPrice / SHIPPING_FREE_THRESHOLD) * 100);
+                    banner.innerHTML = `
+                        <div style="padding: 14px; background: var(--bgWarm); border: 1px dashed var(--gold); border-radius: 4px; margin-bottom: 16px; font-size: 12px; color: var(--navy); letter-spacing: 0.5px; line-height: 1.7; text-align: center;">
+                            現在は <strong style="color: var(--danger);">送料 ¥${formatPrice(SHIPPING_FEE)}</strong> が加算されます<br />
+                            <span style="color: var(--gold); font-weight: bold;">あと ¥${formatPrice(SHIPPING_FREE_THRESHOLD - totalPrice)} で送料無料！</span>
+                            <div style="margin-top: 10px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden;">
+                                <div style="width: ${prog}%; height: 100%; background: var(--gold); border-radius: 3px; transition: width 0.4s ease;"></div>
+                            </div>
+                        </div>`;
+                }
+            } else { banner.innerHTML = ''; }
+
+            const current = beads[selectedIdx];
+            document.getElementById('current-bead-no').textContent = `NO. ${String(selectedIdx + 1).padStart(2, '0')}`;
+            document.getElementById('current-bead-name').textContent = current.type === "empty" ? "未選択" : `${current.name} ${current.size}mm`;
+            document.getElementById('current-bead-img').innerHTML = current.image && current.type !== "empty" ? `<img src="${current.image}" style="width:100%;height:100%;object-fit:cover;">` : '';
+            document.getElementById('current-bead-img').style.background = current.color || 'var(--bgLight)';
+            document.getElementById('btn-delete-bead').style.display = current.type !== "empty" ? 'block' : 'none';
+            document.getElementById('select-target-no').textContent = `No.${selectedIdx + 1}`;
+
+            renderSVG('main-svg-container', 'main', isScrolled ? 'small' : 'normal');
+            renderSVG('export-svg-container', 'export', 'normal');
+            renderStoneGrid();
+        }
+
+        function renderSVG(containerId, idPrefix, markerSize) {
+            const symIdx = getSymmetryIdx();
+            const totalD = beads.reduce((s, b) => s + b.size, 0);
+            const scale = 3.0;
+            const r_2d = (totalD * scale) / (2 * Math.PI);
+            let curr_a = 0;
+            
+            const positions = beads.map((b) => {
+                const step = (b.size * scale) / r_2d;
+                const a = curr_a + step / 2 - Math.PI / 2;
+                const cx = r_2d * Math.cos(a);
+                const cy = r_2d * Math.sin(a);
+                const r = (b.size * scale) / 2;
+                const rot = (a + Math.PI / 2) * (180 / Math.PI);
+                curr_a += step;
+                return { cx, cy, r, rot };
+            });
+
+            const extent = r_2d + 30;
+            const vbWidth = Math.max(300, extent * 2.85);
+            const vbHeight = vbWidth * 0.7;
+
+            let defs = '';
+            let elements = '';
+
+            beads.forEach((b, i) => {
+                const { cx, cy, r, rot } = positions[i];
+                if (b.type !== "empty") {
+                    defs += `<clipPath id="clip-${idPrefix}-${i}"><circle cx="${cx}" cy="${cy}" r="${r}" /></clipPath>`;
+                }
+                const is_sel = i === selectedIdx;
+                const is_sym = i === symIdx;
+                
+                let groupInner = '';
+                if (is_sel) groupInner += `<circle cx="${cx}" cy="${cy}" r="${r + 3}" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity="0.9" />`;
+                if (is_sym) groupInner += `<circle cx="${cx}" cy="${cy}" r="${r + 3}" fill="none" stroke="var(--navy)" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.6" />`;
+                
+                if (b.type === "empty") {
+                    groupInner += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="transparent" stroke="#cccccc" stroke-width="1" stroke-dasharray="4 3" /><text x="${cx}" y="${cy + 2}" text-anchor="middle" font-size="8" fill="#bbb">+</text>`;
+                } else {
+                    groupInner += `<g transform="rotate(${rot}, ${cx}, ${cy})">
+                        ${b.image ? `<image href="${b.image}" x="${cx - r}" y="${cy - r}" width="${r * 2}" height="${r * 2}" clip-path="url(#clip-${idPrefix}-${i})" preserveAspectRatio="xMidYMid slice" />` : `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${b.color}" />`}
+                    </g>
+                    <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#premium-shadow-${idPrefix})" pointer-events="none" />
+                    <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#premium-bounce-${idPrefix})" pointer-events="none" />
+                    <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#premium-glare-${idPrefix})" pointer-events="none" />
+                    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="0.5" pointer-events="none" />`;
+                }
+                elements += `<g style="cursor:pointer" onclick="window.selectBead(${i})">${groupInner}</g>`;
+            });
+
+            const markerTop = markerSize === "small" ? -7 : -9;
+            const markerW = markerSize === "small" ? 5 : 7;
+            const markerH = markerSize === "small" ? 7 : 9;
+
+            let html = `
+                <div style="position: absolute; top: ${markerTop}px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: ${markerW}px solid transparent; border-right: ${markerW}px solid transparent; border-top: ${markerH}px solid var(--gold); z-index: 5; pointer-events: none; transition: all 0.3s ease;"></div>
+                <div style="width: 100%; padding-bottom: 70%; position: relative;">
+                <svg viewBox="-${vbWidth/2} -${vbHeight/2} ${vbWidth} ${vbHeight}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    <defs>
+                        ${defs}
+                        <radialGradient id="premium-shadow-${idPrefix}" cx="30%" cy="30%" r="70%"><stop offset="60%" stop-color="#000" stop-opacity="0" /><stop offset="90%" stop-color="#000" stop-opacity="0.25" /><stop offset="100%" stop-color="#000" stop-opacity="0.6" /></radialGradient>
+                        <radialGradient id="premium-glare-${idPrefix}" cx="35%" cy="20%" r="35%"><stop offset="0%" stop-color="#fff" stop-opacity="0.85" /><stop offset="30%" stop-color="#fff" stop-opacity="0.3" /><stop offset="100%" stop-color="#fff" stop-opacity="0" /></radialGradient>
+                        <radialGradient id="premium-bounce-${idPrefix}" cx="75%" cy="80%" r="40%"><stop offset="0%" stop-color="#fff" stop-opacity="0" /><stop offset="70%" stop-color="#fff" stop-opacity="0.1" /><stop offset="100%" stop-color="#fff" stop-opacity="0.35" /></radialGradient>
+                    </defs>
+                    ${elements}
+                </svg>
+                ${idPrefix === "main" ? `<div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.85); padding: 4px 10px; border-radius: 4px; font-size: 10px; color: var(--navy); letter-spacing: 1px; border: 1px solid var(--border);">${beads.filter(b=>b.type!=="empty").length} / ${beads.length}</div>` : ''}
+                </div>
+            `;
+            document.getElementById(containerId).innerHTML = html;
+        }
+
+        function renderStoneGrid() {
+            let html = '';
+            STONE_TYPES.forEach(type => {
+                const isExpanded = expandedStoneId === type.id;
+                html += `
+                    <button class="stone-btn ${isExpanded ? 'expanded' : ''}" onclick="window.toggleStonePanel('${type.id}')">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: ${type.color}; overflow: hidden; box-shadow: inset 2px 2px 4px rgba(255,255,255,0.4), inset -2px -2px 4px rgba(0,0,0,0.1);">
+                            <img src="${type.image}" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+                        </div>
+                        <span style="font-size: 11px; color: var(--textGray); text-align: center; line-height: 1.3;">${type.name}</span>
+                    </button>
+                `;
+                if (isExpanded) {
+                    let sizesHtml = SIZES.map(s => {
+                        const price = type.prices[s];
+                        const isSoldOut = price == null;
+                        if (isSoldOut) {
+                            return `<button disabled style="padding: 12px; border-radius: 4px; border: 1px solid var(--border); background: var(--bgLight); color: var(--mutedGray); cursor: not-allowed; letter-spacing: 1px; opacity: 0.6;"><div style="font-size: 14px; margin-bottom: 4px; font-weight: bold;">${s}mm</div><div style="font-size: 11px; color: var(--danger);">品切れ中</div></button>`;
+                        } else {
+                            return `<button onclick="window.finalizeStoneSelection('${type.id}', ${s}, ${price})" style="padding: 12px; border-radius: 4px; border: 1px solid var(--navy); background: var(--white); color: var(--navy); cursor: pointer; letter-spacing: 1px; transition: all 0.2s;"><div style="font-size: 14px; margin-bottom: 4px; font-weight: bold;">${s}mm</div><div style="font-size: 11px; color: var(--mutedGray);">¥${formatPrice(price)}</div></button>`;
+                        }
+                    }).join('');
+                    html += `
+                        <div class="size-panel">
+                            <div style="font-size: 12px; color: var(--navy); text-align: center; margin-bottom: 12px; font-weight: bold; letter-spacing: 1px;">${type.name} のサイズを選択</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">${sizesHtml}</div>
+                        </div>
+                    `;
+                }
+            });
+            document.getElementById('stone-grid').innerHTML = html;
+        }
+
+        window.selectBead = (idx) => { selectedIdx = idx; renderApp(); };
+        window.toggleStonePanel = (id) => { expandedStoneId = expandedStoneId === id ? null : id; renderApp(); };
+        window.finalizeStoneSelection = (typeId, size, price) => {
+            const stone = STONE_TYPES.find(s => s.id === typeId);
+            beads[selectedIdx] = { ...stone, size, price, type: "bead" };
+            if (isSymmetry && selectedIdx !== 0) {
+                const symIdx = beads.length - selectedIdx;
+                if (symIdx !== selectedIdx && symIdx >= 0 && symIdx < beads.length) {
+                    beads[symIdx] = { ...stone, size, price, type: "bead" };
+                }
+            }
+            for (let i = 1; i <= beads.length; i++) {
+                const nextIdx = (selectedIdx + i) % beads.length;
+                if (beads[nextIdx].type === "empty") { selectedIdx = nextIdx; break; }
+            }
+            expandedStoneId = null;
+            renderApp();
+        };
+
+        document.getElementById('btn-minus').addEventListener('click', () => {
+            if (beads.length > MIN_BEADS) { beads.pop(); renderApp(); }
+        });
+        document.getElementById('btn-plus').addEventListener('click', () => {
+            if (beads.length < MAX_BEADS) { beads.push({ ...EMPTY }); renderApp(); }
+        });
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            if (beads.filter(b => b.type !== "empty").length === 0) return;
+            if (confirm("配置した石をすべてリセットしますか?")) {
+                beads = beads.map(() => ({ ...EMPTY }));
+                selectedIdx = 0; expandedStoneId = null; renderApp();
+            }
+        });
+        document.getElementById('sym-checkbox').addEventListener('change', (e) => {
+            isSymmetry = e.target.checked;
+            document.getElementById('sym-label').style.color = isSymmetry ? 'var(--navy)' : 'var(--mutedGray)';
+            document.getElementById('sym-label').style.fontWeight = isSymmetry ? 'bold' : 'normal';
+            renderApp();
+        });
+        document.getElementById('btn-delete-bead').addEventListener('click', () => {
+            beads[selectedIdx] = { ...EMPTY }; renderApp();
+        });
+
+        const guideModal = document.getElementById('guide-modal');
+        const orderModal = document.getElementById('order-modal');
+
+        document.getElementById('guide-action-btn').addEventListener('click', () => {
+            guideModal.style.display = 'none';
+        });
+        document.getElementById('guide-close-btn').addEventListener('click', () => guideModal.style.display = 'none');
+        document.getElementById('btn-open-guide').addEventListener('click', () => guideModal.style.display = 'flex');
+
+        function updateOrderModal() {
+            const filledBeads = beads.filter(b => b.type !== "empty");
+            const totalPrice = filledBeads.reduce((s, b) => s + b.price, 0);
+            const finalPrice = isReviewDiscount ? Math.floor(totalPrice * (1 - REVIEW_DISCOUNT_RATE)) : totalPrice;
+            const shippingCost = finalPrice >= SHIPPING_FREE_THRESHOLD ? 0 : SHIPPING_FEE;
+            const grandTotal = finalPrice + shippingCost;
+            const amountToFreeShipping = Math.max(0, SHIPPING_FREE_THRESHOLD - finalPrice);
+
+            document.getElementById('order-management-code').textContent = managementCode;
+            document.getElementById('order-total-beads').textContent = `${beads.length} 玉`;
+            document.getElementById('order-inner-circ').textContent = `${calculateInnerCirc()} cm`;
+
+            const alertDiv = document.getElementById('order-shipping-alert');
+            if (shippingCost > 0) {
+                alertDiv.innerHTML = `
+                    <div style="background: var(--bgWarm); border: 1px solid var(--gold); border-left: 4px solid var(--gold); padding: 12px 14px; margin-bottom: 16px; font-size: 12px; line-height: 1.7; color: var(--navy);">
+                        <div style="font-weight: bold; margin-bottom: 4px; letter-spacing: 1px;">📦 送料についてのご案内</div>
+                        <div>商品代金が <strong>¥${formatPrice(SHIPPING_FREE_THRESHOLD)}</strong> 未満のため、送料 <strong style="color: var(--danger);">¥${formatPrice(shippingCost)}</strong> が追加されます。</div>
+                        <div style="margin-top: 6px; font-size: 11px; color: var(--mutedGray);">あと <strong style="color: var(--gold);">¥${formatPrice(amountToFreeShipping)}</strong> で送料無料になります。</div>
+                    </div>`;
+            } else { alertDiv.innerHTML = ''; }
+
+            document.getElementById('order-stone-list').innerHTML = filledBeads.map((b, i) => `
+                <div style="display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0; border-bottom: ${i < filledBeads.length - 1 ? '1px dashed var(--border)' : 'none'};">
+                    <span><span style="color: var(--mutedGray); margin-right: 6px;">${String(i + 1).padStart(2, '0')}.</span>${b.name} <span style="color: var(--mutedGray);">(${b.size}mm)</span></span>
+                    <span>¥${formatPrice(b.price)}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('review-box').style.borderColor = isReviewDiscount ? 'var(--navy)' : 'var(--border)';
+
+            let priceSummary = `<div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span>商品代金</span><span style="${isReviewDiscount ? 'text-decoration: line-through; color: var(--mutedGray);' : ''}">¥${formatPrice(totalPrice)}</span></div>`;
+            if (isReviewDiscount) {
+                priceSummary += `<div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: var(--gold); font-weight: bold;"><span>レビューお約束割 (5%OFF)</span><span>- ¥${formatPrice(totalPrice - finalPrice)}</span></div>`;
+            }
+            priceSummary += `<div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: ${shippingCost > 0 ? 'var(--danger)' : 'var(--success)'}; font-weight: ${shippingCost > 0 ? 'bold' : 'normal'};"><span>送料</span><span>${shippingCost === 0 ? '無料 ✓' : '+ ¥' + formatPrice(shippingCost)}</span></div>`;
+            priceSummary += `<div style="display: flex; justify-content: space-between; font-size: 16px; padding-top: 10px; border-top: 1px solid var(--border); color: var(--navy);"><strong>お支払合計</strong><strong>¥${formatPrice(grandTotal)}</strong></div>`;
+            document.getElementById('order-price-summary').innerHTML = priceSummary;
+        }
+
+        document.getElementById('btn-order').addEventListener('click', () => {
+            updateOrderModal();
+            orderModal.style.display = 'flex';
+        });
+        document.getElementById('order-close-btn').addEventListener('click', () => orderModal.style.display = 'none');
+        document.getElementById('btn-order-back').addEventListener('click', () => orderModal.style.display = 'none');
+        
+        document.getElementById('review-checkbox').addEventListener('change', (e) => {
+            isReviewDiscount = e.target.checked;
+            updateOrderModal();
+        });
+
+        function updateExportDOM() {
+            document.getElementById('export-code').textContent = managementCode;
+            document.getElementById('export-inner-circ').textContent = `${calculateInnerCirc()}cm`;
+            const filledBeads = beads.filter(b => b.type !== "empty");
+            document.getElementById('export-total-price').textContent = `¥${formatPrice(filledBeads.reduce((s, b) => s + b.price, 0))}`;
+            document.getElementById('export-stone-list').innerHTML = beads.map((b, i) => `
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: ${b.type === 'empty' ? '#bbb' : 'var(--textGray)'}; border-bottom: 1px dashed var(--border); padding-bottom: 4px;">
+                    <span><span style="color: var(--mutedGray); margin-right: 6px;">${String(i + 1).padStart(2, '0')}.</span>${b.type === 'empty' ? '未選択' : b.name}</span>
+                    ${b.type !== 'empty' ? `<span>${b.size}mm</span>` : ''}
+                </div>
+            `).join('');
+            renderSVG('export-svg-container', 'export', 'normal');
+        }
+
+        document.getElementById('btn-save').addEventListener('click', async () => {
+            if (isSavingImg) return;
+            const btn = document.getElementById('btn-save');
+            isSavingImg = true; btn.innerHTML = `<span style="font-size: 14px;">📷</span> 保存中...`; btn.style.cursor = 'not-allowed';
+            
+            updateExportDOM();
+            await new Promise(r => setTimeout(r, 300));
+            const area = document.getElementById('export-wrap');
+            try {
+                const html2canvas = await loadHtml2Canvas();
+                const canvas = await html2canvas(area, { backgroundColor: "#ffffff", useCORS: true, scale: 2 });
+                const link = document.createElement("a");
+                link.download = `bracelet_design_${managementCode}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            } catch (err) { alert("保存に失敗しました。"); }
+            isSavingImg = false; btn.innerHTML = `<span style="font-size: 14px;">📷</span> 保存`; btn.style.cursor = 'pointer';
+        });
+
+        document.getElementById('btn-submit-base').addEventListener('click', async () => {
+            if (isSubmitting) return;
+            isSubmitting = true;
+            const btn = document.getElementById('btn-submit-base');
+            btn.textContent = "決済ページを作成中..."; btn.style.background = "#aaa"; btn.style.cursor = "not-allowed";
+
+            updateExportDOM();
+            await new Promise(r => setTimeout(r, 300));
+            
+            let imageBase64 = "";
+            try {
+                const html2canvas = await loadHtml2Canvas();
+                const canvas = await html2canvas(document.getElementById('export-wrap'), { backgroundColor: "#ffffff", useCORS: true });
+                imageBase64 = canvas.toDataURL("image/png").split(",")[1];
+            } catch (err) {}
+
+            const filledBeads = beads.filter(b => b.type !== "empty");
+            const totalPrice = filledBeads.reduce((s, b) => s + b.price, 0);
+            const finalPrice = isReviewDiscount ? Math.floor(totalPrice * (1 - REVIEW_DISCOUNT_RATE)) : totalPrice;
+
+            const orderData = {
+                total_price: finalPrice,
+                items: filledBeads.map(b => `${b.name}${b.size}mm ¥${b.price}`),
+                discount_applied: isReviewDiscount,
+                image_base64: imageBase64,
+                management_code: managementCode
+            };
+
+            try {
+                const response = await fetch(GAS_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(orderData), redirect: "follow" });
+                const result = await response.json();
+                if (result.status === "success" && result.redirect_url) {
+                    sessionStorage.removeItem("gr_order_code");
+                    window.location.href = result.redirect_url;
+                } else {
+                    alert("失敗しました: " + (result.message || "不明なエラー"));
+                    resetSubmitBtn(btn);
+                }
+            } catch (error) {
+                alert("通信エラーが発生しました");
+                resetSubmitBtn(btn);
+            }
+        });
+
+        function resetSubmitBtn(btn) {
+            isSubmitting = false;
+            btn.textContent = "BASEで注文する"; btn.style.background = "var(--navy)"; btn.style.cursor = "pointer";
+        }
+
+        let isScrolled = false;
+        window.addEventListener('scroll', () => {
+            const sc = window.scrollY > 80;
+            if (sc !== isScrolled) {
+                isScrolled = sc;
+                document.getElementById('preview-section').className = `preview-section ${isScrolled ? 'scrolled' : ''}`;
+                renderSVG('main-svg-container', 'main', isScrolled ? 'small' : 'normal');
+            }
+        }, { passive: true });
+
+        function init() {
+            const script = document.createElement("script");
+            script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+            document.head.appendChild(script);
+
+            window.loadHtml2Canvas = () => {
+                return new Promise((resolve) => {
+                    if (window.html2canvas) resolve(window.html2canvas);
+                    else {
+                        const s = document.createElement("script");
+                        s.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+                        s.onload = () => resolve(window.html2canvas);
+                        document.head.appendChild(s);
+                    }
+                });
+            };
+
+            let code = sessionStorage.getItem("gr_order_code");
+            if (!code) { code = generateCode(); sessionStorage.setItem("gr_order_code", code); }
+            managementCode = code;
+            document.getElementById('header-code').textContent = managementCode;
+
+            // ★ ここでアプリ画面を描画してからポップアップを出すように修正
+            renderApp(); 
+            guideModal.style.display = 'flex';
+        }
+
+        init();
+    </script>
+</body>
+</html>
