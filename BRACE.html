@@ -620,6 +620,25 @@
             document.getElementById('template-modal').style.display = 'flex';
         };
 
+        window.updateTemplateSize = (type) => {
+            const sId = document.getElementById(`tpl-stone-${type}-id`).value;
+            const sizeSelect = document.getElementById(`tpl-stone-${type}-size`);
+            const sDef = STONE_TYPES.find(s => s.id === sId);
+            Array.from(sizeSelect.options).forEach(opt => {
+                const size = parseInt(opt.value);
+                if (sDef.prices[size] == null) {
+                    opt.disabled = true;
+                    opt.text = `${size}mm (品切)`;
+                    if (sizeSelect.value == size.toString()) {
+                        sizeSelect.value = size === 8 ? 10 : 8; // Switch to the available one
+                    }
+                } else {
+                    opt.disabled = false;
+                    opt.text = `${size}mm`;
+                }
+            });
+        };
+
         window.selectTemplatePattern = (id) => {
             selectedTemplateId = id;
             const tpl = TEMPLATES.find(t => t.id === id);
@@ -634,7 +653,7 @@
                 return `<div style="border: 1px solid var(--border); padding: 12px; border-radius: 4px; background: var(--bgWarm);">
                     <div style="font-weight: bold; margin-bottom: 8px; color: var(--navy); font-size: 13px;">玉 ${type}</div>
                     <div style="display: flex; gap: 8px;">
-                        <select id="tpl-stone-${type}-id" style="flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; background: white;">
+                        <select id="tpl-stone-${type}-id" onchange="window.updateTemplateSize('${type}')" style="flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; background: white;">
                             ${options}
                         </select>
                         <select id="tpl-stone-${type}-size" style="width: 80px; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; background: white;">
@@ -647,6 +666,9 @@
             document.getElementById('template-stone-selectors').innerHTML = typesHTML;
             document.getElementById('template-step1').style.display = 'none';
             document.getElementById('template-step2').style.display = 'block';
+
+            // trigger validation on first load
+            tpl.types.forEach(type => window.updateTemplateSize(type));
         };
 
         window.applySelectedTemplate = () => {
@@ -656,9 +678,14 @@
                 const sId = document.getElementById(`tpl-stone-${type}-id`).value;
                 const size = parseInt(document.getElementById(`tpl-stone-${type}-size`).value);
                 const sDef = STONE_TYPES.find(s => s.id === sId);
-                const price = sDef.prices[size] || sDef.prices[8] || 0;
-                const actSize = sDef.prices[size] ? size : 8; // fallback to 8mm if 10mm not available
-                stones[type] = { ...sDef, size: actSize, price, type: "bead" };
+                
+                if (sDef.prices[size] == null) {
+                    alert(`${sDef.name}の${size}mmは品切れ中です。サイズまたは石を変更してください。`);
+                    return;
+                }
+                
+                const price = sDef.prices[size] || 0;
+                stones[type] = { ...sDef, size: size, price, type: "bead" };
             }
             
             const len = beads.length;

@@ -40,12 +40,27 @@ body {
 
 /* Underline Draw Animation */
 .underline-draw {
-  width: 0;
-  transition: width 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s; /* animate width smoothly */
+  width: 100%;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.fade-in.visible .underline-draw {
-  width: 2rem; /* w-8 -> 32px */
+
+@media (hover: hover) {
+  .group:hover .underline-draw {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
 }
+
+@media (hover: none) {
+  .fade-in.visible .underline-draw {
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+  }
+}
+
 
 /* Marquee */
 .marquee-container {
