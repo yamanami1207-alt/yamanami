@@ -1,26 +1,7 @@
-const fs = require('fs');
-const code = fs.readFileSync('./src/main.js', 'utf8');
-// Mocking DOM
-const dom = `
-document = {
-    addEventListener: (e, cb) => { if(e === 'DOMContentLoaded') cb(); },
-    querySelectorAll: () => [],
-    getElementById: () => ({ style: {}, addEventListener: () => {} }),
-    body: { style: {} },
-    documentElement: { scrollTop: 0 }
-};
-window = {
-    location: { pathname: '', search: '', hash: '' },
-    history: { replaceState: () => {} },
-    scrollTo: () => {},
-    addEventListener: () => {}
-};
-navigator = { clipboard: { writeText: () => {} } };
-IntersectionObserver = class { observe() {} unobserve() {} };
-`;
-try {
-    eval(dom + code);
-    console.log("No syntax/immediate runtime errors");
-} catch(e) {
-    console.error("ERROR", e);
+import fs from 'fs';
+const html = fs.readFileSync('index.html', 'utf8');
+const matches = html.match(/\/assets\/[^"']+/g);
+console.log(`Found ${matches ? matches.length : 0} matches in index.html`);
+if (matches) {
+  console.log(matches.slice(0, 5));
 }

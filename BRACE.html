@@ -125,12 +125,12 @@
                 <div style="text-align: left; margin-top: 28px; color: var(--textGray);">
                     <div style="margin-bottom: 24px;">
                         <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 01</div>
-                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/src/assets/te-step1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
                         <p style="font-size: 14px; line-height: 1.8; margin: 0;">細長く切った紙を手首の骨のすぐ横に、隙間なくピッタリと巻き付けます。紙が重なった部分がずれないよう、セロハンテープ等でしっかりととめます。</p>
                     </div>
                     <div style="margin-bottom: 24px;">
                         <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 02</div>
-                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/src/assets/te-step2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
                         <p style="font-size: 14px; line-height: 1.8; margin: 0;">テープでとめた輪の部分をハサミで切り、外した紙をまっすぐに伸ばして定規で端から端までの長さを測ります。その数値が「手首実寸」となります。<br /><small style="color: var(--mutedGray);">※お怪我のないよう、ハサミの取り扱いには十分ご注意ください。</small></p>
                     </div>
                     <div style="padding: 16px; border: 1px solid var(--border); background: var(--bgWarm); border-radius: 4px; margin-bottom: 24px;">
@@ -284,40 +284,48 @@
         </footer>
     </div>
 
-    <!-- Vanilla JS Logic -->
-    <script>
+    <!-- Vite Asset Imports for Dynamic Paths and Main Logic -->
+    <script type="module">
+        const images = import.meta.glob('/assets/*.jpg', { eager: true, query: '?url', import: 'default' });
+        const pngImages = import.meta.glob('/assets/*.png', { eager: true, query: '?url', import: 'default' });
+        window.IMAGE_MAP = { ...images, ...pngImages };
+
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
         const STONE_TYPES = [
-            { id: "suisho_maru",     name: "水晶 丸",             color: "#f8f9fa", prices: { 8: 120, 10: 180 } },
-            { id: "suisho_crack",    name: "水晶 クラック",       color: "#f8f9fa", prices: { 8: 120, 10: 180 } },
-            { id: "suisho_cut",      name: "水晶 カット",         color: "#f8f9fa", prices: { 8: 160, 10: 200 } },
-            { id: "moonstone",       name: "ムーンストーン",      color: "#fdfdfd", prices: { 8: 240, 10: 800 } },
-            { id: "labradorite",     name: "ラブラドライト",      color: "#a0b0b0", prices: { 8: 900, 10: 1200 } },
-            { id: "rosequartz",      name: "ローズクォーツ",      color: "#ffe0eb", prices: { 8: 110, 10: 200 } },
-            { id: "incarose",        name: "インカローズ",        color: "#ff8da1", prices: { 8: 1300, 10: 2800 } },
-            { id: "agate_red",       name: "レッドアゲート",      color: "#d9534f", prices: { 8: 120, 10: 180 } },
-            { id: "rutile",          name: "ルチルクォーツ",      color: "#fdf8ec", prices: { 8: 330, 10: 600 } },
-            { id: "fluorite",        name: "フローライト",        color: "#ccf0cc", prices: { 8: 120, 10: null } },
-            { id: "aventurine",      name: "アベンチュリン",      color: "#99cc99", prices: { 8: 120, 10: 200 } },
-            { id: "malachite",       name: "マラカイト",          color: "#1e6b3f", prices: { 8: 380, 10: 630 } },
-            { id: "amazonite",       name: "アマゾナイト",        color: "#8bd9c7", prices: { 8: 120, 10: null } },
-            { id: "aquamarine",      name: "アクアマリン",        color: "#d1edf2", prices: { 8: 1100, 10: 1800 } },
-            { id: "blue_topaz",      name: "ブルートパーズ",      color: "#c2e6f9", prices: { 8: 1200, 10: null } },
-            { id: "turquoise",       name: "ターコイズ",          color: "#40e0d0", prices: { 8: 580, 10: null } },
-            { id: "lapis",           name: "ラピスラズリ",        color: "#254182", prices: { 8: 800, 10: 1200 } },
-            { id: "lavender_ame",    name: "ラベンダーアメジスト", color: "#e6e0f5", prices: { 8: 200, 10: 300 } },
-            { id: "amethyst",        name: "アメジスト",          color: "#d2c2f0", prices: { 8: 500, 10: 950 } },
-            { id: "tigereye_yellow", name: "タイガーアイ",        color: "#6e4b26", prices: { 8: 90, 10: 180 } },
-            { id: "tigereye_red",    name: "レッドタイガーアイ",   color: "#8d6a4c", prices: { 8: 90, 10: 180 } },
-            { id: "tigereye_blue",   name: "ブルータイガーアイ",   color: "#3a4a6e", prices: { 8: 170, 10: 300 } },
-            { id: "onyx_maru",       name: "オニキス 丸",          color: "#333333", prices: { 8: 110, 10: 180 } },
-            { id: "onyx_cut",        name: "オニキス カット",        color: "#333333", prices: { 8: 160, 10: 260 } },
-            { id: "yakusugi",        name: "屋久杉",              color: "#b58d5f", prices: { 8: 500, 10: 700 } },
-            { id: "eye_agate",       name: "アイアゲート",        color: "#8c7366", prices: { 8: 130, 10: 180 } },
-        ].map(s => ({ ...s, image: `/src/assets/b-${s.id.replace(/_/g, '')}.jpg` }));
+            { id: "b-suishomaru",    name: "水晶 丸",             prices: { 8: 120, 10: 180 } },
+            { id: "b-suishocrack",   name: "水晶 クラック",       prices: { 8: 120, 10: 180 } },
+            { id: "b-suishocut",     name: "水晶 カット",         prices: { 8: 160, 10: 200 } },
+            { id: "b-moonstone",     name: "ムーンストーン",      prices: { 8: 240, 10: 800 } },
+            { id: "b-labradorite",   name: "ラブラドライト",      prices: { 8: 900, 10: 1200 } },
+            { id: "b-rosequartz",    name: "ローズクォーツ",      prices: { 8: 110, 10: 200 } },
+            { id: "b-incarose",      name: "インカローズ",        prices: { 8: 1300, 10: 2800 } },
+            { id: "b-agatered",      name: "レッドアゲート",      prices: { 8: 120, 10: 180 } },
+            { id: "b-rutile",        name: "ルチルクォーツ",      prices: { 8: 330, 10: 600 } },
+            { id: "b-fluorite",      name: "フローライト",        prices: { 8: 120, 10: null } },
+            { id: "b-aventurine",    name: "アベンチュリン",      prices: { 8: 120, 10: 200 } },
+            { id: "b-malachite",     name: "マラカイト",          prices: { 8: 380, 10: 630 } },
+            { id: "b-amazonite",     name: "アマゾナイト",        prices: { 8: 120, 10: null } },
+            { id: "b-aquamarine",    name: "アクアマリン",        prices: { 8: 1100, 10: 1800 } },
+            { id: "b-bluetopaz",     name: "ブルートパーズ",      prices: { 8: 1200, 10: null } },
+            { id: "b-turquoise",     name: "ターコイズ",          prices: { 8: 580, 10: null } },
+            { id: "b-lapis",         name: "ラピスラズリ",        prices: { 8: 800, 10: 1200 } },
+            { id: "b-lavenderame",   name: "ラベンダーアメジスト", prices: { 8: 200, 10: 300 } },
+            { id: "b-amethyst",      name: "アメジスト",          prices: { 8: 500, 10: 950 } },
+            { id: "b-tigereyeyellow",name: "タイガーアイ",        prices: { 8: 90, 10: 180 } },
+            { id: "b-tigereyered",   name: "レッドタイガーアイ",   prices: { 8: 90, 10: 180 } },
+            { id: "b-tigereyeblue",  name: "ブルータイガーアイ",   prices: { 8: 170, 10: 300 } },
+            { id: "b-onyxmaru",      name: "オニキス 丸",          prices: { 8: 110, 10: 180 } },
+            { id: "b-onyxcut",       name: "オニキス カット",        prices: { 8: 160, 10: 260 } },
+            { id: "b-yakusugi",      name: "屋久杉",              prices: { 8: 500, 10: 700 } },
+            { id: "b-eyeagate",      name: "アイアゲート",        prices: { 8: 130, 10: 180 } },
+        ].map(s => {
+            const rawPath = `/assets/${s.id}.jpg`;
+            const resolvedPath = window.IMAGE_MAP && window.IMAGE_MAP[rawPath] ? window.IMAGE_MAP[rawPath].default || window.IMAGE_MAP[rawPath] : rawPath;
+            return { ...s, image: resolvedPath };
+        });
 
         const SIZES = [8, 10];
         const SHIPPING_FREE_THRESHOLD = 5000;
@@ -499,7 +507,7 @@
                 const isExpanded = expandedStoneId === type.id;
                 html += `
                     <button class="stone-btn ${isExpanded ? 'expanded' : ''}" onclick="window.toggleStonePanel('${type.id}')">
-                        <div style="width: 50px; height: 50px; border-radius: 50%; background: ${type.color}; overflow: hidden; box-shadow: inset 2px 2px 4px rgba(255,255,255,0.4), inset -2px -2px 4px rgba(0,0,0,0.1);">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: ${type.color || 'var(--bgLight)'}; overflow: hidden; box-shadow: inset 2px 2px 4px rgba(255,255,255,0.4), inset -2px -2px 4px rgba(0,0,0,0.1);">
                             <img src="${type.image}" style="width: 100%; height: 100%; object-fit: cover;" alt="">
                         </div>
                         <span style="font-size: 11px; color: var(--textGray); text-align: center; line-height: 1.3;">${type.name}</span>
