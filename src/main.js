@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // One last enforcement
             if (!targetHash) {
                 window.scrollTo(0, 0);
+            } else if (targetHash === '#services') {
+                navigateTo('services');
             } else {
                 const target = document.querySelector(targetHash);
                 if (target) {

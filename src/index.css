@@ -38,6 +38,15 @@ body {
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
 
+/* Underline Draw Animation */
+.underline-draw {
+  width: 0;
+  transition: width 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s; /* animate width smoothly */
+}
+.fade-in.visible .underline-draw {
+  width: 2rem; /* w-8 -> 32px */
+}
+
 /* Marquee */
 .marquee-container {
   display: flex;

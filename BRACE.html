@@ -90,9 +90,9 @@
                 </div>
                 <nav class="hidden lg:flex space-x-8">
                     <a href="index.html" class="nav-link group"><span class="nav-en text-gray-600">HOME</span><span class="nav-ja">ホーム</span></a>
-                    <a href="index.html#works" class="nav-link group"><span class="nav-en text-gray-600">WORKS</span><span class="nav-ja">石の加工</span></a>
+                    <a href="index.html#services" class="nav-link group"><span class="nav-en text-gray-600">WORKS</span><span class="nav-ja">石の加工</span></a>
                     <a href="BRACE.html" class="nav-link nav-active"><span class="nav-en">CUSTOM</span><span class="nav-ja">自分だけのデザイン</span></a>
-                    <a href="index.html#item" class="nav-link group"><span class="nav-en text-gray-600">ITEM</span><span class="nav-ja">商品一覧</span></a>
+                    <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="nav-link group"><span class="nav-en text-gray-600">ITEM</span><span class="nav-ja">商品一覧</span></a>
                     <a href="index.html#info" class="nav-link group"><span class="nav-en text-gray-600">INFO</span><span class="nav-ja">店舗案内・FAQ</span></a>
                     <a href="index.html#contact" class="nav-link group"><span class="nav-en text-gray-600">CONTACT</span><span class="nav-ja">お問い合わせ</span></a>
                 </nav>
@@ -106,9 +106,9 @@
         <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-lg absolute w-full border-t border-gray-100">
             <div class="px-4 py-4 space-y-2">
                 <a href="index.html" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">HOME</span><span class="text-xs text-gray-500">ホーム</span></a>
-                <a href="index.html#works" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">WORKS</span><span class="text-xs text-gray-500">石の加工</span></a>
+                <a href="index.html#services" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">WORKS</span><span class="text-xs text-gray-500">石の加工</span></a>
                 <a href="BRACE.html" class="block px-4 py-3 bg-gray-50 rounded text-primary font-bold flex justify-between items-center"><span class="tracking-widest">CUSTOM</span><span class="text-xs text-gray-500">自分だけのデザイン</span></a>
-                <a href="index.html#item" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">ITEM</span><span class="text-xs text-gray-500">商品一覧</span></a>
+                <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">ITEM</span><span class="text-xs text-gray-500">商品一覧</span></a>
                 <a href="index.html#info" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">INFO</span><span class="text-xs text-gray-500">店舗案内・FAQ</span></a>
                 <a href="index.html#contact" class="block px-4 py-3 hover:bg-gray-50 rounded text-gray-700 flex justify-between items-center"><span class="tracking-widest">CONTACT</span><span class="text-xs text-gray-500">お問い合わせ</span></a>
             </div>
@@ -117,6 +117,17 @@
 
     <!-- ■ ここが原因でした！最初は表示しておくように修正しました ■ -->
     <div class="app-container" id="app-root">
+        <div id="confirm-modal" class="modal-overlay">
+            <div class="modal-content" style="text-align: center; max-width: 300px;">
+                <h3 style="color: var(--navy); margin-top: 0; margin-bottom: 16px;">配置のリセット</h3>
+                <p style="font-size: 14px; color: var(--textGray); margin-bottom: 24px; line-height: 1.6;">現在の配置を消去します。<br>よろしいですか？</p>
+                <div style="display: flex; gap: 12px; justify-content: center;">
+                    <button onclick="document.getElementById('confirm-modal').style.display='none'" style="padding: 10px 24px; background: var(--bgLight); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; color: var(--navy);">いいえ</button>
+                    <button onclick="window.executeReset()" style="padding: 10px 24px; background: var(--danger); border: none; border-radius: 4px; cursor: pointer; color: white;">はい</button>
+                </div>
+            </div>
+        </div>
+
         <div id="guide-modal" class="modal-overlay">
             <div class="modal-content" style="font-family: serif; text-align: center;">
                 <button id="guide-close-btn" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
@@ -141,6 +152,29 @@
                     </div>
                 </div>
                 <button id="guide-action-btn" style="margin-top: 24px; width: 100%; padding: 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; cursor: pointer; letter-spacing: 3px; font-size: 13px; font-family: serif;">作成を始める</button>
+            </div>
+        </div>
+
+        <div id="template-modal" class="modal-overlay">
+            <div class="modal-content" style="border-top-color: var(--navy); padding: 24px; max-height: 90vh; overflow-y: auto;">
+                <button onclick="document.getElementById('template-modal').style.display='none'" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: var(--navy); font-size: 16px; font-weight: normal; letter-spacing: 2px; margin: 0;">配置テンプレート</h2>
+                </div>
+
+                <div id="template-step1">
+                    <p style="font-size: 13px; margin-bottom: 16px; text-align: center;">パターンを選択してください</p>
+                    <div id="template-patterns-grid" style="display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 16px;"></div>
+                </div>
+
+                <div id="template-step2" style="display: none;">
+                    <p style="font-size: 13px; margin-bottom: 16px; text-align: center;" id="template-step2-title"></p>
+                    <div id="template-stone-selectors" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;"></div>
+                    <div style="display: flex; gap: 12px; justify-content: space-between;">
+                        <button onclick="document.getElementById('template-step2').style.display='none'; document.getElementById('template-step1').style.display='block';" style="padding: 12px; background: var(--bgLight); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; width: 48%;">戻る</button>
+                        <button onclick="window.applySelectedTemplate()" style="padding: 12px; background: var(--navy); border: none; color: white; border-radius: 4px; font-weight: bold; cursor: pointer; width: 48%;">OK</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -235,11 +269,8 @@
                     </div>
                 </div>
 
-                <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
-                    <label id="sym-label" style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--mutedGray); cursor: pointer;">
-                        <input type="checkbox" id="sym-checkbox" style="accent-color: var(--navy); transform: scale(1.2);" />
-                        左右対称に配置する
-                    </label>
+                <div style="margin-bottom: 16px; padding: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 4px;">
+                    <button onclick="window.openTemplateModal()" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='var(--bgLight)'" style="width: 100%; padding: 12px; background: var(--bgLight); border: 1px solid var(--border); font-size: 13px; font-weight: bold; border-radius: 4px; color: var(--navy); cursor: pointer; transition: background 0.2s;">配置テンプレートを使用する</button>
                 </div>
 
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--bgWarm); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 16px;">
@@ -339,7 +370,6 @@
 
         let beads = Array(DEFAULT_BEADS).fill(null).map(() => ({ ...EMPTY }));
         let selectedIdx = 0;
-        let isSymmetry = false;
         let expandedStoneId = null;
         let isReviewDiscount = false;
         let managementCode = "";
@@ -359,12 +389,6 @@
             const radius = totalDiam / (2 * Math.PI);
             return Math.max(0, (((radius - avgSize / 2) * 2 * Math.PI) / 10) - 0.5).toFixed(1);
         }
-        function getSymmetryIdx() {
-            if (!isSymmetry || selectedIdx === 0) return -1;
-            const sym = beads.length - selectedIdx;
-            return (sym !== selectedIdx && sym >= 0 && sym < beads.length) ? sym : -1;
-        }
-
         function renderApp() {
             const filledBeads = beads.filter(b => b.type !== "empty");
             const totalPrice = filledBeads.reduce((s, b) => s + b.price, 0);
@@ -429,7 +453,6 @@
         }
 
         function renderSVG(containerId, idPrefix, markerSize) {
-            const symIdx = getSymmetryIdx();
             const totalD = beads.reduce((s, b) => s + b.size, 0);
             const scale = 3.0;
             const r_2d = (totalD * scale) / (2 * Math.PI);
@@ -455,25 +478,24 @@
 
             beads.forEach((b, i) => {
                 const { cx, cy, r, rot } = positions[i];
-                if (b.type !== "empty") {
-                    defs += `<clipPath id="clip-${idPrefix}-${i}"><circle cx="${cx}" cy="${cy}" r="${r}" /></clipPath>`;
+                if (b.type !== "empty" && b.image) {
+                    defs += `<pattern id="pat-${idPrefix}-${i}" patternUnits="userSpaceOnUse" width="${r * 2}" height="${r * 2}" x="${cx - r}" y="${cy - r}" patternTransform="rotate(${rot}, ${cx}, ${cy})">
+                        <image href="${b.image_dataUrl || b.image}" x="0" y="0" width="${r * 2}" height="${r * 2}" preserveAspectRatio="xMidYMid slice" />
+                    </pattern>`;
                 }
-                const is_sel = i === selectedIdx;
-                const is_sym = i === symIdx;
+                const is_sel = i === selectedIdx && idPrefix === "main";
                 
                 let groupInner = '';
                 if (is_sel) groupInner += `<circle cx="${cx}" cy="${cy}" r="${r + 3}" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity="0.9" />`;
-                if (is_sym) groupInner += `<circle cx="${cx}" cy="${cy}" r="${r + 3}" fill="none" stroke="var(--navy)" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.6" />`;
                 
                 if (b.type === "empty") {
                     groupInner += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="transparent" stroke="#cccccc" stroke-width="1" stroke-dasharray="4 3" /><text x="${cx}" y="${cy + 2}" text-anchor="middle" font-size="8" fill="#bbb">+</text>`;
                 } else {
-                    groupInner += `<g transform="rotate(${rot}, ${cx}, ${cy})">
-                        ${b.image ? `<image href="${b.image}" x="${cx - r}" y="${cy - r}" width="${r * 2}" height="${r * 2}" clip-path="url(#clip-${idPrefix}-${i})" preserveAspectRatio="xMidYMid slice" />` : `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${b.color}" />`}
-                    </g>
+                    groupInner += `${b.image ? `<circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#pat-${idPrefix}-${i})" />` : `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${b.color}" />`}
                     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="0.5" pointer-events="none" />`;
                 }
-                elements += `<g style="cursor:pointer" onclick="window.selectBead(${i})">${groupInner}</g>`;
+                const onClickStr = idPrefix === "main" ? `onclick="window.selectBead(${i})"` : "";
+                elements += `<g style="cursor:${idPrefix === "main" ? 'pointer' : 'default'}" ${onClickStr}>${groupInner}</g>`;
             });
 
             const markerTop = markerSize === "small" ? -7 : -9;
@@ -533,12 +555,6 @@
         window.finalizeStoneSelection = (typeId, size, price) => {
             const stone = STONE_TYPES.find(s => s.id === typeId);
             beads[selectedIdx] = { ...stone, size, price, type: "bead" };
-            if (isSymmetry && selectedIdx !== 0) {
-                const symIdx = beads.length - selectedIdx;
-                if (symIdx !== selectedIdx && symIdx >= 0 && symIdx < beads.length) {
-                    beads[symIdx] = { ...stone, size, price, type: "bead" };
-                }
-            }
             for (let i = 1; i <= beads.length; i++) {
                 const nextIdx = (selectedIdx + i) % beads.length;
                 if (beads[nextIdx].type === "empty") { selectedIdx = nextIdx; break; }
@@ -555,20 +571,107 @@
         });
         document.getElementById('btn-reset').addEventListener('click', () => {
             if (beads.filter(b => b.type !== "empty").length === 0) return;
-            if (confirm("配置した石をすべてリセットしますか?")) {
-                beads = beads.map(() => ({ ...EMPTY }));
-                selectedIdx = 0; expandedStoneId = null; renderApp();
-            }
+            document.getElementById('confirm-modal').style.display = 'flex';
         });
-        document.getElementById('sym-checkbox').addEventListener('change', (e) => {
-            isSymmetry = e.target.checked;
-            document.getElementById('sym-label').style.color = isSymmetry ? 'var(--navy)' : 'var(--mutedGray)';
-            document.getElementById('sym-label').style.fontWeight = isSymmetry ? 'bold' : 'normal';
+
+        window.executeReset = () => {
+            beads = beads.map(() => ({ ...EMPTY }));
+            selectedIdx = 0; expandedStoneId = null; 
             renderApp();
-        });
+            document.getElementById('confirm-modal').style.display = 'none';
+        };
         document.getElementById('btn-delete-bead').addEventListener('click', () => {
             beads[selectedIdx] = { ...EMPTY }; renderApp();
         });
+
+        const TEMPLATES = [
+            { id: 1, name: "A 1種", types: ['A'], pattern: (i, len) => 'A' },
+            { id: 2, name: "A・B 交互", types: ['A', 'B'], pattern: (i, len) => ['A','B'][i % 2] },
+            { id: 3, name: "A 2個・B 1個 繰り返し", types: ['A', 'B'], pattern: (i, len) => ['A','A','B'][i % 3] },
+            { id: 4, name: "A 3個・B 1個 繰り返し", types: ['A', 'B'], pattern: (i, len) => ['A','A','A','B'][i % 4] },
+            { id: 5, name: "A 4個・B 1個 繰り返し", types: ['A', 'B'], pattern: (i, len) => ['A','A','A','A','B'][i % 5] },
+            { id: 6, name: "A・B・C 交互", types: ['A', 'B', 'C'], pattern: (i, len) => ['A','B','C'][i % 3] },
+            { id: 7, name: "A 2個・B 1個・C 1個 繰り返し", types: ['A', 'B', 'C'], pattern: (i, len) => ['A','A','B','C'][i % 4] },
+            { id: 8, name: "A・B・A・C 繰り返し", types: ['A', 'B', 'C'], pattern: (i, len) => ['A','B','A','C'][i % 4] },
+            { id: 9, name: "1ポイント (Aメイン・B 1つ)", types: ['A', 'B'], pattern: (i, len) => i === 0 ? 'B' : 'A' },
+            { id: 10, name: "4ポイント (十字にB)", types: ['A', 'B'], pattern: (i, len) => {
+                let q = Math.floor(len / 4);
+                return (i % q === 0 && i < q * 4) ? 'B' : 'A';
+            }}
+        ];
+
+        let selectedTemplateId = null;
+
+        window.openTemplateModal = () => {
+            const grid = document.getElementById('template-patterns-grid');
+            grid.innerHTML = TEMPLATES.map(tpl => {
+                let svgs = '';
+                const colors = { A: '#cbd5e1', B: '#475569', C: '#fcd34d' };
+                for(let i=0; i<12; i++) {
+                    svgs += `<circle cx="${12 + i*16}" cy="12" r="5" fill="${colors[tpl.pattern(i, 24)]}" stroke="#94a3b8" stroke-width="0.5" />`;
+                }
+                return `<button onclick="window.selectTemplatePattern(${tpl.id})" style="display:flex; flex-direction:column; align-items:flex-start; padding: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 4px; cursor: pointer;">
+                    <div style="font-weight: bold; font-size: 13px; color: var(--navy); margin-bottom: 8px;">${tpl.id}. ${tpl.name}</div>
+                    <svg width="100%" height="24" viewBox="0 0 200 24">${svgs}</svg>
+                </button>`;
+            }).join('');
+            document.getElementById('template-step1').style.display = 'block';
+            document.getElementById('template-step2').style.display = 'none';
+            document.getElementById('template-modal').style.display = 'flex';
+        };
+
+        window.selectTemplatePattern = (id) => {
+            selectedTemplateId = id;
+            const tpl = TEMPLATES.find(t => t.id === id);
+            document.getElementById('template-step2-title').textContent = `${tpl.name} の石を選んでください`;
+            
+            const typesHTML = tpl.types.map(type => {
+                const options = STONE_TYPES.map(s => {
+                    const price8 = s.prices[8] ? `8mm(¥${s.prices[8]})` : '8mm(-)';
+                    const price10 = s.prices[10] ? `10mm(¥${s.prices[10]})` : '10mm(-)';
+                    return `<option value="${s.id}">${s.name} ${price8} ${price10}</option>`;
+                }).join('');
+                return `<div style="border: 1px solid var(--border); padding: 12px; border-radius: 4px; background: var(--bgWarm);">
+                    <div style="font-weight: bold; margin-bottom: 8px; color: var(--navy); font-size: 13px;">玉 ${type}</div>
+                    <div style="display: flex; gap: 8px;">
+                        <select id="tpl-stone-${type}-id" style="flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; background: white;">
+                            ${options}
+                        </select>
+                        <select id="tpl-stone-${type}-size" style="width: 80px; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; background: white;">
+                            <option value="8">8mm</option>
+                            <option value="10">10mm</option>
+                        </select>
+                    </div>
+                </div>`;
+            }).join('');
+            document.getElementById('template-stone-selectors').innerHTML = typesHTML;
+            document.getElementById('template-step1').style.display = 'none';
+            document.getElementById('template-step2').style.display = 'block';
+        };
+
+        window.applySelectedTemplate = () => {
+            const tpl = TEMPLATES.find(t => t.id === selectedTemplateId);
+            const stones = {};
+            for (let type of tpl.types) {
+                const sId = document.getElementById(`tpl-stone-${type}-id`).value;
+                const size = parseInt(document.getElementById(`tpl-stone-${type}-size`).value);
+                const sDef = STONE_TYPES.find(s => s.id === sId);
+                const price = sDef.prices[size] || sDef.prices[8] || 0;
+                const actSize = sDef.prices[size] ? size : 8; // fallback to 8mm if 10mm not available
+                stones[type] = { ...sDef, size: actSize, price, type: "bead" };
+            }
+            
+            const len = beads.length;
+            beads = Array(len).fill(null).map((_, i) => {
+                const pType = tpl.pattern(i, len);
+                return { ...stones[pType] };
+            });
+            
+            selectedIdx = 0;
+            expandedStoneId = null;
+            renderApp();
+            document.getElementById('template-modal').style.display = 'none';
+        };
 
         const guideModal = document.getElementById('guide-modal');
         const orderModal = document.getElementById('order-modal');
@@ -723,7 +826,24 @@
             }
         }, { passive: true });
 
-        function init() {
+        async function fetchAsBase64(url) {
+            if (!url) return null;
+            if (url.startsWith('data:')) return url;
+            try {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.readAsDataURL(blob);
+                });
+            } catch (e) {
+                console.error("Base64変換エラー:", e);
+                return url;
+            }
+        }
+
+        async function init() {
             const script = document.createElement("script");
             script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
             document.head.appendChild(script);
@@ -739,6 +859,12 @@
                     }
                 });
             };
+
+            for (let s of STONE_TYPES) {
+                if (s.image) {
+                    s.image_dataUrl = await fetchAsBase64(s.image);
+                }
+            }
 
             let code = sessionStorage.getItem("gr_order_code");
             if (!code) { code = generateCode(); sessionStorage.setItem("gr_order_code", code); }
