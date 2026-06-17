@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@200;300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans JP", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif JP", "Cormorant Garamond", ui-serif, Georgia, serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #fdfdfc;
+  color: #1a1a1a;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
+::selection {
+  background: #1a1a1a;
+  color: #fdfdfc;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1), transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+
+/* Marquee */
+.marquee-container {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Loader */
+#loader {
+  transition: opacity 0.8s ease-in-out;
+}
+.loader-circle {
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.loader-text {
+  transition: opacity 1s ease-in-out 0.8s;
+}
+
+/* Accordion */
+.accordion-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+}
+.accordion-content.open {
+  max-height: 600px;
+  opacity: 1;
+}
+.accordion-icon {
+  transition: transform 0.3s ease;
+}
+.accordion-icon.open {
+  transform: rotate(45deg);
+}
+
+/* Header transition */
+header {
+  transition: all 0.7s ease;
+}
