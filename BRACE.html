@@ -125,21 +125,19 @@
                 <div style="text-align: left; margin-top: 28px; color: var(--textGray);">
                     <div style="margin-bottom: 24px;">
                         <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 01</div>
-                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="https://placehold.co/600x338/E5E7EB/434343?text=Measure+Step+1" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/src/assets/te-step1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
                         <p style="font-size: 14px; line-height: 1.8; margin: 0;">細長く切った紙を手首の骨のすぐ横に、隙間なくピッタリと巻き付けます。紙が重なった部分がずれないよう、セロハンテープ等でしっかりととめます。</p>
                     </div>
                     <div style="margin-bottom: 24px;">
                         <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 02</div>
-                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="https://placehold.co/600x338/E5E7EB/434343?text=Measure+Step+2" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
-                        <p style="font-size: 14px; line-height: 1.8; margin: 0;">テープでとめた輪の部分をハサミで切り、手首から紙を外します。<br /><small style="color: var(--mutedGray);">※お怪我のないよう、ハサミの取り扱いには十分ご注意ください。</small></p>
+                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/src/assets/te-step2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                        <p style="font-size: 14px; line-height: 1.8; margin: 0;">テープでとめた輪の部分をハサミで切り、外した紙をまっすぐに伸ばして定規で端から端までの長さを測ります。その数値が「手首実寸」となります。<br /><small style="color: var(--mutedGray);">※お怪我のないよう、ハサミの取り扱いには十分ご注意ください。</small></p>
                     </div>
-                    <div style="margin-bottom: 24px;">
-                        <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 03</div>
-                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="https://placehold.co/600x338/E5E7EB/434343?text=Measure+Step+3" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
-                        <p style="font-size: 14px; line-height: 1.8; margin: 0;">切り離した紙をまっすぐに伸ばし、定規で端から端までの長さを測ります。その数値がお客様の「手首実寸」となります。</p>
-                    </div>
-                    <div style="padding: 16px; border: 1px solid var(--border); background: var(--bgWarm); border-radius: 4px;">
+                    <div style="padding: 16px; border: 1px solid var(--border); background: var(--bgWarm); border-radius: 4px; margin-bottom: 24px;">
                         <p style="font-size: 13px; line-height: 1.8; margin: 0;"><strong>【ブレスレットの内周目安】</strong><br />内周目安 ＝ 手首実寸 ＋ 1.0cm ～ 1.5cm<br /><span style="font-size: 11px; color: var(--mutedGray);">※標準的なゆとりを持たせる場合は「＋1.5cm」をおすすめしております。</span></p>
+                    </div>
+                    <div style="padding: 16px; border: 1px solid #e2e8f0; background: #fdfdfc; border-radius: 4px;">
+                        <p style="font-size: 12px; line-height: 1.8; margin: 0; color: #4a5568;"><strong>【天然石に関するご注意】</strong><br />天然石の特性上、シミュレーター上に表示される画像と全く同じ色合いや模様のビーズをご用意することはできません。同グレードの美しい石を厳選して使用いたしますが、天然由来の個性（内包物やわずかな色幅など）がございますこと、あらかじめご了承くださいますようお願い申し上げます。</p>
                     </div>
                 </div>
                 <button id="guide-action-btn" style="margin-top: 24px; width: 100%; padding: 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; cursor: pointer; letter-spacing: 3px; font-size: 13px; font-family: serif;">作成を始める</button>
@@ -319,7 +317,7 @@
             { id: "onyx_cut",        name: "オニキス カット",        color: "#333333", prices: { 8: 160, 10: 260 } },
             { id: "yakusugi",        name: "屋久杉",              color: "#b58d5f", prices: { 8: 500, 10: 700 } },
             { id: "eye_agate",       name: "アイアゲート",        color: "#8c7366", prices: { 8: 130, 10: 180 } },
-        ].map(s => ({ ...s, image: `/src/assets/${s.id}.png` }));
+        ].map(s => ({ ...s, image: `/src/assets/b-${s.id.replace(/_/g, '')}.jpg` }));
 
         const SIZES = [8, 10];
         const SHIPPING_FREE_THRESHOLD = 5000;
