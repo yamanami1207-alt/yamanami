@@ -779,6 +779,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const html = data.contents.map(post => {
+                    const dateRaw = post.date || post.publishedAt || post.createdAt;
+                    const date = new Date(dateRaw).toLocaleDateString('ja-JP', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    }).replace(/\//g, '.');
+
                     let imagesHtml = '';
                     if (post.image_before || post.image_after) {
                         imagesHtml = `
@@ -801,8 +808,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     return `
                         <div class="border-b border-stone-200 pb-12 mb-12 last:border-0 last:pb-0 last:mb-0">
-                            <h3 class="text-xl font-serif tracking-widest text-[#1B2A47] mb-2">${post.title}</h3>
-                            ${post.stone_type ? `<p class="text-[12px] font-sans text-stone-500 tracking-wider mb-6 pb-4 border-b border-stone-100 block w-full max-w-md">種類: ${post.stone_type}</p>` : ''}
+                            <span class="text-[11px] font-sans text-stone-400 tracking-wider mb-2 block">${date}</span>
+                            <h3 class="text-xl font-serif tracking-widest text-[#1B2A47] mb-6 pb-4 border-b border-stone-100 block w-full max-w-md">${post.stone_type || '加工実績'}</h3>
                             ${imagesHtml}
                             ${post.content ? `
                                 <div class="prose prose-stone text-[14px] leading-loose text-stone-600 max-w-none mt-6">
