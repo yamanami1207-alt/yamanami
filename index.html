@@ -24,6 +24,17 @@
     <img id="image-modal-img" src="" alt="Enlarged view" class="max-w-full max-h-[90vh] object-contain rounded-sm shadow-2xl scale-90 transition-transform duration-300">
   </div>
 
+  <!-- Blog Modal -->
+  <div id="blog-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-16" id="blog-modal-content-container">
+      <button id="blog-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-800 transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-stone-100 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div id="blog-modal-body" class="p-8 md:p-12 prose prose-stone max-w-none text-stone-700 font-light text-[15px] leading-loose max-w-3xl mx-auto w-full">
+      </div>
+    </div>
+  </div>
+
   <!-- Loading Overlay -->
   <div id="loader" class="fixed inset-0 z-[100] bg-[#fdfdfc] flex items-center justify-center overflow-hidden transition-opacity duration-800 ease-in-out">
     <div id="loader-content" class="flex flex-col items-center justify-center" style="transform: scale(15);">
@@ -241,34 +252,34 @@
               <div class="marquee-container gap-4 px-4">
                 <!-- duplicated for seamless tracking -->
                 <div class="flex gap-4">
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br2.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br3.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br4.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br5.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br6.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br7.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br8.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
                 </div>
                 <div class="flex gap-4">
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br1.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br2.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br3.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br4.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br5.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br6.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br7.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br8.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
                 </div>
                 <div class="flex gap-4">
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br1.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br2.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br3.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br4.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br5.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br6.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br7.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/br8.jpg" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
                 </div>
               </div>
             </div>
@@ -282,20 +293,51 @@
       </section>
 
       <!-- ITEM -->
-      <section id="item" class="py-24 px-6 bg-stone-50 scroll-mt-20">
-        <div class="max-w-5xl mx-auto text-center fade-in">
-          <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">ITEM</h2>
-          <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="inline-block group cursor-pointer mb-16">
-            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] group-hover:text-stone-500 transition-colors">商品一覧</p>
-          </a>
-
-          <div class="mb-16 rounded-sm overflow-hidden bg-white shadow-sm border border-stone-200 fade-in delay-100" style="height: 600px;">
-            <iframe src="https://ishiya.official.ec/" width="100%" height="100%" style="border: none;" title="やまなみ銘石 BASEオンラインショップ"></iframe>
+      <section id="item" class="py-24 px-6 bg-white scroll-mt-20 border-b border-stone-200">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16 fade-in">
+            <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">ITEM</h2>
+            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">商品一覧</p>
           </div>
-          <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] text-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
-            ONLINE STORE 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16 fade-in delay-100">
+            <!-- Item 1 -->
+            <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer">
+              <div class="aspect-square w-full overflow-hidden bg-stone-100 mb-6 rounded-sm">
+                <!-- 実際の商品画像に差し替えてください -->
+                <img src="https://images.unsplash.com/photo-1596484552834-3a58eeb02e1c?auto=format&fit=crop&w=800&q=80" alt="商品名" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              </div>
+              <h3 class="text-lg font-serif text-[#1B2A47] mb-2 tracking-wider group-hover:text-stone-500 transition-colors">天然石ブレスレット（サンプル）</h3>
+              <p class="text-sm text-stone-500 font-light tracking-widest">¥5,500</p>
+            </a>
+
+            <!-- Item 2 -->
+            <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer">
+              <div class="aspect-square w-full overflow-hidden bg-stone-100 mb-6 rounded-sm">
+                 <!-- 実際の商品画像に差し替えてください -->
+                <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&w=800&q=80" alt="商品名" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              </div>
+              <h3 class="text-lg font-serif text-[#1B2A47] mb-2 tracking-wider group-hover:text-stone-500 transition-colors">原石ペンダントトップ（サンプル）</h3>
+              <p class="text-sm text-stone-500 font-light tracking-widest">¥8,800</p>
+            </a>
+
+            <!-- Item 3 -->
+            <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="group block cursor-pointer">
+              <div class="aspect-square w-full overflow-hidden bg-stone-100 mb-6 rounded-sm">
+                 <!-- 実際の商品画像に差し替えてください -->
+                 <img src="https://images.unsplash.com/photo-1588665045432-8418f4a3bfec?auto=format&fit=crop&w=800&q=80" alt="商品名" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              </div>
+              <h3 class="text-lg font-serif text-[#1B2A47] mb-2 tracking-wider group-hover:text-stone-500 transition-colors">オーダーメイド加工費（サンプル）</h3>
+              <p class="text-sm text-stone-500 font-light tracking-widest">¥11,000</p>
+            </a>
+          </div>
+
+          <div class="text-center fade-in delay-200">
+            <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] text-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
+              MORE ITEMS ON BASE
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -304,7 +346,7 @@
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-16 fade-in">
             <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">BLOG</h2>
-            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">お知らせ・ブログ</p>
+            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">ブログ</p>
           </div>
           <div id="blog-container" class="space-y-6 fade-in delay-100">
             <!-- MicroCMS Blog items will be rendered here -->
@@ -501,7 +543,7 @@
               <div class="space-y-2">
                 <label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Attachment (Photo)</label>
                 <p class="text-[11px] text-stone-500 leading-relaxed mt-1 normal-case tracking-normal font-light">
-                  加工のご相談の際、対象の石のお写真を添付していただけますと、よりスムーズなご案内が可能となります。<span class="cursor-pointer text-stone-600 underline hover:text-stone-800 transition-colors font-medium border-b border-stone-400 pb-0.5" id="open-rei-img">（イメージ）</span><br>
+                  加工のご相談の際、対象の石のお写真を添付していただけますと、よりスムーズなご案内が可能となります。<span class="cursor-pointer text-stone-500 hover:text-stone-800 transition-colors border-b border-stone-300 pb-0.5" id="open-rei-img">（イメージ）</span><br>
                   また、手書きで構いませんので、簡単な図解や完成イメージのお写真も併せて送付いただけますと幸いでございます。
                 </p>
                 <div class="relative py-4 border-b border-stone-300">

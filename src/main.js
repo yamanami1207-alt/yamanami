@@ -261,7 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
         openReiImg.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            imageModalImg.setAttribute('src', '/assets/rei.jpg');
+            // 一時的にUnsplashの天然石の画像をプレースホルダーとして設定します（後で差し替え可能です）
+            imageModalImg.setAttribute('src', 'https://images.unsplash.com/photo-1596484552834-3a58eeb02e1c?auto=format&fit=crop&w=800&q=80');
             imageModal.style.pointerEvents = 'auto';
             imageModal.style.opacity = '1';
             imageModalImg.classList.remove('scale-90');
@@ -593,6 +594,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            window.blogPostsCache = data.contents.reduce((acc, post) => {
+                acc[post.id] = post;
+                return acc;
+            }, {});
+
             const html = data.contents.map(post => {
                 const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString('ja-JP', {
                     year: 'numeric',
@@ -612,7 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const truncated = description.length > 70 ? description.substring(0, 70) + '...' : description;
 
                 return `
-                    <div class="border border-stone-200 p-6 md:p-8 rounded-sm hover:-translate-y-1 transition-transform duration-300 bg-stone-50 cursor-pointer shadow-sm group">
+                    <div class="blog-item border border-stone-200 p-6 md:p-8 rounded-sm hover:-translate-y-1 transition-transform duration-300 bg-stone-50 cursor-pointer shadow-sm group" data-id="${post.id}">
                         <div class="flex items-center gap-4 mb-4">
                             <span class="text-[11px] font-sans text-stone-400 tracking-wider">${date}</span>
                         </div>
@@ -623,6 +629,65 @@ document.addEventListener('DOMContentLoaded', () => {
             }).join('');
 
             blogContainer.innerHTML = html;
+
+            const blogModal = document.getElementById('blog-modal');
+            const blogModalBody = document.getElementById('blog-modal-body');
+            const blogModalContentContainer = document.getElementById('blog-modal-content-container');
+            const blogModalClose = document.getElementById('blog-modal-close');
+
+            const openBlogModal = (post) => {
+                const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit'
+                }).replace(/\//g, '.');
+                
+                blogModalBody.innerHTML = `
+                    <div class="mb-8">
+                        <span class="text-[12px] font-sans text-stone-400 tracking-wider block mb-4">${date}</span>
+                        <h2 class="text-2xl md:text-3xl font-serif tracking-widest text-[#1B2A47] mb-6 leading-relaxed">${post.title}</h2>
+                        <hr class="border-stone-200">
+                    </div>
+                    <div class="blog-content">
+                        ${post.content || ''}
+                    </div>
+                `;
+                
+                blogModal.style.opacity = '1';
+                blogModal.style.pointerEvents = 'auto';
+                blogModalContentContainer.classList.remove('scale-95');
+                blogModalContentContainer.classList.add('scale-100');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeBlogModal = () => {
+                blogModal.style.opacity = '0';
+                blogModal.style.pointerEvents = 'none';
+                blogModalContentContainer.classList.remove('scale-100');
+                blogModalContentContainer.classList.add('scale-95');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    blogModalBody.innerHTML = '';
+                }, 300);
+            };
+
+            document.querySelectorAll('.blog-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const postId = item.getAttribute('data-id');
+                    const post = window.blogPostsCache[postId];
+                    if (post) {
+                        openBlogModal(post);
+                    }
+                });
+            });
+
+            blogModalClose.addEventListener('click', closeBlogModal);
+            
+            blogModal.addEventListener('click', (e) => {
+                if (e.target === blogModal) {
+                    closeBlogModal();
+                }
+            });
 
         } catch (error) {
             console.error('Error fetching blogs:', error);
