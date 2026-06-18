@@ -598,7 +598,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return acc;
             }, {});
 
-            const renderBlogItem = (post, isCard = false) => {
+            const renderBlogItem = (post) => {
                 const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString('ja-JP', {
                     year: 'numeric',
                     month: '2-digit',
