@@ -256,6 +256,19 @@ document.addEventListener('DOMContentLoaded', () => {
         imageModalImg.classList.add('scale-90');
     });
 
+    const openReiImg = document.getElementById('open-rei-img');
+    if (openReiImg) {
+        openReiImg.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            imageModalImg.setAttribute('src', '/assets/rei.jpg');
+            imageModal.style.pointerEvents = 'auto';
+            imageModal.style.opacity = '1';
+            imageModalImg.classList.remove('scale-90');
+            imageModalImg.classList.add('scale-100');
+        });
+    }
+
     /* =========================================
        Header Scroll
        ========================================= */
@@ -547,5 +560,77 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 50);
         });
     });
+
+    /* =========================================
+       MicroCMS Blog Integration
+       ========================================= */
+    const loadBlogPosts = async () => {
+        const blogContainer = document.getElementById('blog-container');
+        if (!blogContainer) return;
+
+        const apiKey = import.meta.env.VITE_MICROCMS_API_KEY;
+        if (!apiKey) {
+            blogContainer.innerHTML = '<p class="text-stone-400 text-sm text-center">APIキーが設定されていません</p>';
+            return;
+        }
+
+        try {
+            // Using "blogs" endpoint based on typical MicroCMS setup
+            const response = await fetch('https://yamanami.microcms.io/api/v1/blogs?limit=3', {
+                headers: {
+                    'X-MICROCMS-API-KEY': apiKey,
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch blog posts');
+            }
+
+            const data = await response.json();
+            
+            if (data.contents.length === 0) {
+                blogContainer.innerHTML = '<p class="text-stone-400 text-sm text-center py-8">現在お知らせはありません</p>';
+                return;
+            }
+
+            const html = data.contents.map(post => {
+                const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit'
+                }).replace(/\//g, '.');
+
+                // Extract a plain text description if rich editing is used
+                let description = '';
+                if (post.content) {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = post.content;
+                    description = tempDiv.textContent || tempDiv.innerText || '';
+                } else if (post.description) {
+                    description = post.description;
+                }
+                const truncated = description.length > 70 ? description.substring(0, 70) + '...' : description;
+
+                return `
+                    <div class="border border-stone-200 p-6 md:p-8 rounded-sm hover:-translate-y-1 transition-transform duration-300 bg-stone-50 cursor-pointer shadow-sm group">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="text-[11px] font-sans text-stone-400 tracking-wider">${date}</span>
+                        </div>
+                        <h3 class="text-base md:text-lg font-serif tracking-widest text-[#1B2A47] mb-3">${post.title}</h3>
+                        <p class="text-[13px] font-light text-stone-500 leading-relaxed">${truncated}</p>
+                    </div>
+                `;
+            }).join('');
+
+            blogContainer.innerHTML = html;
+
+        } catch (error) {
+            console.error('Error fetching blogs:', error);
+            blogContainer.innerHTML = '<p class="text-stone-400 text-sm text-center py-8">お知らせの読み込みに失敗しました。</p>';
+        }
+    };
+
+    // Load blogs on start
+    loadBlogPosts();
 
 });
