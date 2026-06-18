@@ -261,8 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openReiImg.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            // 一時的にUnsplashの天然石の画像をプレースホルダーとして設定します（後で差し替え可能です）
-            imageModalImg.setAttribute('src', 'https://images.unsplash.com/photo-1596484552834-3a58eeb02e1c?auto=format&fit=crop&w=800&q=80');
+            imageModalImg.setAttribute('src', '/assets/rei.jpg');
             imageModal.style.pointerEvents = 'auto';
             imageModal.style.opacity = '1';
             imageModalImg.classList.remove('scale-90');
@@ -576,8 +575,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Using "blogs" endpoint based on typical MicroCMS setup
-            const response = await fetch('https://yamanami.microcms.io/api/v1/blogs?limit=3', {
+            // Fetch more items to show in works and past blogs
+            const response = await fetch('https://yamanami.microcms.io/api/v1/blogs?limit=50', {
                 headers: {
                     'X-MICROCMS-API-KEY': apiKey,
                 }
@@ -599,14 +598,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return acc;
             }, {});
 
-            const html = data.contents.map(post => {
+            const renderBlogItem = (post, isCard = false) => {
                 const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString('ja-JP', {
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit'
                 }).replace(/\//g, '.');
 
-                // Extract a plain text description if rich editing is used
                 let description = '';
                 if (post.content) {
                     const tempDiv = document.createElement('div');
@@ -617,18 +615,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 const truncated = description.length > 70 ? description.substring(0, 70) + '...' : description;
 
+                let imageHtml = '';
+                if (post.eyecatch && post.eyecatch.url) {
+                    imageHtml = `
+                    <div class="hidden md:block w-48 h-32 flex-shrink-0 overflow-hidden rounded-sm bg-stone-100">
+                        <img src="${post.eyecatch.url}?w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+                    </div>`;
+                }
+
+                // Default layout for Blog section
                 return `
-                    <div class="blog-item border border-stone-200 p-6 md:p-8 rounded-sm hover:-translate-y-1 transition-transform duration-300 bg-stone-50 cursor-pointer shadow-sm group" data-id="${post.id}">
-                        <div class="flex items-center gap-4 mb-4">
-                            <span class="text-[11px] font-sans text-stone-400 tracking-wider">${date}</span>
+                    <div class="blog-item flex flex-col ${imageHtml ? 'md:flex-row md:items-center' : ''} gap-6 border border-stone-200 p-6 md:p-8 rounded-sm hover:-translate-y-1 transition-transform duration-300 bg-stone-50 cursor-pointer shadow-sm group" data-id="${post.id}">
+                        ${imageHtml}
+                        <div class="flex-1">
+                            <div class="flex items-center gap-4 mb-3">
+                                <span class="text-[11px] font-sans text-stone-400 tracking-wider">${date}</span>
+                            </div>
+                            <h3 class="text-base md:text-lg font-serif tracking-widest text-[#1B2A47] mb-3">${post.title}</h3>
+                            <p class="text-[13px] font-light text-stone-500 leading-relaxed">${truncated}</p>
                         </div>
-                        <h3 class="text-base md:text-lg font-serif tracking-widest text-[#1B2A47] mb-3">${post.title}</h3>
-                        <p class="text-[13px] font-light text-stone-500 leading-relaxed">${truncated}</p>
                     </div>
                 `;
-            }).join('');
+            };
 
-            blogContainer.innerHTML = html;
+            // 1. Render News/Blog
+            const latestPosts = data.contents.slice(0, 3);
+            blogContainer.innerHTML = latestPosts.map(post => renderBlogItem(post)).join('');
+
+            const allBlogsContainer = document.getElementById('all-blogs-container');
+            const viewAllBlogsBtn = document.getElementById('view-all-blogs-btn');
+            
+            if (data.contents.length > 3 && allBlogsContainer && viewAllBlogsBtn) {
+                viewAllBlogsBtn.classList.remove('hidden');
+                allBlogsContainer.innerHTML = data.contents.slice(3).map(post => renderBlogItem(post)).join('');
+                
+                viewAllBlogsBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    allBlogsContainer.classList.remove('hidden');
+                    viewAllBlogsBtn.classList.add('hidden');
+                    attachBlogEvents(); // Reattach events to newly revealed items
+                });
+            }
 
             const blogModal = document.getElementById('blog-modal');
             const blogModalBody = document.getElementById('blog-modal-body');
@@ -671,15 +698,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 300);
             };
 
-            document.querySelectorAll('.blog-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const postId = item.getAttribute('data-id');
-                    const post = window.blogPostsCache[postId];
-                    if (post) {
-                        openBlogModal(post);
-                    }
+            const attachBlogEvents = () => {
+                document.querySelectorAll('.blog-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const postId = item.getAttribute('data-id');
+                        const post = window.blogPostsCache[postId];
+                        if (post) {
+                            openBlogModal(post);
+                        }
+                    });
                 });
-            });
+            };
+
+            attachBlogEvents();
 
             blogModalClose.addEventListener('click', closeBlogModal);
             
@@ -697,5 +728,128 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load blogs on start
     loadBlogPosts();
+
+    /* =========================================
+       MicroCMS Works Integration
+       ========================================= */
+    const setupWorksModal = () => {
+        const openWorksBtn = document.getElementById('open-works-modal-btn');
+        const openWorksBtnServices = document.getElementById('open-works-modal-btn-services');
+        const worksModal = document.getElementById('works-modal');
+        const worksModalClose = document.getElementById('works-modal-close');
+        const worksModalBody = document.getElementById('works-modal-body');
+        const worksModalContainer = document.getElementById('works-modal-content-container');
+        
+        if (!worksModal) return;
+
+        let worksLoaded = false;
+
+        const openModal = async () => {
+            worksModal.style.opacity = '1';
+            worksModal.style.pointerEvents = 'auto';
+            worksModalContainer.classList.remove('scale-95');
+            worksModalContainer.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+
+            if (worksLoaded) return;
+
+            const apiKey = import.meta.env.VITE_MICROCMS_API_KEY;
+            if (!apiKey) {
+                worksModalBody.innerHTML = '<div class="text-center text-sm text-stone-400 py-8">APIキーが設定されていません</div>';
+                return;
+            }
+
+            try {
+                const response = await fetch('https://yamanami.microcms.io/api/v1/works?limit=50', {
+                    headers: {
+                        'X-MICROCMS-API-KEY': apiKey,
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch works');
+                }
+
+                const data = await response.json();
+                
+                if (data.contents.length === 0) {
+                    worksModalBody.innerHTML = '<div class="text-center text-sm text-stone-400 py-8">過去の加工事例はまだありません</div>';
+                    worksLoaded = true;
+                    return;
+                }
+
+                const html = data.contents.map(post => {
+                    let imagesHtml = '';
+                    if (post.image_before || post.image_after) {
+                        imagesHtml = `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-6">
+                                ${post.image_before ? `
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-[10px] tracking-widest text-stone-400 bg-stone-100 self-start px-2 py-1 rounded-sm">BEFORE</span>
+                                    <img src="${post.image_before.url}?w=800" class="w-full h-auto rounded-sm object-cover aspect-video bg-stone-100" loading="lazy" alt="Before">
+                                </div>
+                                ` : '<div></div>'}
+                                ${post.image_after ? `
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-[10px] tracking-widest text-[#1B2A47] bg-[#1B2A47]/10 self-start px-2 py-1 rounded-sm">AFTER</span>
+                                    <img src="${post.image_after.url}?w=800" class="w-full h-auto rounded-sm object-cover aspect-video bg-stone-100" loading="lazy" alt="After">
+                                </div>
+                                ` : '<div></div>'}
+                            </div>
+                        `;
+                    }
+
+                    return `
+                        <div class="border-b border-stone-200 pb-12 mb-12 last:border-0 last:pb-0 last:mb-0">
+                            <h3 class="text-xl font-serif tracking-widest text-[#1B2A47] mb-2">${post.title}</h3>
+                            ${post.stone_type ? `<p class="text-[12px] font-sans text-stone-500 tracking-wider mb-6 pb-4 border-b border-stone-100 block w-full max-w-md">種類: ${post.stone_type}</p>` : ''}
+                            ${imagesHtml}
+                            ${post.content ? `
+                                <div class="prose prose-stone text-[14px] leading-loose text-stone-600 max-w-none mt-6">
+                                    ${post.content}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }).join('');
+
+                worksModalBody.innerHTML = html;
+                worksLoaded = true;
+
+            } catch (error) {
+                console.error('Error fetching works:', error);
+                worksModalBody.innerHTML = '<div class="text-center text-sm text-stone-400 py-8">事例の読み込みに失敗しました。</div>';
+            }
+        };
+
+        const closeModal = () => {
+            worksModal.style.opacity = '0';
+            worksModal.style.pointerEvents = 'none';
+            worksModalContainer.classList.remove('scale-100');
+            worksModalContainer.classList.add('scale-95');
+            document.body.style.overflow = '';
+        };
+
+        if (openWorksBtn) {
+            openWorksBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        }
+        
+        if (openWorksBtnServices) {
+            openWorksBtnServices.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        }
+
+        worksModalClose.addEventListener('click', closeModal);
+        worksModal.addEventListener('click', (e) => {
+            if (e.target === worksModal) closeModal();
+        });
+    };
+
+    setupWorksModal();
 
 });
