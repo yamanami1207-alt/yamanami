@@ -409,25 +409,94 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIndex++;
             gotoSlide(currentIndex, true);
             
-            // Loop wrap check after transition
             if (currentIndex >= originalCount) {
                 setTimeout(() => {
                     currentIndex = 0;
                     gotoSlide(currentIndex, false);
-                    // Force a reflow so the browser applies 'none' instantly before next transition
                     container.offsetHeight; 
-                }, 1200); // Wait for the transition to finish
+                }, 1200);
             }
         };
 
         const startAutoSlide = () => {
             clearInterval(autoSlideInterval);
             autoSlideInterval = setInterval(() => {
-                // Skip tick if currently waiting on the reset gap
                 if (currentIndex >= originalCount) return; 
                 nextSlide();
             }, 4000); 
         };
+
+        // Touch / Swipe handling
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+
+        slider.addEventListener('contextmenu', e => e.preventDefault());
+
+        const getPositionX = (e) => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        const getPositionY = (e) => e.type.includes('mouse') ? e.pageY : e.touches[0].clientY;
+
+        const touchStart = (e) => {
+            isDragging = true;
+            startPos = getPositionX(e);
+            clearInterval(autoSlideInterval);
+            if(e.type.includes('touch')) {
+                slider.dataset.touchStartY = getPositionY(e);
+                slider.dataset.isScrolling = '';
+            }
+            container.style.transition = 'none';
+        };
+
+        const touchMove = (e) => {
+            if (!isDragging) return;
+            const currentPosition = getPositionX(e);
+            
+            if(e.type.includes('touch')) {
+               const y = Math.abs(getPositionY(e) - parseFloat(slider.dataset.touchStartY));
+               const x = Math.abs(currentPosition - startPos);
+               if(!slider.dataset.isScrolling) {
+                  slider.dataset.isScrolling = y > x ? '1' : '0';
+               }
+               if(slider.dataset.isScrolling === '1') {
+                  isDragging = false;
+                  return;
+               }
+               if (e.cancelable) e.preventDefault(); 
+            } else {
+               e.preventDefault();
+            }
+
+            const diff = currentPosition - startPos;
+            currentTranslate = -(currentIndex * 100) + (diff / slider.clientWidth * 100);
+            container.style.transform = `translate3d(${currentTranslate}%, 0, 0)`;
+        };
+
+        const touchEnd = () => {
+            if(!isDragging) return;
+            isDragging = false;
+            const diff = currentTranslate - (-(currentIndex * 100));
+            if (diff < -15) {
+               nextSlide();
+            } else if (diff > 15) {
+               if (currentIndex > 0) {
+                   currentIndex--;
+                   gotoSlide(currentIndex, true);
+               } else {
+                   gotoSlide(currentIndex, true);
+               }
+            } else {
+               gotoSlide(currentIndex, true);
+            }
+            startAutoSlide();
+        };
+
+        slider.addEventListener('touchstart', touchStart, { passive: true });
+        slider.addEventListener('touchmove', touchMove, { passive: false });
+        slider.addEventListener('touchend', touchEnd);
+        slider.addEventListener('mousedown', touchStart);
+        slider.addEventListener('mousemove', touchMove);
+        slider.addEventListener('mouseup', touchEnd);
+        slider.addEventListener('mouseleave', () => { if(isDragging) touchEnd() });
 
         // Reset state nicely when clicking around pages
         document.querySelectorAll('[data-route]').forEach(link => {
