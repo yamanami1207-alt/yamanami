@@ -116,99 +116,99 @@
     </header>
 
     <!-- ■ 最初はopacity: 0にしておき、初期化完了後に表示 ■ -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-content" style="text-align: center; max-width: 300px;">
+            <h3 style="color: var(--navy); margin-top: 0; margin-bottom: 16px;">配置のリセット</h3>
+            <p style="font-size: 14px; color: var(--textGray); margin-bottom: 24px; line-height: 1.6;">現在の配置を消去します。<br>よろしいですか？</p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button onclick="document.getElementById('confirm-modal').style.display='none'" style="padding: 10px 24px; background: var(--bgLight); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; color: var(--navy);">いいえ</button>
+                <button onclick="window.executeReset()" style="padding: 10px 24px; background: var(--danger); border: none; border-radius: 4px; cursor: pointer; color: white;">はい</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="guide-modal" class="modal-overlay" style="display: flex;">
+        <div class="modal-content" style="font-family: serif; text-align: center;">
+            <button id="guide-close-btn" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
+            <div style="font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 8px;">HOW TO MEASURE</div>
+            <h2 style="color: var(--navy); font-weight: normal; letter-spacing: 3px; font-size: 18px; margin: 0;">手首サイズの測り方</h2>
+            <div style="text-align: left; margin-top: 28px; color: var(--textGray);">
+                <div style="margin-bottom: 24px;">
+                    <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 01</div>
+                    <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                    <p style="font-size: 14px; line-height: 1.8; margin: 0;">細長く切った紙を手首の骨のすぐ横に、隙間なくピッタリと巻き付けます。紙が重なった部分がずれないよう、セロハンテープ等でしっかりととめます。</p>
+                </div>
+                <div style="margin-bottom: 24px;">
+                    <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 02</div>
+                    <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                    <p style="font-size: 14px; line-height: 1.8; margin: 0;">テープでとめた輪の部分をハサミで切り、外した紙をまっすぐに伸ばして定規で端から端までの長さを測ります。その数値が「手首実寸」となります。<br /><small style="color: var(--mutedGray);">※お怪我のないよう、ハサミの取り扱いには十分ご注意ください。</small></p>
+                </div>
+                <div style="padding: 16px; border: 1px solid var(--border); background: var(--bgWarm); border-radius: 4px; margin-bottom: 24px;">
+                    <p style="font-size: 13px; line-height: 1.8; margin: 0;"><strong>【ブレスレットの内周目安】</strong><br />内周目安 ＝ 手首実寸 ＋ 1.0cm ～ 1.5cm<br /><span style="font-size: 11px; color: var(--mutedGray);">※標準的なゆとりを持たせる場合は「＋1.5cm」をおすすめしております。</span></p>
+                </div>
+                <div style="padding: 16px; border: 1px solid #e2e8f0; background: #fdfdfc; border-radius: 4px;">
+                    <p style="font-size: 12px; line-height: 1.8; margin: 0; color: #4a5568;"><strong>【天然石に関するご注意】</strong><br />天然石の特性上、シミュレーター上に表示される画像と全く同じ色合いや模様のビーズをご用意することはできません。同グレードの美しい石を厳選して使用いたしますが、天然由来の個性（内包物やわずかな色幅など）がございますこと、あらかじめご了承くださいますようお願い申し上げます。</p>
+                </div>
+            </div>
+            <button id="guide-action-btn" style="margin-top: 24px; width: 100%; padding: 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; cursor: pointer; letter-spacing: 3px; font-size: 13px; font-family: serif;">作成を始める</button>
+        </div>
+    </div>
+
+    <div id="template-modal" class="modal-overlay">
+        <div class="modal-content" style="border-top-color: var(--navy); padding: 24px; max-height: 90vh; overflow-y: auto;">
+            <button onclick="document.getElementById('template-modal').style.display='none'" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 style="color: var(--navy); font-size: 16px; font-weight: normal; letter-spacing: 2px; margin: 0;">配置テンプレート</h2>
+            </div>
+
+            <div id="template-step1">
+                <p style="font-size: 13px; margin-bottom: 16px; text-align: center;">パターンを選択してください</p>
+                <div id="template-patterns-grid" style="display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 16px;"></div>
+            </div>
+
+            <div id="template-step2" style="display: none;">
+                <p style="font-size: 13px; margin-bottom: 16px; text-align: center;" id="template-step2-title"></p>
+                <div id="template-stone-selectors" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;"></div>
+                <div style="display: flex; gap: 12px; justify-content: space-between;">
+                    <button onclick="document.getElementById('template-step2').style.display='none'; document.getElementById('template-step1').style.display='block';" style="padding: 12px; background: var(--bgLight); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; width: 48%;">戻る</button>
+                    <button onclick="window.applySelectedTemplate()" style="padding: 12px; background: var(--navy); border: none; color: white; border-radius: 4px; font-weight: bold; cursor: pointer; width: 48%;">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content" style="border-top-color: var(--gold); padding: 28px 24px; font-family: serif;">
+            <button id="order-close-btn" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 6px;">CONFIRMATION</div>
+                <h2 style="color: var(--navy); font-size: 16px; font-weight: normal; letter-spacing: 3px; margin: 0;">ご注文内容</h2>
+            </div>
+            <div id="order-shipping-alert"></div>
+            <div style="font-size: 11px; color: var(--mutedGray); margin-bottom: 12px; letter-spacing: 1px;">管理番号:<span id="order-management-code"></span></div>
+            <div style="border: 1px solid var(--border); padding: 16px 14px; background: var(--bgLight); margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px;"><span>合計 玉数</span><strong id="order-total-beads"></strong></div>
+                <div style="display: flex; justify-content: space-between; font-size: 13px;"><span>内周目安</span><strong id="order-inner-circ"></strong></div>
+            </div>
+            <div style="margin-bottom: 16px;">
+                <div style="font-size: 11px; color: var(--navy); letter-spacing: 2px; margin-bottom: 8px;">STONES</div>
+                <div id="order-stone-list" style="max-height: 180px; overflow-y: auto; border: 1px solid var(--border); padding: 10px;"></div>
+            </div>
+            <div id="review-box" style="padding: 14px; background: var(--bgWarm); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 16px; transition: all 0.2s;">
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--navy); cursor: pointer; font-weight: bold;">
+                    <input type="checkbox" id="review-checkbox" style="transform: scale(1.3); accent-color: var(--navy);" />
+                    商品到着後、レビューを書いて5%OFF!
+                </label>
+            </div>
+            <div style="border-top: 1px solid var(--border); padding-top: 14px; margin-bottom: 20px;" id="order-price-summary"></div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button id="btn-submit-base" style="width: 100%; padding: 16px; border-radius: 4px; background: var(--navy); color: var(--white); border: none; font-size: 13px; letter-spacing: 3px; cursor: pointer; font-family: serif;">BASEで注文する</button>
+                <button id="btn-order-back" style="width: 100%; padding: 12px; background: none; color: var(--mutedGray); border: none; font-size: 12px; cursor: pointer; font-family: serif;">戻る</button>
+            </div>
+        </div>
+    </div>
+
     <div class="app-container" id="app-root" style="opacity: 0; transition: opacity 0.5s;">
-        <div id="confirm-modal" class="modal-overlay">
-            <div class="modal-content" style="text-align: center; max-width: 300px;">
-                <h3 style="color: var(--navy); margin-top: 0; margin-bottom: 16px;">配置のリセット</h3>
-                <p style="font-size: 14px; color: var(--textGray); margin-bottom: 24px; line-height: 1.6;">現在の配置を消去します。<br>よろしいですか？</p>
-                <div style="display: flex; gap: 12px; justify-content: center;">
-                    <button onclick="document.getElementById('confirm-modal').style.display='none'" style="padding: 10px 24px; background: var(--bgLight); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; color: var(--navy);">いいえ</button>
-                    <button onclick="window.executeReset()" style="padding: 10px 24px; background: var(--danger); border: none; border-radius: 4px; cursor: pointer; color: white;">はい</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="guide-modal" class="modal-overlay" style="display: flex;">
-            <div class="modal-content" style="font-family: serif; text-align: center;">
-                <button id="guide-close-btn" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
-                <div style="font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 8px;">HOW TO MEASURE</div>
-                <h2 style="color: var(--navy); font-weight: normal; letter-spacing: 3px; font-size: 18px; margin: 0;">手首サイズの測り方</h2>
-                <div style="text-align: left; margin-top: 28px; color: var(--textGray);">
-                    <div style="margin-bottom: 24px;">
-                        <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 01</div>
-                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
-                        <p style="font-size: 14px; line-height: 1.8; margin: 0;">細長く切った紙を手首の骨のすぐ横に、隙間なくピッタリと巻き付けます。紙が重なった部分がずれないよう、セロハンテープ等でしっかりととめます。</p>
-                    </div>
-                    <div style="margin-bottom: 24px;">
-                        <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 02</div>
-                        <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
-                        <p style="font-size: 14px; line-height: 1.8; margin: 0;">テープでとめた輪の部分をハサミで切り、外した紙をまっすぐに伸ばして定規で端から端までの長さを測ります。その数値が「手首実寸」となります。<br /><small style="color: var(--mutedGray);">※お怪我のないよう、ハサミの取り扱いには十分ご注意ください。</small></p>
-                    </div>
-                    <div style="padding: 16px; border: 1px solid var(--border); background: var(--bgWarm); border-radius: 4px; margin-bottom: 24px;">
-                        <p style="font-size: 13px; line-height: 1.8; margin: 0;"><strong>【ブレスレットの内周目安】</strong><br />内周目安 ＝ 手首実寸 ＋ 1.0cm ～ 1.5cm<br /><span style="font-size: 11px; color: var(--mutedGray);">※標準的なゆとりを持たせる場合は「＋1.5cm」をおすすめしております。</span></p>
-                    </div>
-                    <div style="padding: 16px; border: 1px solid #e2e8f0; background: #fdfdfc; border-radius: 4px;">
-                        <p style="font-size: 12px; line-height: 1.8; margin: 0; color: #4a5568;"><strong>【天然石に関するご注意】</strong><br />天然石の特性上、シミュレーター上に表示される画像と全く同じ色合いや模様のビーズをご用意することはできません。同グレードの美しい石を厳選して使用いたしますが、天然由来の個性（内包物やわずかな色幅など）がございますこと、あらかじめご了承くださいますようお願い申し上げます。</p>
-                    </div>
-                </div>
-                <button id="guide-action-btn" style="margin-top: 24px; width: 100%; padding: 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; cursor: pointer; letter-spacing: 3px; font-size: 13px; font-family: serif;">作成を始める</button>
-            </div>
-        </div>
-
-        <div id="template-modal" class="modal-overlay">
-            <div class="modal-content" style="border-top-color: var(--navy); padding: 24px; max-height: 90vh; overflow-y: auto;">
-                <button onclick="document.getElementById('template-modal').style.display='none'" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <h2 style="color: var(--navy); font-size: 16px; font-weight: normal; letter-spacing: 2px; margin: 0;">配置テンプレート</h2>
-                </div>
-
-                <div id="template-step1">
-                    <p style="font-size: 13px; margin-bottom: 16px; text-align: center;">パターンを選択してください</p>
-                    <div id="template-patterns-grid" style="display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 16px;"></div>
-                </div>
-
-                <div id="template-step2" style="display: none;">
-                    <p style="font-size: 13px; margin-bottom: 16px; text-align: center;" id="template-step2-title"></p>
-                    <div id="template-stone-selectors" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;"></div>
-                    <div style="display: flex; gap: 12px; justify-content: space-between;">
-                        <button onclick="document.getElementById('template-step2').style.display='none'; document.getElementById('template-step1').style.display='block';" style="padding: 12px; background: var(--bgLight); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; width: 48%;">戻る</button>
-                        <button onclick="window.applySelectedTemplate()" style="padding: 12px; background: var(--navy); border: none; color: white; border-radius: 4px; font-weight: bold; cursor: pointer; width: 48%;">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="order-modal" class="modal-overlay">
-            <div class="modal-content" style="border-top-color: var(--gold); padding: 28px 24px; font-family: serif;">
-                <button id="order-close-btn" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy);">✕</button>
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 6px;">CONFIRMATION</div>
-                    <h2 style="color: var(--navy); font-size: 16px; font-weight: normal; letter-spacing: 3px; margin: 0;">ご注文内容</h2>
-                </div>
-                <div id="order-shipping-alert"></div>
-                <div style="font-size: 11px; color: var(--mutedGray); margin-bottom: 12px; letter-spacing: 1px;">管理番号:<span id="order-management-code"></span></div>
-                <div style="border: 1px solid var(--border); padding: 16px 14px; background: var(--bgLight); margin-bottom: 16px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px;"><span>合計 玉数</span><strong id="order-total-beads"></strong></div>
-                    <div style="display: flex; justify-content: space-between; font-size: 13px;"><span>内周目安</span><strong id="order-inner-circ"></strong></div>
-                </div>
-                <div style="margin-bottom: 16px;">
-                    <div style="font-size: 11px; color: var(--navy); letter-spacing: 2px; margin-bottom: 8px;">STONES</div>
-                    <div id="order-stone-list" style="max-height: 180px; overflow-y: auto; border: 1px solid var(--border); padding: 10px;"></div>
-                </div>
-                <div id="review-box" style="padding: 14px; background: var(--bgWarm); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 16px; transition: all 0.2s;">
-                    <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--navy); cursor: pointer; font-weight: bold;">
-                        <input type="checkbox" id="review-checkbox" style="transform: scale(1.3); accent-color: var(--navy);" />
-                        商品到着後、レビューを書いて5%OFF!
-                    </label>
-                </div>
-                <div style="border-top: 1px solid var(--border); padding-top: 14px; margin-bottom: 20px;" id="order-price-summary"></div>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <button id="btn-submit-base" style="width: 100%; padding: 16px; border-radius: 4px; background: var(--navy); color: var(--white); border: none; font-size: 13px; letter-spacing: 3px; cursor: pointer; font-family: serif;">BASEで注文する</button>
-                    <button id="btn-order-back" style="width: 100%; padding: 12px; background: none; color: var(--mutedGray); border: none; font-size: 12px; cursor: pointer; font-family: serif;">戻る</button>
-                </div>
-            </div>
-        </div>
-
         <div aria-hidden="true" style="position: fixed; left: 200%; top: 0; z-index: -10000;">
             <div id="export-wrap" style="width: 700px; padding: 40px; background: var(--bgLight); border: 1px solid var(--border); box-sizing: border-box;">
                 <div style="text-align: center; margin-bottom: 30px;">
@@ -265,9 +265,6 @@
                     <div style="display: flex; gap: 6px; flex-wrap: nowrap;">
                         <button id="btn-save" style="background: var(--white); color: var(--navy); border: 1px solid var(--border); border-radius: 4px; padding: 0 10px; font-size: 11px; cursor: pointer; letter-spacing: 0.5px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1; white-space: nowrap;">
                             <span style="font-size: 14px;">📷</span> 画像保存
-                        </button>
-                        <button onclick="window.shareDesign()" title="共有する" style="background: var(--white); color: var(--navy); border: 1px solid var(--border); border-radius: 4px; padding: 0 10px; font-size: 11px; cursor: pointer; letter-spacing: 0.5px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 4px; flex: 1; white-space: nowrap;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg> 共有
                         </button>
                         <button id="btn-reset" style="background: var(--white); color: var(--danger); border: 1px solid var(--border); border-radius: 4px; padding: 0 14px; font-size: 11px; cursor: pointer; letter-spacing: 0.5px; height: 40px; flex-shrink: 0; white-space: nowrap;">リセット</button>
                     </div>
@@ -583,23 +580,6 @@
             selectedIdx = 0; expandedStoneId = null; 
             renderApp();
             document.getElementById('confirm-modal').style.display = 'none';
-        };
-
-        window.shareDesign = () => {
-            if (beads.filter(b => b.type !== "empty").length === 0) {
-                alert("まずは石を配置してください。");
-                return;
-            }
-            // cfg format: `idx:id:size,...`
-            const cfg = beads.map((b, i) => b.type !== "empty" ? `${i}:${b.id}:${b.size}` : "").filter(x => x).join(",");
-            const hash = `#design=${btoa(cfg)}`;
-            const url = window.location.origin + window.location.pathname + hash;
-            
-            navigator.clipboard.writeText(url).then(() => {
-                alert("デザインの共有リンクをクリップボードにコピーしました！\n\n" + url);
-            }).catch(() => {
-                alert("コピーに失敗しました。以下のURLを手動でコピーしてください。\n\n" + url);
-            });
         };
 
         document.getElementById('btn-delete-bead').addEventListener('click', () => {

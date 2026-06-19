@@ -32,7 +32,7 @@
     <button id="attachment-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
     </button>
-    <div class="bg-[#fdfdfc] w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-12 pb-12 px-6 md:px-12" id="attachment-modal-content">
+    <div class="bg-[#fdfdfc] w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-12 pb-12 px-6 md:px-12" id="attachment-modal-content">
       
       <div class="space-y-8">
         <h3 class="text-xl font-serif tracking-[0.15em] text-stone-800 text-center border-b border-stone-200 pb-6">お写真の添付について</h3>
@@ -52,9 +52,10 @@
             </ul>
           </div>
 
-          <div class="flex flex-col items-center justify-center pt-4 border-t border-stone-200">
-            <img src="https://images.unsplash.com/photo-1589710319403-f09c73e045a5?auto=format&fit=crop&w=800&q=80" alt="簡単な図解スケッチの例" class="w-full max-w-sm rounded border border-stone-200 shadow-sm" style="max-height: 200px; object-fit: cover;" />
-            <p class="text-[11px] text-stone-400 mt-3 tracking-widest">※ 加工指示は手書きのラフでも問題ございません</p>
+          <div class="flex flex-col items-center justify-center pt-6 border-t border-stone-200">
+            <p class="text-[13px] font-medium text-stone-700 tracking-widest mb-4">加工指示のイメージ</p>
+            <img src="/assets/memo.jpg" alt="加工指示のイメージ" class="w-full rounded border border-stone-200 shadow-sm bg-white" style="object-fit: contain;" />
+            <p class="text-[11px] text-stone-400 mt-4 tracking-widest leading-relaxed text-center">※ このように手書きのラフ等で加工位置をお知らせいただくとスムーズです。<br class="hidden md:block">石の性質上ご希望に沿えない場合もございますので予めご了承ください。</p>
           </div>
         </div>
       </div>
