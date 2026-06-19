@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openReiImg.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            imageModalImg.setAttribute('src', '/assets/rei.jpg');
+            imageModalImg.setAttribute('src', '/assets/image.jpg');
             imageModal.style.pointerEvents = 'auto';
             imageModal.style.opacity = '1';
             imageModalImg.classList.remove('scale-90');
