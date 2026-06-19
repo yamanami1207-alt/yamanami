@@ -257,15 +257,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const openReiImg = document.getElementById('open-rei-img');
-    if (openReiImg) {
+    const attachmentModal = document.getElementById('attachment-modal');
+    const attachmentModalClose = document.getElementById('attachment-modal-close');
+    const attachmentModalContent = document.getElementById('attachment-modal-content');
+
+    if (openReiImg && attachmentModal) {
         openReiImg.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            imageModalImg.setAttribute('src', '/assets/image.jpg');
-            imageModal.style.pointerEvents = 'auto';
-            imageModal.style.opacity = '1';
-            imageModalImg.classList.remove('scale-90');
-            imageModalImg.classList.add('scale-100');
+            attachmentModal.style.pointerEvents = 'auto';
+            attachmentModal.style.opacity = '1';
+            attachmentModalContent.classList.remove('scale-95');
+            attachmentModalContent.classList.add('scale-100');
+        });
+
+        attachmentModalClose.addEventListener('click', () => {
+            attachmentModal.style.opacity = '0';
+            attachmentModal.style.pointerEvents = 'none';
+            attachmentModalContent.classList.remove('scale-100');
+            attachmentModalContent.classList.add('scale-95');
+        });
+
+        attachmentModal.addEventListener('click', (e) => {
+            if (e.target === attachmentModal) {
+                attachmentModal.style.opacity = '0';
+                attachmentModal.style.pointerEvents = 'none';
+                attachmentModalContent.classList.remove('scale-100');
+                attachmentModalContent.classList.add('scale-95');
+            }
         });
     }
 

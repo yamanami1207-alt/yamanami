@@ -21,15 +21,55 @@
 
   <!-- Image Modal -->
   <div id="image-modal" class="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center p-4 cursor-pointer opacity-0 pointer-events-none transition-opacity duration-300">
+    <button id="image-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
     <img id="image-modal-img" src="" alt="Enlarged view" class="max-w-full max-h-[90vh] object-contain rounded-sm shadow-2xl scale-90 transition-transform duration-300">
+  </div>
+
+  <!-- Attachment Guide Modal -->
+  <div id="attachment-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    <button id="attachment-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="bg-[#fdfdfc] w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-12 pb-12 px-6 md:px-12" id="attachment-modal-content">
+      
+      <div class="space-y-8">
+        <h3 class="text-xl font-serif tracking-[0.15em] text-stone-800 text-center border-b border-stone-200 pb-6">お写真の添付について</h3>
+        
+        <div class="space-y-6 text-stone-600 font-light text-[14px] leading-loose">
+          <p class="text-center">
+            加工をご希望の天然石や原石のお写真を添付いただきますと、<br class="hidden md:block" />
+            より具体的でスムーズなご案内が可能となります。
+          </p>
+
+          <div class="bg-stone-50 border border-stone-200 p-6 rounded-sm space-y-4">
+            <h4 class="font-medium text-stone-700 tracking-wide text-center">撮影時のポイント</h4>
+            <ul class="list-disc list-inside space-y-2 text-stone-600">
+              <li>対象の石の全体像がわかるよう明るい場所で撮影ください。</li>
+              <li>定規や硬貨などを横に並べて撮影いただくと、サイズ感が正確に伝わります。</li>
+              <li>「ここに穴を開けたい」「この部分を削りたい」といったご希望がある場合は、<strong>簡単な手書きの図解やメモ</strong>を一緒に撮影いただいたものでも構いません。</li>
+            </ul>
+          </div>
+
+          <div class="flex flex-col items-center justify-center pt-4 border-t border-stone-200">
+            <div class="relative w-full max-w-sm h-40 border-2 border-dashed border-stone-300 rounded flex flex-col items-center justify-center text-stone-400 bg-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 text-stone-300"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M12 18v-6"></path><path d="M8 15h8"></path></svg>
+              <span class="text-[12px] tracking-widest text-stone-500">簡単な図解スケッチの例</span>
+            </div>
+            <p class="text-[11px] text-stone-400 mt-3 tracking-widest">※ 加工指示は手書きのラフでも問題ございません</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Blog Modal -->
   <div id="blog-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
-    <div class="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-16" id="blog-modal-content-container">
-      <button id="blog-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-800 transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-stone-100 z-10">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
+    <button id="blog-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="bg-white w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-12" id="blog-modal-content-container">
       <div id="blog-modal-body" class="p-8 md:p-12 prose prose-stone max-w-none text-stone-700 font-light text-[15px] leading-loose max-w-3xl mx-auto w-full">
       </div>
     </div>
@@ -843,6 +883,13 @@
     <div class="max-w-4xl mx-auto flex flex-col items-center">
       <div class="text-sm font-serif tracking-[0.2em] font-light text-stone-400 mb-6">
         有限会社 やまなみ銘石
+      </div>
+
+      <div class="mb-8 flex justify-center">
+        <a href="https://www.instagram.com/ymnami_/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-stone-400 hover:text-stone-600 transition-colors group">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          <span class="text-[11px] font-serif tracking-widest mt-0.5">@ymnami_</span>
+        </a>
       </div>
 
       <div class="w-full max-w-3xl mb-12">

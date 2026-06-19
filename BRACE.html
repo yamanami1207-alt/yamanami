@@ -209,6 +209,17 @@
             </div>
         </div>
 
+        <!-- AR Modal -->
+        <div id="ar-modal" class="modal-overlay" style="display: none; z-index: 9999; background: #000;">
+            <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                <button onclick="window.stopAR()" style="position: absolute; top: 20px; right: 20px; width: 50px; height: 50px; background: rgba(255,255,255,0.2); border: none; font-size: 24px; cursor: pointer; color: #fff; z-index: 1001; border-radius: 50%; display: flex; align-items: center; justify-content: center;">✕</button>
+                <video id="ar-video" autoplay playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1) translateZ(0); filter: contrast(1.1) brightness(1.05) saturate(1.2); will-change: transform, filter;"></video>
+                <div id="ar-svg-container" style="position: absolute; pointer-events: none; z-index: 1000; display: flex; align-items: center; justify-content: center; transform: perspective(800px) rotateX(45deg) translateZ(0); will-change: transform;"></div>
+                <div style="position: absolute; bottom: 40px; text-align: center; color: white; background: rgba(0,0,0,0.5); padding: 12px 24px; border-radius: 30px; font-size: 14px; z-index: 1001; pointer-events: none; letter-spacing: 2px;">手首を緑の枠内に合わせてください</div>
+                <div style="position: absolute; width: 280px; height: 140px; border: 2px dashed rgba(0, 255, 0, 0.5); border-radius: 70px; box-shadow: 0 0 0 9999px rgba(0,0,0,0.3); pointer-events: none; z-index: 10;"></div>
+            </div>
+        </div>
+
         <div aria-hidden="true" style="position: fixed; left: 200%; top: 0; z-index: -10000;">
             <div id="export-wrap" style="width: 700px; padding: 40px; background: var(--bgLight); border: 1px solid var(--border); box-sizing: border-box;">
                 <div style="text-align: center; margin-bottom: 30px;">
@@ -262,16 +273,22 @@
                         </div>
                         <div style="font-size: 10px; color: var(--mutedGray); margin-top: 6px; letter-spacing: 0.5px;">※目安：8mmは24玉、10mmは20玉前後</div>
                     </div>
-                    <div style="display: flex; gap: 6px;">
-                        <button id="btn-save" style="background: var(--white); color: var(--navy); border: 1px solid var(--border); border-radius: 4px; padding: 0 14px; font-size: 11px; cursor: pointer; letter-spacing: 1px; height: 40px; display: flex; align-items: center; gap: 4px;">
-                            <span style="font-size: 14px;">📷</span> 保存
+                    <div style="display: flex; gap: 6px; flex-wrap: nowrap; align-items: center;">
+                        <button id="btn-save" style="background: var(--white); color: var(--navy); border: 1px solid var(--border); border-radius: 4px; padding: 0 10px; font-size: 11px; cursor: pointer; letter-spacing: 0.5px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1; white-space: nowrap;">
+                            <span style="font-size: 14px;">📷</span> 画像保存
                         </button>
-                        <button id="btn-reset" style="background: var(--white); color: var(--danger); border: 1px solid var(--border); border-radius: 4px; padding: 0 14px; font-size: 11px; cursor: pointer; letter-spacing: 1px; height: 40px;">リセット</button>
+                        <button onclick="window.shareDesign()" title="共有する" style="background: var(--white); color: var(--navy); border: 1px solid var(--border); border-radius: 4px; padding: 0; width: 40px; cursor: pointer; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                        </button>
+                        <button id="btn-reset" style="background: var(--white); color: var(--danger); border: 1px solid var(--border); border-radius: 4px; padding: 0 14px; font-size: 11px; cursor: pointer; letter-spacing: 0.5px; height: 40px; flex-shrink: 0; white-space: nowrap;">リセット</button>
                     </div>
                 </div>
 
                 <div style="margin-bottom: 16px; padding: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 4px;">
                     <button onclick="window.openTemplateModal()" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='var(--bgLight)'" style="width: 100%; padding: 12px; background: var(--bgLight); border: 1px solid var(--border); font-size: 13px; font-weight: bold; border-radius: 4px; color: var(--navy); cursor: pointer; transition: background 0.2s;">配置テンプレートを使用する</button>
+                    <button onclick="window.startAR()" onmouseover="this.style.color='#1e293b'" onmouseout="this.style.color='var(--textGray)'" style="margin-top: 12px; width: 100%; background: none; border: none; font-size: 11px; color: var(--textGray); cursor: pointer; transition: color 0.2s; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg> AR試着機能を使う (Camera)
+                    </button>
                 </div>
 
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--bgWarm); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 16px;">
@@ -581,6 +598,67 @@
             renderApp();
             document.getElementById('confirm-modal').style.display = 'none';
         };
+
+        let arStream = null;
+        window.startAR = async () => {
+            if (beads.filter(b => b.type !== "empty").length === 0) {
+                alert("まずは石を配置してください。");
+                return;
+            }
+            const modal = document.getElementById('ar-modal');
+            const video = document.getElementById('ar-video');
+            const svgContainer = document.getElementById('ar-svg-container');
+            
+            try {
+                arStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: "user",
+                        frameRate: { ideal: 60, min: 30 },
+                        width: { ideal: 1280, min: 640 },
+                        height: { ideal: 720, min: 480 }
+                    }, 
+                    audio: false 
+                });
+                video.srcObject = arStream;
+                modal.style.display = 'flex';
+                
+                // SVGをレンダリング（ar用プレフィックス）
+                renderSVG('ar-svg-container', 'ar', 'normal');
+                
+            } catch (err) {
+                alert("カメラの起動に失敗しました。権限を確認してください。");
+                console.error("Camera error:", err);
+            }
+        };
+
+        window.stopAR = () => {
+            const modal = document.getElementById('ar-modal');
+            const video = document.getElementById('ar-video');
+            if (arStream) {
+                arStream.getTracks().forEach(track => track.stop());
+                arStream = null;
+            }
+            video.srcObject = null;
+            modal.style.display = 'none';
+        };
+
+        window.shareDesign = () => {
+            if (beads.filter(b => b.type !== "empty").length === 0) {
+                alert("まずは石を配置してください。");
+                return;
+            }
+            // cfg format: `idx:id:size,...`
+            const cfg = beads.map((b, i) => b.type !== "empty" ? `${i}:${b.id}:${b.size}` : "").filter(x => x).join(",");
+            const hash = `#design=${btoa(cfg)}`;
+            const url = window.location.origin + window.location.pathname + hash;
+            
+            navigator.clipboard.writeText(url).then(() => {
+                alert("デザインの共有リンクをクリップボードにコピーしました！\n\n" + url);
+            }).catch(() => {
+                alert("コピーに失敗しました。以下のURLを手動でコピーしてください。\n\n" + url);
+            });
+        };
+
         document.getElementById('btn-delete-bead').addEventListener('click', () => {
             beads[selectedIdx] = { ...EMPTY }; renderApp();
         });
@@ -792,7 +870,7 @@
                 link.href = canvas.toDataURL("image/png");
                 link.click();
             } catch (err) { alert("保存に失敗しました。"); }
-            isSavingImg = false; btn.innerHTML = `<span style="font-size: 14px;">📷</span> 保存`; btn.style.cursor = 'pointer';
+            isSavingImg = false; btn.innerHTML = `<span style="font-size: 14px;">📷</span> 画像保存`; btn.style.cursor = 'pointer';
         });
 
         document.getElementById('btn-submit-base').addEventListener('click', async () => {
@@ -898,6 +976,43 @@
             if (!code) { code = generateCode(); sessionStorage.setItem("gr_order_code", code); }
             managementCode = code;
             document.getElementById('header-code').textContent = managementCode;
+
+            // Load shared design from URL hash if present
+            const hash = window.location.hash;
+            if (hash.startsWith("#design=")) {
+                try {
+                    const cfg = atob(hash.split("=")[1]);
+                    if (cfg) {
+                        const parts = cfg.split(",");
+                        
+                        // Start with empty beads, but match length if needed
+                        let maxIdx = -1;
+                        parts.forEach(p => {
+                            const [idxStr] = p.split(":");
+                            const idx = parseInt(idxStr);
+                            if (idx > maxIdx) maxIdx = idx;
+                        });
+                        
+                        if (maxIdx >= beads.length && maxIdx < MAX_BEADS) {
+                            beads = Array(maxIdx + 1).fill(null).map(() => ({ ...EMPTY }));
+                        } else if (maxIdx >= MAX_BEADS) {
+                            beads = Array(MAX_BEADS).fill(null).map(() => ({ ...EMPTY }));
+                        }
+
+                        parts.forEach(p => {
+                            const [idxStr, sId, sizeStr] = p.split(":");
+                            const idx = parseInt(idxStr);
+                            const size = parseInt(sizeStr);
+                            const sDef = STONE_TYPES.find(s => s.id === sId);
+                            if (sDef && idx >= 0 && idx < beads.length) {
+                                beads[idx] = { ...sDef, size, price: sDef.prices[size], type: "bead" };
+                            }
+                        });
+                    }
+                } catch (e) {
+                    console.error("Invalid design hash", e);
+                }
+            }
 
             // ★ ここでアプリ画面を描画してからポップアップを出すように修正
             renderApp(); 
