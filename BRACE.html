@@ -390,7 +390,10 @@
             const now = new Date(), yy = String(now.getFullYear()).slice(2), mm = String(now.getMonth() + 1).padStart(2, "0"), dd = String(now.getDate()).padStart(2, "0");
             return `GR-${yy}${mm}${dd}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
         }
-        function formatPrice(num) { return num.toLocaleString(); }
+        function formatPrice(num) { 
+            if (num == null || isNaN(num)) return "0";
+            return Number(num).toLocaleString(); 
+        }
         function calculateInnerCirc() {
             const nonEmpty = beads.filter(b => b.type !== "empty");
             if (nonEmpty.length === 0) return "0.0";
@@ -401,7 +404,7 @@
         }
         function renderApp() {
             const filledBeads = beads.filter(b => b.type !== "empty");
-            const totalPrice = filledBeads.reduce((s, b) => s + b.price, 0);
+            const totalPrice = filledBeads.reduce((s, b) => s + (Number(b.price) || 0), 0);
             const innerCirc = calculateInnerCirc();
             const isComplete = beads.every(b => b.type !== "empty");
             
@@ -722,7 +725,7 @@
 
         function updateOrderModal() {
             const filledBeads = beads.filter(b => b.type !== "empty");
-            const totalPrice = filledBeads.reduce((s, b) => s + b.price, 0);
+            const totalPrice = filledBeads.reduce((s, b) => s + (Number(b.price) || 0), 0);
             const finalPrice = isReviewDiscount ? Math.floor(totalPrice * (1 - REVIEW_DISCOUNT_RATE)) : totalPrice;
             const shippingCost = finalPrice >= SHIPPING_FREE_THRESHOLD ? 0 : SHIPPING_FEE;
             const grandTotal = finalPrice + shippingCost;
@@ -776,7 +779,7 @@
             document.getElementById('export-code').textContent = managementCode;
             document.getElementById('export-inner-circ').textContent = `${calculateInnerCirc()}cm`;
             const filledBeads = beads.filter(b => b.type !== "empty");
-            document.getElementById('export-total-price').textContent = `¥${formatPrice(filledBeads.reduce((s, b) => s + b.price, 0))}`;
+            document.getElementById('export-total-price').textContent = `¥${formatPrice(filledBeads.reduce((s, b) => s + (Number(b.price) || 0), 0))}`;
             document.getElementById('export-stone-list').innerHTML = beads.map((b, i) => `
                 <div style="display: flex; justify-content: space-between; font-size: 11px; color: ${b.type === 'empty' ? '#bbb' : 'var(--textGray)'}; border-bottom: 1px dashed var(--border); padding-bottom: 4px;">
                     <span><span style="color: var(--mutedGray); margin-right: 6px;">${String(i + 1).padStart(2, '0')}.</span>${b.type === 'empty' ? '未選択' : b.name}</span>
@@ -822,7 +825,7 @@
             } catch (err) {}
 
             const filledBeads = beads.filter(b => b.type !== "empty");
-            const totalPrice = filledBeads.reduce((s, b) => s + b.price, 0);
+            const totalPrice = filledBeads.reduce((s, b) => s + (Number(b.price) || 0), 0);
             const finalPrice = isReviewDiscount ? Math.floor(totalPrice * (1 - REVIEW_DISCOUNT_RATE)) : totalPrice;
 
             const orderData = {
