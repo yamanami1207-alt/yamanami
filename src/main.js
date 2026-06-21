@@ -100,9 +100,21 @@ document.addEventListener('DOMContentLoaded', () => {
             homeView.style.display = 'none';
             servicesView.style.display = 'block';
             window.scrollTo(0, 0);
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_path: '/services',
+                    page_title: '加工詳細'
+                });
+            }
         } else {
             servicesView.style.display = 'none';
             homeView.style.display = 'block';
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_path: '/',
+                    page_title: '有限会社 やまなみ銘石'
+                });
+            }
         }
     }
 
