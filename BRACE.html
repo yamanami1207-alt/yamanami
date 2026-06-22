@@ -870,20 +870,7 @@
             if (!url) return null;
             if (url.startsWith('data:')) return url;
             try {
-                let fetchUrl = url;
-                try {
-                    const parsedUrl = new URL(url, window.location.href);
-                    fetchUrl = parsedUrl.href;
-                    // Sandbox environment fallback
-                    if (fetchUrl.includes('usercontent.goog') || fetchUrl.startsWith('blob:')) {
-                        fetchUrl = 'https://ishiyasan.com' + (url.startsWith('/') ? url : '/' + url);
-                    }
-                } catch (err) {
-                    fetchUrl = 'https://ishiyasan.com' + (url.startsWith('/') ? url : '/' + url);
-                }
-
-                const response = await fetch(fetchUrl);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const response = await fetch(url);
                 const blob = await response.blob();
                 return new Promise((resolve) => {
                     const reader = new FileReader();
@@ -891,7 +878,7 @@
                     reader.readAsDataURL(blob);
                 });
             } catch (e) {
-                console.warn("画像のBase64変換をスキップしました:", e.message);
+                console.error("Base64変換エラー:", e);
                 return url;
             }
         }
