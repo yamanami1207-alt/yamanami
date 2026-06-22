@@ -815,16 +815,32 @@
 
             let imageBase64 = "";
             try {
-                // 画像保存時と同じ「デザイン仕様書のブレスレット画像部分」を明示的に更新・キャプチャする
-                updateExportDOM();
-                await new Promise(r => setTimeout(r, 300)); // SVGが描画されるのを少し待つ
+                // 確実にキャプチャするため、一時的にボディの最背面にコンテナを配置する
+                const tempDiv = document.createElement('div');
+                tempDiv.style.position = 'fixed';
+                tempDiv.style.left = '0';
+                tempDiv.style.top = '0';
+                tempDiv.style.zIndex = '-9999';
+                tempDiv.style.width = '440px'; // 400 + padding 20*2 = 440
+                tempDiv.style.background = '#ffffff';
+                tempDiv.style.padding = '20px';
+                tempDiv.style.border = '1px solid #eaeaea';
+                tempDiv.style.boxSizing = 'border-box';
+                tempDiv.id = 'temp-capture-area';
+                document.body.appendChild(tempDiv);
+                
+                // 一時エリアにSVGを描画
+                renderSVG('temp-capture-area', 'export_temp', 'normal');
+                await new Promise(r => setTimeout(r, 400)); // SVGや画像がロード・描画されるのを待つ
+
                 const html2canvas = await window.loadHtml2Canvas();
-                const captureArea = document.getElementById('export-svg-container');
-                if (captureArea) {
-                    const canvas = await html2canvas(captureArea, { backgroundColor: "#ffffff", useCORS: true, scale: 2 });
-                    // BASEへ送るための純粋な暗号データに変換
-                    imageBase64 = canvas.toDataURL("image/png").split(",")[1];
-                }
+                const canvas = await html2canvas(tempDiv, { backgroundColor: "#ffffff", useCORS: true, scale: 2 });
+                
+                // JPEG変換でサイズを抑え、BASEでのエラーを防止する
+                imageBase64 = canvas.toDataURL("image/jpeg", 0.9).split(",")[1];
+                
+                // 一時エリアを削除
+                document.body.removeChild(tempDiv);
             } catch (err) {
                 console.error("画像の生成に失敗しました", err);
             }
