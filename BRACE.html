@@ -815,36 +815,15 @@
 
             let imageBase64 = "";
             try {
-                // 画像保存時と同じ「デザイン仕様書」を更新して少し待機します
                 updateExportDOM();
-                await new Promise(r => setTimeout(r, 400));
+                await new Promise(r => setTimeout(r, 300));
 
                 const html2canvas = await window.loadHtml2Canvas();
                 const area = document.getElementById('export-wrap');
                 
-                // 一旦、画像保存と全く同じ方法で全体（正常に出力できている実績のある要素）をキャプチャします
-                const fullCanvas = await html2canvas(area, { backgroundColor: "#ffffff", useCORS: true, scale: 2 });
-                
-                // そのフルキャプチャから「左上のブレスレット画像のスクエア（export-svg-container）」部分だけ位置計算して切り抜きます
-                const targetArea = document.getElementById('export-svg-container');
-                const rootRect = area.getBoundingClientRect();
-                const targetRect = targetArea.getBoundingClientRect();
-                
-                const scale = 2; // html2canvasのscale
-                const cropX = (targetRect.left - rootRect.left) * scale;
-                const cropY = (targetRect.top - rootRect.top) * scale;
-                const cropW = targetRect.width * scale;
-                const cropH = targetRect.height * scale;
-                
-                // 新しいcanvasを作り、切り出したスクエア部分のサイズに合わせて描画します
-                const croppedCanvas = document.createElement("canvas");
-                croppedCanvas.width = cropW;
-                croppedCanvas.height = cropH;
-                const ctx = croppedCanvas.getContext("2d");
-                ctx.drawImage(fullCanvas, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
-                
-                // 最初のバージョンに合わせてPNGフォーマットで送信します（GAS側やBASE側の制限や拡張子エラーを防ぐため）
-                imageBase64 = croppedCanvas.toDataURL("image/png").split(",")[1];
+                // 画像保存機能と全く同じ方法で全体をキャプチャしてそのまま送信します
+                const canvas = await html2canvas(area, { backgroundColor: "#ffffff", useCORS: true, scale: 2 });
+                imageBase64 = canvas.toDataURL("image/png").split(",")[1];
                 
             } catch (err) {
                 console.error("画像の生成に失敗しました", err);
