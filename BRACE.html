@@ -325,12 +325,8 @@
         </footer>
     </div>
 
-    <!-- Vite Asset Imports for Dynamic Paths and Main Logic -->
+    <!-- Main Logic -->
     <script type="module">
-        const images = import.meta.glob('/assets/*.jpg', { eager: true, query: '?url', import: 'default' });
-        const pngImages = import.meta.glob('/assets/*.png', { eager: true, query: '?url', import: 'default' });
-        window.IMAGE_MAP = { ...images, ...pngImages };
-
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
@@ -363,9 +359,7 @@
             { id: "b-yakusugi",      name: "屋久杉",              prices: { 8: 500, 10: 700 } },
             { id: "b-eyeagate",      name: "アイアゲート",        prices: { 8: 130, 10: 180 } },
         ].map(s => {
-            const rawPath = `/assets/${s.id}.jpg`;
-            const resolvedPath = window.IMAGE_MAP && window.IMAGE_MAP[rawPath] ? window.IMAGE_MAP[rawPath].default || window.IMAGE_MAP[rawPath] : rawPath;
-            return { ...s, image: resolvedPath };
+            return { ...s, image: `/assets/${s.id}.jpg` };
         });
 
         const SIZES = [8, 10];
@@ -814,42 +808,17 @@
             const btn = document.getElementById('btn-submit-base');
             btn.textContent = "決済ページを作成中..."; btn.style.background = "#aaa"; btn.style.cursor = "not-allowed";
 
+            // SVG描画を最新にするため、一度エクスポート用DOMを更新して少し待つ
+            updateExportDOM();
+            await new Promise(r => setTimeout(r, 300));
+
             let imageBase64 = "";
             try {
-                // html2canvasを使わず、表示されている「左側のブレスレット図面（SVG）」を直接高画質な画像に変換します
-                const svgElement = document.querySelector('#main-svg-container svg');
-                if (svgElement) {
-                    const svgData = new XMLSerializer().serializeToString(svgElement);
-                    const canvas = document.createElement("canvas");
-                    const ctx = canvas.getContext("2d");
-                    
-                    // BASEで綺麗に表示されるよう、解像度を2倍に設定
-                    const viewBox = svgElement.viewBox.baseVal;
-                    canvas.width = viewBox.width * 2;
-                    canvas.height = viewBox.height * 2;
-                    
-                    const img = new Image();
-                    img.crossOrigin = "anonymous";
-                    const svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
-                    const url = URL.createObjectURL(svgBlob);
-                    
-                    await new Promise((resolve, reject) => {
-                        img.onload = () => {
-                            // 背景を白で綺麗に塗る
-                            ctx.fillStyle = "#ffffff";
-                            ctx.fillRect(0, 0, canvas.width, canvas.height);
-                            // ブレスレットの図を中心・最大サイズで描画
-                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                            URL.revokeObjectURL(url);
-                            resolve();
-                        };
-                        img.onerror = reject;
-                        img.src = url;
-                    });
-                    
-                    // BASEへ送るための純粋な暗号データに変換
-                    imageBase64 = canvas.toDataURL("image/png").split(",")[1];
-                }
+                // 画面外にある「安定した状態のブレスレット図（export-svg-container）」を撮影する
+                const targetArea = document.getElementById('export-svg-container');
+                const html2canvas = await loadHtml2Canvas();
+                const canvas = await html2canvas(targetArea, { backgroundColor: "#ffffff", useCORS: true, scale: 2 });
+                imageBase64 = canvas.toDataURL("image/png").split(",")[1];
             } catch (err) {
                 console.error("画像の生成に失敗しました", err);
             }
@@ -901,7 +870,20 @@
             if (!url) return null;
             if (url.startsWith('data:')) return url;
             try {
-                const response = await fetch(url);
+                let fetchUrl = url;
+                try {
+                    const parsedUrl = new URL(url, window.location.href);
+                    fetchUrl = parsedUrl.href;
+                    // Sandbox environment fallback
+                    if (fetchUrl.includes('usercontent.goog') || fetchUrl.startsWith('blob:')) {
+                        fetchUrl = 'https://ishiyasan.com' + (url.startsWith('/') ? url : '/' + url);
+                    }
+                } catch (err) {
+                    fetchUrl = 'https://ishiyasan.com' + (url.startsWith('/') ? url : '/' + url);
+                }
+
+                const response = await fetch(fetchUrl);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const blob = await response.blob();
                 return new Promise((resolve) => {
                     const reader = new FileReader();
@@ -909,7 +891,7 @@
                     reader.readAsDataURL(blob);
                 });
             } catch (e) {
-                console.error("Base64変換エラー:", e);
+                console.warn("画像のBase64変換をスキップしました:", e.message);
                 return url;
             }
         }
