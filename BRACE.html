@@ -815,9 +815,11 @@
 
             let imageBase64 = "";
             try {
-                // html2canvasを使ってブレスレット画像配置エリア全体をキャプチャして高画質な画像に変換します
+                // 画像保存時と同じ「デザイン仕様書のブレスレット画像部分」を明示的に更新・キャプチャする
+                updateExportDOM();
+                await new Promise(r => setTimeout(r, 300)); // SVGが描画されるのを少し待つ
                 const html2canvas = await window.loadHtml2Canvas();
-                const captureArea = document.getElementById('bracelet-capture-area');
+                const captureArea = document.getElementById('export-svg-container');
                 if (captureArea) {
                     const canvas = await html2canvas(captureArea, { backgroundColor: "#ffffff", useCORS: true, scale: 2 });
                     // BASEへ送るための純粋な暗号データに変換
