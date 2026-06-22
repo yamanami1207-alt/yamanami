@@ -124,7 +124,6 @@
         </div>
     </header>
 
-    <!-- ■ 最初はopacity: 0にしておき、初期化完了後に表示 ■ -->
     <div id="confirm-modal" class="modal-overlay">
         <div class="modal-content" style="text-align: center; max-width: 300px;">
             <h3 style="color: var(--navy); margin-top: 0; margin-bottom: 16px;">配置のリセット</h3>
@@ -144,12 +143,12 @@
             <div style="text-align: left; margin-top: 28px; color: var(--textGray);">
                 <div style="margin-bottom: 24px;">
                     <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 01</div>
-                    <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                    <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'" /></div>
                     <p style="font-size: 14px; line-height: 1.8; margin: 0;">細長く切った紙を手首の骨のすぐ横に、隙間なくピッタリと巻き付けます。紙が重なった部分がずれないよう、セロハンテープ等でしっかりととめます。</p>
                 </div>
                 <div style="margin-bottom: 24px;">
                     <div style="font-size: 11px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px;">STEP 02</div>
-                    <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                    <div style="width: 100%; aspect-ratio: 16/9; background: #f0f0f0; margin-bottom: 8px;"><img src="/assets/te-step2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'" /></div>
                     <p style="font-size: 14px; line-height: 1.8; margin: 0;">テープでとめた輪の部分をハサミで切り、外した紙をまっすぐに伸ばして定規で端から端までの長さを測ります。その数値が「手首実寸」となります。<br /><small style="color: var(--mutedGray);">※お怪我のないよう、ハサミの取り扱いには十分ご注意ください。</small></p>
                 </div>
                 <div style="padding: 16px; border: 1px solid var(--border); background: var(--bgWarm); border-radius: 4px; margin-bottom: 24px;">
@@ -816,37 +815,11 @@
 
             let imageBase64 = "";
             try {
-                // html2canvasを使わず、表示されている「左側のブレスレット図面（SVG）」を直接高画質な画像に変換します
-                const svgElement = document.querySelector('#main-svg-container svg');
-                if (svgElement) {
-                    const svgData = new XMLSerializer().serializeToString(svgElement);
-                    const canvas = document.createElement("canvas");
-                    const ctx = canvas.getContext("2d");
-                    
-                    // BASEで綺麗に表示されるよう、解像度を2倍に設定
-                    const viewBox = svgElement.viewBox.baseVal;
-                    canvas.width = viewBox.width * 2;
-                    canvas.height = viewBox.height * 2;
-                    
-                    const img = new Image();
-                    img.crossOrigin = "anonymous";
-                    const svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
-                    const url = URL.createObjectURL(svgBlob);
-                    
-                    await new Promise((resolve, reject) => {
-                        img.onload = () => {
-                            // 背景を白で綺麗に塗る
-                            ctx.fillStyle = "#ffffff";
-                            ctx.fillRect(0, 0, canvas.width, canvas.height);
-                            // ブレスレットの図を中心・最大サイズで描画
-                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                            URL.revokeObjectURL(url);
-                            resolve();
-                        };
-                        img.onerror = reject;
-                        img.src = url;
-                    });
-                    
+                // html2canvasを使ってブレスレット画像配置エリア全体をキャプチャして高画質な画像に変換します
+                const html2canvas = await window.loadHtml2Canvas();
+                const captureArea = document.getElementById('bracelet-capture-area');
+                if (captureArea) {
+                    const canvas = await html2canvas(captureArea, { backgroundColor: "#ffffff", useCORS: true, scale: 2 });
                     // BASEへ送るための純粋な暗号データに変換
                     imageBase64 = canvas.toDataURL("image/png").split(",")[1];
                 }
@@ -857,14 +830,22 @@
             const filledBeads = beads.filter(b => b.type !== "empty");
             const totalPrice = filledBeads.reduce((s, b) => s + (Number(b.price) || 0), 0);
             const finalPrice = isReviewDiscount ? Math.floor(totalPrice * (1 - REVIEW_DISCOUNT_RATE)) : totalPrice;
+            // サイトの表示に合わせて、送料を確認・計算
+            const shippingCost = finalPrice >= SHIPPING_FREE_THRESHOLD ? 0 : SHIPPING_FEE;
+            // BASEの商品金額としてサイトに表示されている決済合計金額を渡す
+            const grandTotal = finalPrice + shippingCost;
 
             const orderData = {
-                total_price: finalPrice,
+                total_price: grandTotal,
                 items: filledBeads.map(b => `${b.name}${b.size}mm ¥${b.price}`),
                 discount_applied: isReviewDiscount,
                 image_base64: imageBase64,
                 management_code: managementCode
             };
+            // 支払い明細として送料が発生している場合は、BASEのオプション等に表示されるよう、itemsに追加しておく
+            if (shippingCost > 0) {
+                orderData.items.push(`送料 ¥${shippingCost}`);
+            }
 
             try {
                 const response = await fetch(GAS_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(orderData), redirect: "follow" });
