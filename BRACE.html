@@ -814,15 +814,45 @@
             const btn = document.getElementById('btn-submit-base');
             btn.textContent = "決済ページを作成中..."; btn.style.background = "#aaa"; btn.style.cursor = "not-allowed";
 
-            updateExportDOM();
-            await new Promise(r => setTimeout(r, 300));
-            
             let imageBase64 = "";
             try {
-                const html2canvas = await loadHtml2Canvas();
-                const canvas = await html2canvas(document.getElementById('export-wrap'), { backgroundColor: "#ffffff", useCORS: true });
-                imageBase64 = canvas.toDataURL("image/png").split(",")[1];
-            } catch (err) {}
+                // html2canvasを使わず、表示されている「左側のブレスレット図面（SVG）」を直接高画質な画像に変換します
+                const svgElement = document.querySelector('#main-svg-container svg');
+                if (svgElement) {
+                    const svgData = new XMLSerializer().serializeToString(svgElement);
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+                    
+                    // BASEで綺麗に表示されるよう、解像度を2倍に設定
+                    const viewBox = svgElement.viewBox.baseVal;
+                    canvas.width = viewBox.width * 2;
+                    canvas.height = viewBox.height * 2;
+                    
+                    const img = new Image();
+                    img.crossOrigin = "anonymous";
+                    const svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
+                    const url = URL.createObjectURL(svgBlob);
+                    
+                    await new Promise((resolve, reject) => {
+                        img.onload = () => {
+                            // 背景を白で綺麗に塗る
+                            ctx.fillStyle = "#ffffff";
+                            ctx.fillRect(0, 0, canvas.width, canvas.height);
+                            // ブレスレットの図を中心・最大サイズで描画
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            URL.revokeObjectURL(url);
+                            resolve();
+                        };
+                        img.onerror = reject;
+                        img.src = url;
+                    });
+                    
+                    // BASEへ送るための純粋な暗号データに変換
+                    imageBase64 = canvas.toDataURL("image/png").split(",")[1];
+                }
+            } catch (err) {
+                console.error("画像の生成に失敗しました", err);
+            }
 
             const filledBeads = beads.filter(b => b.type !== "empty");
             const totalPrice = filledBeads.reduce((s, b) => s + (Number(b.price) || 0), 0);
