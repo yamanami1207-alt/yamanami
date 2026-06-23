@@ -651,6 +651,21 @@
                   <input type="file" accept="image/*" multiple class="block w-full text-sm text-stone-500 file:mr-4 file:py-2.5 file:px-6 file:rounded-none file:border-0 file:text-[10px] file:font-light file:tracking-[0.1em] file:bg-[#1B2A47] file:text-white hover:file:bg-[#1B2A47]/80 file:cursor-pointer file:transition-colors focus:outline-none">
                 </div>
               </div>
+              
+              <!-- 掲載許可チェックボックス -->
+              <div class="pt-4 pb-2">
+                <label class="flex items-start gap-4 cursor-pointer group">
+                  <div class="relative flex items-center justify-center w-5 h-5 mt-0.5 flex-shrink-0">
+                    <input type="checkbox" name="allow_publish" value="yes" class="peer appearance-none w-5 h-5 border border-stone-300 bg-transparent checked:bg-[#1B2A47] checked:border-[#1B2A47] transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="absolute text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <div class="flex-1 text-left">
+                    <span class="text-[13px] text-stone-600 font-light group-hover:text-stone-800 transition-colors">当サイトの「過去の加工一覧」への画像掲載を許可する</span>
+                    <p class="text-[11px] text-stone-400 mt-1 leading-relaxed font-light">※個人が特定される情報は一切掲載されません。石のみの画像（ビフォーアフター等）として今後の参考に掲載させていただきます。</p>
+                  </div>
+                </label>
+              </div>
+
               <div class="pt-10 text-center flex justify-center">
                 <button type="button" id="submit-btn" disabled class="inline-flex items-center justify-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-300 transition-colors duration-500 cursor-not-allowed w-full sm:w-auto min-w-[240px]">
                   送信する
