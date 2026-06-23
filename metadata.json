@@ -1,6 +1,7 @@
 {
-  "name": "石屋さん.com",
-  "description": "High-end e-commerce homepage for rare natural stones and minerals.",
+  "name": "天然石・ブレスレット・屋久杉の販売　天然石加工専門店｜やまなみ銘石(大阪・石切)",
+  "description": "創業1990年、大阪・石切神社参道の天然石・屋久杉専門店「やまなみ銘石」。こだわりの原石やパワーストーンブレスレット、数珠の販売をはじめ、自社工房での天然石加工（穴あけ・切断・研磨・彫刻・OEM）を承ります。ご自身でデザインを楽しめるWEB限定「オリジナルブレスレット作成シミュレーター（通販専用）」も公開中です！",
   "requestFramePermissions": ["camera", "microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
+
