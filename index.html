@@ -14,6 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>天然石の加工＆ブレスレット･原石･屋久杉販売店｜やまなみ銘石(大阪・石切)</title>
   <meta name="description" content="創業1990年、大阪・石切神社参道の天然石・屋久杉専門店「やまなみ銘石」。こだわりの原石やパワーストーンブレスレット、数珠の販売をはじめ、自社工房での天然石加工（穴あけ・切断・研磨・彫刻・OEM）を承ります。ご自身でデザインを楽しめるWEB限定「オリジナルブレスレット作成シミュレーター（通販専用）」も公開中です！">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style id="fouc-prevention">
     body > *:not(#loader) { display: none !important; }
     #loader {
@@ -985,6 +986,47 @@
 
   <script>
     document.getElementById('copyright-year').innerHTML = '&copy; ' + new Date().getFullYear() + ' YAMANAMI MEISEKI. All rights reserved.';
+
+    // Loader and Animation Logic for standalone HTML usage
+    window.addEventListener('load', function() {
+      // Remove FOUC prevention style so elements can be displayed
+      var fouc = document.getElementById('fouc-prevention');
+      if (fouc) {
+        // Keep the loader styles but remove the body hiding
+        fouc.innerHTML = fouc.innerHTML.replace('body > *:not(#loader) { display: none !important; }', '');
+      }
+
+      var loader = document.getElementById('loader');
+      if (loader) {
+        // Fade out the loader
+        loader.style.transition = 'opacity 0.8s ease';
+        loader.style.opacity = '0';
+        setTimeout(function() {
+          loader.style.display = 'none';
+          document.body.style.overflow = 'auto'; // Restore scrolling
+        }, 800);
+      }
+
+      // Simple intersection observer for fade-in animations
+      if (window.IntersectionObserver) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.style.transition = 'opacity 1s ease, transform 1s ease';
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          observer.observe(el);
+        });
+      }
+    });
   </script>
 </body>
 </html>
