@@ -1,1 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@200;300;400;500&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans JP", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif JP", "Cormorant Garamond", ui-serif, Georgia, serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #fdfdfc;
+  color: #1a1a1a;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
+::selection {
+  background: #1a1a1a;
+  color: #fdfdfc;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1), transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+
+/* Underline Draw Animation */
+.underline-draw {
+  width: 100%;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .group:hover .underline-draw {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+}
+
+@media (hover: none) {
+  .fade-in.visible .underline-draw {
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+  }
+}
+
+
+/* Marquee */
+.marquee-container {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Loader */
+#loader {
+  transition: opacity 0.8s ease-in-out;
+}
+.loader-circle {
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.loader-text {
+  transition: opacity 1s ease-in-out 0.8s;
+}
+
+/* Accordion */
+.accordion-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+}
+.accordion-content.open {
+  max-height: 600px;
+  opacity: 1;
+}
+.accordion-icon {
+  transition: transform 0.3s ease;
+}
+.accordion-icon.open {
+  transform: rotate(45deg);
+}
+
+/* Header transition */
+header {
+  transition: all 0.7s ease;
+}
+
+/* Blog Content Styles */
+.blog-content {
+  color: #3f3f46;
+}
+.blog-content * {
+  line-height: inherit;
+}
+.blog-content p {
+  margin-bottom: 24px;
+}
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 32px 0;
+}
+.blog-content h2,
+.blog-content h3 {
+  font-family: var(--font-serif);
+  color: #1B2A47;
+  letter-spacing: 0.1em;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+.blog-content h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 12px;
+}
+.blog-content h3 {
+  font-size: 1.25rem;
+}
+.blog-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 24px;
+}
+.blog-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 24px;
+}
+.blog-content li {
+  margin-bottom: 8px;
+}
+.blog-content blockquote {
+  border-left: 2px solid #d6d3d1;
+  padding-left: 16px;
+  color: #78716c;
+  font-style: italic;
+  margin: 32px 0;
+}
+.blog-content a {
+  color: #57534e;
+  text-decoration: underline;
+  text-decoration-color: #a8a29e;
+  text-underline-offset: 4px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+.blog-content a:hover {
+  color: #1c1917;
+  text-decoration-color: #1c1917;
+}

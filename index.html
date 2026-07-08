@@ -1,967 +1,961 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KEB96Y48V1"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KEB96Y48V1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-gtag('config', 'G-KEB96Y48V1');
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>天然石の加工/ブレスレット･原石･屋久杉販売店｜やまなみ銘石(東大阪・石切)</title>
-<meta name="description" content="創業1990年、大阪・石切神社参道の天然石・屋久杉専門店「やまなみ銘石」。こだわりの原石やパワーストーンブレスレット、数珠の販売をはじめ、自社工房での天然石加工（穴あけ・切断・研磨・彫刻・OEM）を承ります。ご自身でデザインを楽しめるWEB限定「オリジナルブレスレット作成シミュレーター（通販専用）」も公開中です！">
-<style id="fouc-prevention">
-body > *:not(#loader) { display: none !important; }
-#loader {
-position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 100;
-background-color: #fdfdfc;
-display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
-#loader-content { opacity: 0; }
-.loader-text { opacity: 0; }
-body { background-color: #fdfdfc; margin: 0; overflow: hidden; }
-</style>
-<script type="module" src="/src/main.js"></script>
+    gtag('config', 'G-KEB96Y48V1');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天然石の加工/ブレスレット･原石･屋久杉販売店｜やまなみ銘石(東大阪・石切)</title>
+  <meta name="description" content="創業1990年、大阪・石切神社参道の天然石・屋久杉専門店「やまなみ銘石」。こだわりの原石やパワーストーンブレスレット、数珠の販売をはじめ、自社工房での天然石加工（穴あけ・切断・研磨・彫刻・OEM）を承ります。ご自身でデザインを楽しめるWEB限定「オリジナルブレスレット作成シミュレーター（通販専用）」も公開中です！">
+  <style id="fouc-prevention">
+    body > *:not(#loader) { display: none !important; }
+    #loader {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 100;
+      background-color: #fdfdfc;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    #loader-content { opacity: 0; }
+    .loader-text { opacity: 0; }
+    body { background-color: #fdfdfc; margin: 0; overflow: hidden; }
+  </style>
+  <script type="module" src="/src/main.js"></script>
 </head>
 <body class="bg-[#fdfdfc] font-sans text-[#1a1a1a] selection:bg-[#1a1a1a] selection:text-white overflow-x-hidden">
 
-<!-- Image Modal -->
-<div id="image-modal" class="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center p-4 cursor-pointer opacity-0 pointer-events-none transition-opacity duration-300">
-<button id="image-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
-<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<img id="image-modal-img" src="" alt="Enlarged view" class="max-w-full max-h-[90vh] object-contain rounded-sm shadow-2xl scale-90 transition-transform duration-300">
-</div>
+  <!-- Image Modal -->
+  <div id="image-modal" class="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center p-4 cursor-pointer opacity-0 pointer-events-none transition-opacity duration-300">
+    <button id="image-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <img id="image-modal-img" src="" alt="Enlarged view" class="max-w-full max-h-[90vh] object-contain rounded-sm shadow-2xl scale-90 transition-transform duration-300">
+  </div>
 
-<!-- Attachment Guide Modal -->
-<div id="attachment-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
-<button id="attachment-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
-<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="bg-[#fdfdfc] w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-12 pb-12 px-6 md:px-12" id="attachment-modal-content">
+  <!-- Attachment Guide Modal -->
+  <div id="attachment-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    <button id="attachment-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="bg-[#fdfdfc] w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-12 pb-12 px-6 md:px-12" id="attachment-modal-content">
+      
+      <div class="space-y-8">
+        <h3 class="text-xl font-serif tracking-[0.15em] text-stone-800 text-center border-b border-stone-200 pb-6">お写真の添付について</h3>
+        
+        <div class="space-y-6 text-stone-600 font-light text-[14px] leading-loose">
+          <p class="text-center">
+            加工をご希望の天然石や原石のお写真を添付いただきますと、<br class="hidden md:block" />
+            より具体的でスムーズなご案内が可能となります。
+          </p>
 
-<div class="space-y-8">
-<h3 class="text-xl font-serif tracking-[0.15em] text-stone-800 text-center border-b border-stone-200 pb-6">お写真の添付について</h3>
+          <div class="bg-stone-50 border border-stone-200 p-6 rounded-sm space-y-4">
+            <h4 class="font-medium text-stone-700 tracking-wide text-center">撮影時のポイント</h4>
+            <ul class="list-disc list-inside space-y-2 text-stone-600">
+              <li>対象の石の全体像がわかるよう明るい場所で撮影ください。</li>
+              <li>定規や硬貨などを横に並べて撮影いただくと、サイズ感が正確に伝わります。</li>
+              <li>「ここに穴を開けたい」「この部分を削りたい」といったご希望がある場合は、<strong>簡単な手書きの図解やメモ</strong>を一緒に撮影いただいたものでも構いません。</li>
+            </ul>
+          </div>
 
-<div class="space-y-6 text-stone-600 font-light text-[14px] leading-loose">
-<p class="text-center">
-加工をご希望の天然石や原石のお写真を添付いただきますと、<br class="hidden md:block" />
-より具体的でスムーズなご案内が可能となります。
-</p>
+          <div class="flex flex-col items-center justify-center pt-6 border-t border-stone-200">
+            <p class="text-[13px] font-medium text-stone-700 tracking-widest mb-4">加工指示のイメージ</p>
+            <img src="/assets/memo.jpg" alt="加工指示のイメージ" class="w-full rounded border border-stone-200 shadow-sm bg-white" style="object-fit: contain;" />
+            <p class="text-[11px] text-stone-400 mt-4 tracking-widest leading-relaxed text-center">※ このように手書きのラフ等で加工位置をお知らせいただくとスムーズです。<br class="hidden md:block">石の性質上ご希望に沿えない場合もございますので予めご了承ください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="bg-stone-50 border border-stone-200 p-6 rounded-sm space-y-4">
-<h4 class="font-medium text-stone-700 tracking-wide text-center">撮影時のポイント</h4>
-<ul class="list-disc list-inside space-y-2 text-stone-600">
-<li>対象の石の全体像がわかるよう明るい場所で撮影ください。</li>
-<li>定規や硬貨などを横に並べて撮影いただくと、サイズ感が正確に伝わります。</li>
-<li>「ここに穴を開けたい」「この部分を削りたい」といったご希望がある場合は、<strong>簡単な手書きの図解やメモ</strong>を一緒に撮影いただいたものでも構いません。</li>
-</ul>
-</div>
+  <!-- Blog Modal -->
+  <div id="blog-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    <button id="blog-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="bg-white w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-12" id="blog-modal-content-container">
+      <div id="blog-modal-body" class="p-8 md:p-12 prose prose-stone max-w-none text-stone-700 font-light text-[15px] leading-loose max-w-3xl mx-auto w-full">
+      </div>
+    </div>
+  </div>
 
-<div class="flex flex-col items-center justify-center pt-6 border-t border-stone-200">
-<p class="text-[13px] font-medium text-stone-700 tracking-widest mb-4">加工指示のイメージ</p>
-<img src="/assets/memo.jpg" alt="加工指示のイメージ" class="w-full rounded border border-stone-200 shadow-sm bg-white" style="object-fit: contain;" />
-<p class="text-[11px] text-stone-400 mt-4 tracking-widest leading-relaxed text-center">※ このように手書きのラフ等で加工位置をお知らせいただくとスムーズです。<br class="hidden md:block">石の性質上ご希望に沿えない場合もございますので予めご了承ください。</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <!-- Works Modal (Past Processing Examples) -->
+  <div id="works-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-16" id="works-modal-content-container">
+      <button id="works-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-800 transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-stone-100 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="px-8 md:px-12 text-center mb-8">
+        <h2 class="text-sm tracking-[0.3em] font-light text-stone-400 mb-4">PAST WORKS</h2>
+        <p class="text-2xl font-serif tracking-widest text-[#1B2A47]">過去の加工一覧</p>
+      </div>
+      <div id="works-modal-body" class="p-8 md:p-12 pt-0 w-full flex flex-col gap-12">
+        <div class="text-center text-sm text-stone-400 py-8">読み込み中...</div>
+      </div>
+    </div>
+  </div>
 
-<!-- Blog Modal -->
-<div id="blog-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
-<button id="blog-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 z-[210]">
-<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="bg-white w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-12" id="blog-modal-content-container">
-<div id="blog-modal-body" class="p-8 md:p-12 prose prose-stone max-w-none text-stone-700 font-light text-[15px] leading-loose max-w-3xl mx-auto w-full">
-</div>
-</div>
-</div>
+  <!-- Loading Overlay -->
+  <div id="loader" class="fixed inset-0 z-[100] bg-[#fdfdfc] flex items-center justify-center overflow-hidden transition-opacity duration-800 ease-in-out">
+    <div id="loader-content" class="flex flex-col items-center justify-center" style="transform: scale(15);">
+      <!-- 起動時のロゴと文字を大きくする -->
+      <img src="/assets/logo.png" alt="Yamanami Meiseki Logo" class="w-32 h-32 md:w-56 md:h-56 object-contain mb-8 loader-circle">
+      <p class="text-[14px] md:text-[18px] tracking-[0.4em] font-serif text-[#1B2A47] whitespace-nowrap opacity-0 loader-text">SINCE 1990</p>
+    </div>
+  </div>
 
-<!-- Works Modal (Past Processing Examples) -->
-<div id="works-modal" class="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
-<div class="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-sm shadow-2xl scale-95 transition-transform duration-300 transform relative flex flex-col pt-16" id="works-modal-content-container">
-<button id="works-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-800 transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-stone-100 z-10">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="px-8 md:px-12 text-center mb-8">
-<h2 class="text-sm tracking-[0.3em] font-light text-stone-400 mb-4">PAST WORKS</h2>
-<p class="text-2xl font-serif tracking-widest text-[#1B2A47]">過去の加工一覧</p>
-</div>
-<div id="works-modal-body" class="p-8 md:p-12 pt-0 w-full flex flex-col gap-12">
-<div class="text-center text-sm text-stone-400 py-8">読み込み中...</div>
-</div>
-</div>
-</div>
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white flex-col pt-24 px-12 transition-all duration-500 transform -translate-y-5 opacity-0 hidden" style="will-change: transform, opacity;">
+    <button id="menu-close" class="absolute top-6 right-6 p-4 text-[#1B2A47] hover:opacity-50 transition-opacity">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="flex flex-col space-y-4">
+      <a href="#home" data-route="home-top" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
+        HOME <span class="text-[10px] font-sans font-light text-stone-400">ホーム</span>
+      </a>
+      <a href="#" data-route="services" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
+        WORKS <span class="text-[10px] font-sans font-light text-stone-400">天然石の加工</span>
+      </a>
+      <a href="BRACE.html" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
+        CUSTOM <span class="text-[10px] font-sans font-light text-stone-400">自分だけのデザイン</span>
+      </a>
+      <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
+        ITEM <span class="text-[10px] font-sans font-light text-stone-400">商品一覧</span>
+      </a>
+      <a href="#info" data-route="home" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
+        INFO <span class="text-[10px] font-sans font-light text-stone-400">インフォメーション</span>
+      </a>
+      <a href="#contact" data-route="home" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
+        CONTACT <span class="text-[10px] font-sans font-light text-stone-400">お問い合わせ</span>
+      </a>
+    </div>
+  </div>
 
-<!-- Loading Overlay -->
-<div id="loader" class="fixed inset-0 z-[100] bg-[#fdfdfc] flex items-center justify-center overflow-hidden transition-opacity duration-800 ease-in-out">
-<div id="loader-content" class="flex flex-col items-center justify-center" style="transform: scale(15);">
-<!-- 起動時のロゴと文字を大きくする -->
-<img src="/assets/logo.png" alt="Yamanami Meiseki Logo" class="w-32 h-32 md:w-56 md:h-56 object-contain mb-8 loader-circle">
-<p class="text-[14px] md:text-[18px] tracking-[0.4em] font-serif text-[#1B2A47] whitespace-nowrap opacity-0 loader-text">SINCE 1990</p>
-</div>
-</div>
+  <!-- HEADER -->
+  <header class="header-fixed fixed top-0 left-0 right-0 z-50 transition-colors duration-700 bg-white/85 backdrop-blur-md border-b border-stone-200 py-4 md:py-5">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div class="flex-1 flex justify-start items-center">
+        <a href="#home" data-route="home-top" class="text-xl font-serif tracking-[0.15em] whitespace-nowrap text-[#1B2A47] leading-none">
+          有限会社 やまなみ銘石
+        </a>
+      </div>
+      <div class="flex-none flex justify-end">
+        <button id="menu-btn" class="p-2 text-stone-800 hover:opacity-50 transition-opacity">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-<!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 z-[60] bg-white flex-col pt-24 px-12 transition-all duration-500 transform -translate-y-5 opacity-0 hidden" style="will-change: transform, opacity;">
-<button id="menu-close" class="absolute top-6 right-6 p-4 text-[#1B2A47] hover:opacity-50 transition-opacity">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="flex flex-col space-y-4">
-<a href="#home" data-route="home-top" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
-HOME <span class="text-[10px] font-sans font-light text-stone-400">ホーム</span>
-</a>
-<a href="#" data-route="services" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
-WORKS <span class="text-[10px] font-sans font-light text-stone-400">天然石の加工</span>
-</a>
-<a href="BRACE.html" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
-CUSTOM <span class="text-[10px] font-sans font-light text-stone-400">自分だけのデザイン</span>
-</a>
-<a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
-ITEM <span class="text-[10px] font-sans font-light text-stone-400">商品一覧</span>
-</a>
-<a href="#info" data-route="home" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
-INFO <span class="text-[10px] font-sans font-light text-stone-400">インフォメーション</span>
-</a>
-<a href="#contact" data-route="home" class="mobile-link text-xl font-serif tracking-[0.2em] flex flex-col gap-2">
-CONTACT <span class="text-[10px] font-sans font-light text-stone-400">お問い合わせ</span>
-</a>
-</div>
-</div>
+  <!-- HOME VIEW -->
+  <div id="home-view">
+    <main>
+      <!-- HERO -->
+      <section id="home" class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-stone-50">
+        <div class="absolute inset-0 z-0 origin-center scale-110" id="hero-bg">
+          <video autoplay loop muted playsinline src="/assets/top.mp4" class="w-full h-full object-cover"></video>
+        </div>
+      </section>
 
-<!-- HEADER -->
-<header class="header-fixed fixed top-0 left-0 right-0 z-50 transition-colors duration-700 bg-white/85 backdrop-blur-md border-b border-stone-200 py-4 md:py-5">
-<div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-<div class="flex-1 flex justify-start items-center">
-<a href="#home" data-route="home-top" class="text-xl font-serif tracking-[0.15em] whitespace-nowrap text-[#1B2A47] leading-none">
-有限会社 やまなみ銘石
-</a>
-</div>
-<div class="flex-none flex justify-end">
-<button id="menu-btn" class="p-2 text-stone-800 hover:opacity-50 transition-opacity">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
-</button>
-</div>
-</div>
-</header>
+      <!-- CONCEPT -->
+      <section class="py-24 px-6 max-w-4xl mx-auto">
+        <div class="space-y-16 md:space-y-24 fade-in">
+          <div class="space-y-6 md:space-y-8">
+            <h3 class="text-lg md:text-xl font-serif tracking-[0.15em] text-stone-800 text-center">私たちについて</h3>
+            <div class="pt-2 md:pt-4 w-10/12 md:w-1/2 max-w-sm mx-auto">
+              <img src="/assets/t-us1.jpg" alt="私たちについて" class="w-full h-auto object-cover opacity-90 transition-opacity duration-500 rounded-sm">
+            </div>
+            <p class="text-[13px] md:text-[15px] font-light text-stone-600 leading-[2.6] tracking-[0.1em] text-center pt-4 md:pt-6">
+              <span class="inline-block">1990年、</span><span class="inline-block">東大阪・石切の地で</span><span class="inline-block">銘木店「やまなみ銘木」として創業。</span><span class="inline-block">木々の性質に</span><span class="inline-block">向き合う中で培った</span><span class="inline-block">「素材を見極める目」を</span><span class="inline-block">天然石の世界へと活かし、</span><span class="inline-block">1996年より</span><span class="inline-block">「やまなみ銘石」として歩み始めました。</span><span class="inline-block">以来、</span><span class="inline-block">半貴石・原石・</span><span class="inline-block">希少銘木を扱う専門店として、</span><span class="inline-block">確かな品質を</span><span class="inline-block">お届けしています。</span>
+            </p>
+          </div>
+          
+          <div class="space-y-6 md:space-y-8">
+            <h3 class="text-lg md:text-xl font-serif tracking-[0.15em] text-stone-800 text-center">自社工房の強み</h3>
+            <div class="pt-2 md:pt-4 w-10/12 md:w-1/2 max-w-sm mx-auto">
+              <img src="/assets/t-us2.jpg" alt="自社工房の強み" class="w-full h-auto object-cover opacity-90 transition-opacity duration-500 rounded-sm">
+            </div>
+            <p class="text-[13px] md:text-[15px] font-light text-stone-600 leading-[2.6] tracking-[0.1em] text-center pt-4 md:pt-6">
+              <span class="inline-block">店舗併設の自社工房にて、</span><span class="inline-block">穴あけ・切断・研磨・</span><span class="inline-block">手作業による彫刻に至るまで、</span><span class="inline-block">すべての工程を</span><span class="inline-block">職人が一貫して行っています。</span><span class="inline-block">半貴石のタンブル加工、</span><span class="inline-block">原石の穴あけや拡張、</span><span class="inline-block">鏡面仕上げの研磨、</span><span class="inline-block">ペンダント加工など、</span><span class="inline-block">石の魅力を最大限に引き出す</span><span class="inline-block">精密な技術が</span><span class="inline-block">私たちの強みです。</span>
+            </p>
+          </div>
+          
+          <div class="pt-8 md:pt-12 text-center">
+            <div class="inline-block w-full border-y border-[#1B2A47]/10 py-12 md:py-20 px-4 md:px-12 bg-[#1B2A47]/[0.02]">
+               <p class="text-[14px] md:text-[15px] font-medium text-stone-700 leading-[2.6] md:leading-[2.8] tracking-[0.15em] text-center">
+                 <span class="inline-block">長年手掛ける</span><span class="inline-block">複数の神社仏閣の</span><span class="inline-block">授与品（ブレスレット等）制作を</span><span class="inline-block">はじめ、</span><br class="hidden md:block"/>
+                 <span class="inline-block">アクセサリーデザイナー様向けの</span><span class="inline-block">精密加工、</span><span class="inline-block">法人様からのOEM製造まで、</span><br class="hidden md:block"/><br class="hidden md:block"/>
+                 <span class="inline-block mt-4 md:mt-2 text-[16px] md:text-[18px] font-serif tracking-[0.2em] text-[#1B2A47] border-b border-[#1B2A47]/40 pb-1">確かな技術と柔軟な対応力でご要望を形にいたします。</span>
+               </p>
+               <div class="mt-10 md:mt-14">
+                 <a href="#contact" data-route="home" class="inline-flex items-center justify-center gap-4 text-[11px] md:text-[12px] tracking-[0.2em] px-12 py-5 border border-stone-300 bg-white text-stone-600 hover:border-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
+                   お問い合わせはこちら
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                 </a>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- HOME VIEW -->
-<div id="home-view">
-<main>
-<!-- HERO -->
-<section id="home" class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-stone-50">
-<div class="absolute inset-0 z-0 origin-center scale-110" id="hero-bg">
-<video autoplay loop muted playsinline src="/assets/top.mp4" class="w-full h-full object-cover"></video>
-</div>
-</section>
+      <!-- WORKS (HOME VERSION) -->
+      <section id="works" class="py-32 px-6 md:px-12 bg-white scroll-mt-20">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-24 fade-in">
+            <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">WORKS</h2>
+            <a href="#" data-route="services" class="inline-block group cursor-pointer">
+              <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] group-hover:text-stone-500 transition-colors">天然石の加工</p>
+            </a>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 fade-in delay-100">
+            <!-- 1 -->
+            <div class="group cursor-pointer flex flex-col gap-4 items-start" data-route="services">
+              <div class="pt-2">
+                <h4 class="text-base font-serif tracking-widest mb-4 text-stone-800 group-hover:text-stone-500 transition-colors"><span class="sr-only">天然石の</span>アクセサリー・ペンダント加工</h4>
+                <p class="text-[13px] font-light text-stone-500 line-clamp-2 leading-[2.2] mb-6">思い出の石を、日常を彩るジュエリーへ。石のサイズや雰囲気に調和する最適な金具をご提案します。</p>
+                <div class="relative inline-block text-[10px] tracking-[0.2em] font-light uppercase text-stone-400 group-hover:text-stone-800 transition-colors pb-1">
+                  VIEW MORE
+                  <span class="absolute left-0 bottom-0 h-[1px] bg-current underline-draw"></span>
+                </div>
+              </div>
+            </div>
+            <!-- 2 -->
+            <div class="group cursor-pointer flex flex-col gap-4 items-start" data-route="services">
+              <div class="pt-2">
+                <h4 class="text-base font-serif tracking-widest mb-4 text-stone-800 group-hover:text-stone-500 transition-colors"><span class="sr-only">天然石の</span>彫刻加工</h4>
+                <p class="text-[13px] font-light text-stone-500 line-clamp-2 leading-[2.2] mb-6">大切な石に、特別な意味を刻みます。お名前や記念日など、職人が一文字ずつ正確に彫り込みます。</p>
+                <div class="relative inline-block text-[10px] tracking-[0.2em] font-light uppercase text-stone-400 group-hover:text-stone-800 transition-colors pb-1">
+                  VIEW MORE
+                  <span class="absolute left-0 bottom-0 h-[1px] bg-current underline-draw"></span>
+                </div>
+              </div>
+            </div>
+            <!-- 3 -->
+            <div class="group cursor-pointer flex flex-col gap-4 items-start" data-route="services">
+              <div class="pt-2">
+                <h4 class="text-base font-serif tracking-widest mb-4 text-stone-800 group-hover:text-stone-500 transition-colors"><span class="sr-only">天然石の</span>穴あけ・拡張加工</h4>
+                <p class="text-[13px] font-light text-stone-500 line-clamp-2 leading-[2.2] mb-6">ペンダントトップの加工や、革紐用など、ご希望の位置へ正確にアプローチいたします。</p>
+                <div class="relative inline-block text-[10px] tracking-[0.2em] font-light uppercase text-stone-400 group-hover:text-stone-800 transition-colors pb-1">
+                  VIEW MORE
+                  <span class="absolute left-0 bottom-0 h-[1px] bg-current underline-draw"></span>
+                </div>
+              </div>
+            </div>
+            <!-- 4 -->
+            <div class="group cursor-pointer flex flex-col gap-4 items-start" data-route="services">
+              <div class="pt-2">
+                <h4 class="text-base font-serif tracking-widest mb-4 text-stone-800 group-hover:text-stone-500 transition-colors"><span class="sr-only">天然石の</span>切断・研磨加工</h4>
+                <p class="text-[13px] font-light text-stone-500 line-clamp-2 leading-[2.2] mb-6">専用機材と熟練の技術で、石が持つ本来の輝きと美しさを引き出します。大きな原石の分割も承ります。</p>
+                <div class="relative inline-block text-[10px] tracking-[0.2em] font-light uppercase text-stone-400 group-hover:text-stone-800 transition-colors pb-1">
+                  VIEW MORE
+                  <span class="absolute left-0 bottom-0 h-[1px] bg-current underline-draw"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="fade-in delay-200">
+            <!-- Marquee Scroll Wrapper -->
+            <div class="relative w-[100vw] left-1/2 -translate-x-1/2 my-12 md:my-16 select-none flex py-2">
+              <div class="absolute inset-y-0 left-0 w-8 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to right, white, transparent)"></div>
+              <div class="absolute inset-y-0 right-0 w-8 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to left, white, transparent)"></div>
+              <div class="marquee-scroll-wrapper overflow-x-auto no-scrollbar w-full flex">
+                <div class="marquee-container gap-4 px-4">
+                <!-- duplicated multiple times for seamless tracking -->
+                <div class="flex gap-4">
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw2.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw3.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw4.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw5.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw6.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw7.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw8.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw1.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw2.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw3.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw4.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw5.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw6.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw7.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw8.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw1.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw2.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw3.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw4.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw5.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw6.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw7.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw8.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<!-- CONCEPT -->
-<section class="py-24 px-6 max-w-4xl mx-auto">
-<div class="space-y-16 md:space-y-24 fade-in">
-<div class="space-y-6 md:space-y-8">
-<h3 class="text-lg md:text-xl font-serif tracking-[0.15em] text-stone-800 text-center">私たちについて</h3>
-<div class="pt-2 md:pt-4 w-10/12 md:w-1/2 max-w-sm mx-auto">
-<img src="/assets/t-us1.jpg" alt="私たちについて" class="w-full h-auto object-cover opacity-90 transition-opacity duration-500 rounded-sm">
-</div>
-<p class="text-[13px] md:text-[15px] font-light text-stone-600 leading-[2.6] tracking-[0.1em] text-center pt-4 md:pt-6">
-<span class="inline-block">1990年、</span><span class="inline-block">東大阪・石切の地で</span><span class="inline-block">銘木店「やまなみ銘木」として創業。</span><span class="inline-block">木々の性質に</span><span class="inline-block">向き合う中で培った</span><span class="inline-block">「素材を見極める目」を</span><span class="inline-block">天然石の世界へと活かし、</span><span class="inline-block">1996年より</span><span class="inline-block">「やまなみ銘石」として歩み始めました。</span><span class="inline-block">以来、</span><span class="inline-block">半貴石・原石・</span><span class="inline-block">希少銘木を扱う専門店として、</span><span class="inline-block">確かな品質を</span><span class="inline-block">お届けしています。</span>
-</p>
-</div>
+          <div class="mt-20 text-center max-w-2xl mx-auto px-4">
+            <p class="text-[13px] text-stone-500 leading-[2.6] font-light mb-8">
+              天然石の加工に関するご相談・お見積もり・依頼は、下記の専用フォームより承っております。<br class="hidden md:block">
+              掲載していない加工のご相談・依頼も大歓迎です。石切本店への直接のお持ち込みも可能です。
+            </p>
+            
+            <div class="mb-12">
+               <a href="#" id="open-works-modal-btn" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-600 hover:border-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
+                 過去の加工一覧を見る
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+               </a>
+            </div>
 
-<div class="space-y-6 md:space-y-8">
-<h3 class="text-lg md:text-xl font-serif tracking-[0.15em] text-stone-800 text-center">自社工房の強み</h3>
-<div class="pt-2 md:pt-4 w-10/12 md:w-1/2 max-w-sm mx-auto">
-<img src="/assets/t-us2.jpg" alt="自社工房の強み" class="w-full h-auto object-cover opacity-90 transition-opacity duration-500 rounded-sm">
-</div>
-<p class="text-[13px] md:text-[15px] font-light text-stone-600 leading-[2.6] tracking-[0.1em] text-center pt-4 md:pt-6">
-<span class="inline-block">店舗併設の自社工房にて、</span><span class="inline-block">穴あけ・切断・研磨・</span><span class="inline-block">手作業による彫刻に至るまで、</span><span class="inline-block">すべての工程を</span><span class="inline-block">職人が一貫して行っています。</span><span class="inline-block">半貴石のタンブル加工、</span><span class="inline-block">原石の穴あけや拡張、</span><span class="inline-block">鏡面仕上げの研磨、</span><span class="inline-block">ペンダント加工など、</span><span class="inline-block">石の魅力を最大限に引き出す</span><span class="inline-block">精密な技術が</span><span class="inline-block">私たちの強みです。</span>
-</p>
-</div>
+            <div class="mt-8">
+               <a href="#contact" data-route="home" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] text-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
+                 ご相談フォームへ
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+               </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<div class="pt-8 md:pt-12 text-center">
-<div class="inline-block w-full border-y border-[#1B2A47]/10 py-12 md:py-20 px-4 md:px-12 bg-[#1B2A47]/[0.02]">
-<p class="text-[14px] md:text-[15px] font-medium text-stone-700 leading-[2.6] md:leading-[2.8] tracking-[0.15em] text-center">
-<span class="inline-block">長年手掛ける</span><span class="inline-block">複数の神社仏閣の</span><span class="inline-block">授与品（ブレスレット等）制作を</span><span class="inline-block">はじめ、</span><br class="hidden md:block"/>
-<span class="inline-block">アクセサリーデザイナー様向けの</span><span class="inline-block">精密加工、</span><span class="inline-block">法人様からのOEM製造まで、</span><br class="hidden md:block"/><br class="hidden md:block"/>
-<span class="inline-block mt-4 md:mt-2 text-[16px] md:text-[18px] font-serif tracking-[0.2em] text-[#1B2A47] border-b border-[#1B2A47]/40 pb-1">確かな技術と柔軟な対応力でご要望を形にいたします。</span>
-</p>
-<div class="mt-10 md:mt-14">
-<a href="#contact" data-route="home" class="inline-flex items-center justify-center gap-4 text-[11px] md:text-[12px] tracking-[0.2em] px-12 py-5 border border-stone-300 bg-white text-stone-600 hover:border-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
-お問い合わせはこちら
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-</a>
-</div>
-</div>
-</div>
-</div>
-</section>
+      <!-- CUSTOM BRACELET -->
+      <section id="custom" class="py-24 px-6 bg-[#fdfdfc] scroll-mt-20 border-b border-stone-200">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+          <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">CUSTOM</h2>
+          <a href="BRACE.html" class="inline-block group cursor-pointer mb-12">
+            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] group-hover:text-stone-500 transition-colors">自分だけのデザイン</p>
+          </a>
+          <p class="text-[13px] text-stone-600 font-light tracking-widest leading-[2.6] mb-16 px-4">
+            シミュレーターを使用して、天然石を自由に組み合わせた<br class="hidden md:block">
+            あなただけのオリジナルブレスレットを作成できます。<br class="hidden md:block">
+            ご注文いただいたデザインは、アトリエにて一本ずつ丁寧に手作業でお仕立てし、郵送いたします。
+          </p>
 
-<!-- WORKS (HOME VERSION) -->
-<section id="works" class="py-32 px-6 md:px-12 bg-white scroll-mt-20">
-<div class="max-w-6xl mx-auto">
-<div class="text-center mb-24 fade-in">
-<h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">WORKS</h2>
-<a href="#" data-route="services" class="inline-block group cursor-pointer">
-<p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] group-hover:text-stone-500 transition-colors">天然石の加工</p>
-</a>
-</div>
+          <!-- Marquee Scroll Wrapper for Custom -->
+          <div class="relative w-[100vw] left-1/2 -translate-x-1/2 my-12 md:my-16 select-none flex py-2">
+            <div class="absolute inset-y-0 left-0 w-8 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to right, white, transparent)"></div>
+            <div class="absolute inset-y-0 right-0 w-8 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to left, white, transparent)"></div>
+            <div class="marquee-scroll-wrapper overflow-x-auto no-scrollbar w-full flex">
+              <div class="marquee-container gap-4 px-4">
+                <!-- duplicated for seamless tracking -->
+                <div class="flex gap-4">
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例1" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ2" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例3" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ4" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例5" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ6" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例7" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ8" loading="lazy"></div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例1" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ2" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例3" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ4" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例5" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ6" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例7" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ8" loading="lazy"></div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例1" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ2" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例3" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ4" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例5" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ6" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例7" loading="lazy"></div>
+                  <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ8" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 fade-in delay-100">
-<!-- 1 -->
-<div class="group cursor-pointer flex flex-col gap-4 items-start" data-route="services">
-<div class="pt-2">
-<h4 class="text-base font-serif tracking-widest mb-4 text-stone-800 group-hover:text-stone-500 transition-colors"><span class="sr-only">天然石の</span>アクセサリー・ペンダント加工</h4>
-<p class="text-[13px] font-light text-stone-500 line-clamp-2 leading-[2.2] mb-6">思い出の石を、日常を彩るジュエリーへ。石のサイズや雰囲気に調和する最適な金具をご提案します。</p>
-<div class="relative inline-block text-[10px] tracking-[0.2em] font-light uppercase text-stone-400 group-hover:text-stone-800 transition-colors pb-1">
-VIEW MORE
-<span class="absolute left-0 bottom-0 h-[1px] bg-current underline-draw"></span>
-</div>
-</div>
-</div>
-<!-- 2 -->
-<div class="group cursor-pointer flex flex-col gap-4 items-start" data-route="services">
-<div class="pt-2">
-<h4 class="text-base font-serif tracking-widest mb-4 text-stone-800 group-hover:text-stone-500 transition-colors"><span class="sr-only">天然石の</span>彫刻加工</h4>
-<p class="text-[13px] font-light text-stone-500 line-clamp-2 leading-[2.2] mb-6">大切な石に、特別な意味を刻みます。お名前や記念日など、職人が一文字ずつ正確に彫り込みます。</p>
-<div class="relative inline-block text-[10px] tracking-[0.2em] font-light uppercase text-stone-400 group-hover:text-stone-800 transition-colors pb-1">
-VIEW MORE
-<span class="absolute left-0 bottom-0 h-[1px] bg-current underline-draw"></span>
-</div>
-</div>
-</div>
-<!-- 3 -->
-<div class="group cursor-pointer flex flex-col gap-4 items-start" data-route="services">
-<div class="pt-2">
-<h4 class="text-base font-serif tracking-widest mb-4 text-stone-800 group-hover:text-stone-500 transition-colors"><span class="sr-only">天然石の</span>穴あけ・拡張加工</h4>
-<p class="text-[13px] font-light text-stone-500 line-clamp-2 leading-[2.2] mb-6">ペンダントトップの加工や、革紐用など、ご希望の位置へ正確にアプローチいたします。</p>
-<div class="relative inline-block text-[10px] tracking-[0.2em] font-light uppercase text-stone-400 group-hover:text-stone-800 transition-colors pb-1">
-VIEW MORE
-<span class="absolute left-0 bottom-0 h-[1px] bg-current underline-draw"></span>
-</div>
-</div>
-</div>
-<!-- 4 -->
-<div class="group cursor-pointer flex flex-col gap-4 items-start" data-route="services">
-<div class="pt-2">
-<h4 class="text-base font-serif tracking-widest mb-4 text-stone-800 group-hover:text-stone-500 transition-colors"><span class="sr-only">天然石の</span>切断・研磨加工</h4>
-<p class="text-[13px] font-light text-stone-500 line-clamp-2 leading-[2.2] mb-6">専用機材と熟練の技術で、石が持つ本来の輝きと美しさを引き出します。大きな原石の分割も承ります。</p>
-<div class="relative inline-block text-[10px] tracking-[0.2em] font-light uppercase text-stone-400 group-hover:text-stone-800 transition-colors pb-1">
-VIEW MORE
-<span class="absolute left-0 bottom-0 h-[1px] bg-current underline-draw"></span>
-</div>
-</div>
-</div>
-</div>
+          <a href="/BRACE.html" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] text-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
+            作成に進む 
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </section>
 
-<div class="fade-in delay-200">
-<!-- Marquee Scroll Wrapper -->
-<div class="relative w-[100vw] left-1/2 -translate-x-1/2 my-12 md:my-16 select-none flex py-2">
-<div class="absolute inset-y-0 left-0 w-8 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to right, white, transparent)"></div>
-<div class="absolute inset-y-0 right-0 w-8 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to left, white, transparent)"></div>
-<div class="marquee-scroll-wrapper overflow-x-auto no-scrollbar w-full flex">
-<div class="marquee-container gap-4 px-4">
-<!-- duplicated multiple times for seamless tracking -->
-<div class="flex gap-4">
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw2.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw3.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw4.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw5.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw6.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw7.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw8.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-</div>
-<div class="flex gap-4">
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw1.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw2.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw3.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw4.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw5.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw6.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw7.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw8.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-</div>
-<div class="flex gap-4">
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw1.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw2.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw3.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw4.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw5.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw6.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw7.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/tw8.jpg" class="w-full h-full object-cover pointer-events-none" alt="" loading="lazy"></div>
-</div>
-</div>
-</div>
-</div>
+      <!-- ITEM -->
+      <section id="item" class="py-24 px-6 bg-white scroll-mt-20 border-b border-stone-200">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+          <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">ONLINE STORE</h2>
+          <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] mb-12">オンラインストア</p>
 
-<div class="mt-20 text-center max-w-2xl mx-auto px-4">
-<p class="text-[13px] text-stone-500 leading-[2.6] font-light mb-8">
-天然石の加工に関するご相談・お見積もり・依頼は、下記の専用フォームより承っております。<br class="hidden md:block">
-掲載していない加工のご相談・依頼も大歓迎です。石切本店への直接のお持ち込みも可能です。
-</p>
-
-<div class="mb-12">
-<a href="#" id="open-works-modal-btn" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-600 hover:border-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
-過去の加工一覧を見る
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-</a>
-</div>
-
-<div class="mt-8">
-<a href="#contact" data-route="home" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] text-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
-ご相談フォームへ
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-</a>
-</div>
-</div>
-</div>
-</section>
-
-<!-- CUSTOM BRACELET -->
-<section id="custom" class="py-24 px-6 bg-[#fdfdfc] scroll-mt-20 border-b border-stone-200">
-<div class="max-w-4xl mx-auto text-center fade-in">
-<h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">CUSTOM</h2>
-<a href="BRACE.html" class="inline-block group cursor-pointer mb-12">
-<p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] group-hover:text-stone-500 transition-colors">自分だけのデザイン</p>
-</a>
-<p class="text-[13px] text-stone-600 font-light tracking-widest leading-[2.6] mb-16 px-4">
-シミュレーターを使用して、天然石を自由に組み合わせた<br class="hidden md:block">
-あなただけのオリジナルブレスレットを作成できます。<br class="hidden md:block">
-ご注文いただいたデザインは、アトリエにて一本ずつ丁寧に手作業でお仕立てし、郵送いたします。
-</p>
-
-<!-- Marquee Scroll Wrapper for Custom -->
-<div class="relative w-[100vw] left-1/2 -translate-x-1/2 my-12 md:my-16 select-none flex py-2">
-<div class="absolute inset-y-0 left-0 w-8 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to right, white, transparent)"></div>
-<div class="absolute inset-y-0 right-0 w-8 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to left, white, transparent)"></div>
-<div class="marquee-scroll-wrapper overflow-x-auto no-scrollbar w-full flex">
-<div class="marquee-container gap-4 px-4">
-<!-- duplicated for seamless tracking -->
-<div class="flex gap-4">
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例1" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ2" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例3" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ4" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例5" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ6" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例7" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ8" loading="lazy"></div>
-</div>
-<div class="flex gap-4">
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例1" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ2" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例3" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ4" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例5" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ6" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例7" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ8" loading="lazy"></div>
-</div>
-<div class="flex gap-4">
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc1.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例1" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc2.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ2" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc3.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例3" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc4.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ4" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc5.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例5" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc6.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ6" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc7.png" class="w-full h-full object-cover pointer-events-none" alt="お客様が作成された天然石オリジナルブレスレットの作例7" loading="lazy"></div>
-<div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden flex-shrink-0 relative group rounded-sm shadow-sm gallery-image"><img src="/assets/brc8.png" class="w-full h-full object-cover pointer-events-none" alt="オーダーメイドで作成できる天然石ブレスレットの完成イメージ8" loading="lazy"></div>
-</div>
-</div>
-</div>
-</div>
-
-<a href="/BRACE.html" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] text-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
-作成に進む 
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-</a>
-</div>
-</section>
-
-<!-- ITEM -->
-<section id="item" class="py-24 px-6 bg-white scroll-mt-20 border-b border-stone-200">
-<div class="max-w-4xl mx-auto text-center fade-in">
-<h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">ONLINE STORE</h2>
-<p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] mb-12">オンラインストア</p>
-
-          <div class="bg-stone-50 border border-stone-200 p-8 md:p-16 rounded-sm">
           <div class="bg-stone-50 border border-stone-200 p-8 md:p-16 rounded-sm flex flex-col items-center">
-<p class="text-[13px] md:text-[14px] text-stone-600 font-light tracking-widest leading-[2.6] mb-10">
-              こだわりの天然石を使用したブレスレットや原石などの商品は、<br class="hidden md:block">
-              公式オンラインストア（BASEショップ）にて販売しております。<br>
-              随時新作を追加しておりますので、ぜひご覧ください。
+            <p class="text-[13px] md:text-[14px] text-stone-600 font-light tracking-widest leading-[2.6] mb-10">
               天然石ブレスレットや原石などの商品は、<br class="hidden md:block">
               オンラインストアにて販売しております。
-</p>
-
-            <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-4 text-[12px] md:text-[13px] tracking-[0.15em] px-10 py-6 border border-[#1B2A47] bg-[#1B2A47] text-white hover:bg-white hover:text-[#1B2A47] transition-colors duration-500 w-full sm:w-auto min-w-[300px]">
-              公式オンラインストア（BASE）へ
+            </p>
+            
             <a href="https://ishiya.official.ec/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-4 text-[12px] md:text-[13px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] bg-[#1B2A47] text-white hover:bg-white hover:text-[#1B2A47] transition-colors duration-500">
               ONLINE STORE
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-</a>
-<p class="text-[11px] text-stone-400 mt-6 font-light tracking-wider">※外部サイト（BASE）へ移動します</p>
-</div>
-</div>
-</section>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <p class="text-[11px] text-stone-400 mt-6 font-light tracking-wider">※外部サイト（BASE）へ移動します</p>
+          </div>
+        </div>
+      </section>
 
-<!-- BLOG -->
-<section id="blog" class="py-24 px-6 md:px-12 bg-white scroll-mt-20 border-b border-stone-200">
-<div class="max-w-4xl mx-auto">
-<div class="text-center mb-16 fade-in">
-<h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">BLOG</h2>
-<p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">ブログ</p>
-</div>
-<div id="blog-container" class="space-y-6 fade-in delay-100">
-<!-- MicroCMS Blog items will be rendered here -->
-<div class="text-center text-stone-400 text-sm py-8" id="blog-loading">読み込み中...</div>
-</div>
-<div id="all-blogs-container" class="space-y-6 mt-6 hidden fade-in delay-200">
-<!-- Older blogs will be appended here -->
-</div>
-<div class="text-center mt-12 fade-in delay-200">
-<a href="#" id="view-all-blogs-btn" class="hidden inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-600 hover:border-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
-過去の記事を見る
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
-</a>
-</div>
-</div>
-</section>
+      <!-- BLOG -->
+      <section id="blog" class="py-24 px-6 md:px-12 bg-white scroll-mt-20 border-b border-stone-200">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-16 fade-in">
+            <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">BLOG</h2>
+            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">ブログ</p>
+          </div>
+          <div id="blog-container" class="space-y-6 fade-in delay-100">
+            <!-- MicroCMS Blog items will be rendered here -->
+            <div class="text-center text-stone-400 text-sm py-8" id="blog-loading">読み込み中...</div>
+          </div>
+          <div id="all-blogs-container" class="space-y-6 mt-6 hidden fade-in delay-200">
+            <!-- Older blogs will be appended here -->
+          </div>
+          <div class="text-center mt-12 fade-in delay-200">
+            <a href="#" id="view-all-blogs-btn" class="hidden inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-600 hover:border-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
+              過去の記事を見る
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </section>
 
-<!-- INFO & FAQ -->
-<section id="info" class="py-24 px-6 md:px-12 bg-stone-50 scroll-mt-20">
-<div class="max-w-3xl mx-auto">
-<div class="text-center mb-16 fade-in">
-<h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">INFO</h2>
-<p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">よくあるご質問</p>
-</div>
+      <!-- INFO & FAQ -->
+      <section id="info" class="py-24 px-6 md:px-12 bg-stone-50 scroll-mt-20">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-16 fade-in">
+            <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">INFO</h2>
+            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">よくあるご質問</p>
+          </div>
 
-<div class="space-y-0 fade-in delay-100 faq-list">
-<div class="border-b border-stone-200 accordion-group">
-<button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
-<div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. 屋久杉製品は本物の屋久杉ですか？</div>
-<div class="relative w-3 h-3 flex-shrink-0">
-<span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
-<span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
-</div>
-</button>
-<div class="accordion-content">
-<div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
-A. 本物の屋久杉でございます。<br>現在は伐採が禁止されている貴重な「屋久杉」の古材や倒木（土埋木）を使用した正真正銘の屋久杉製品です。特有の香りと緻密な木目をお楽しみください。
-</div>
-</div>
-</div>
-<!-- Acc 2 -->
-<div class="border-b border-stone-200 accordion-group">
-<button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
-<div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. 写真と実物の色味が違うことはありますか？</div>
-<div class="relative w-3 h-3 flex-shrink-0">
-<span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
-<span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
-</div>
-</button>
-<div class="accordion-content">
-<div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
-A. 天然石は光の当たり方やモニター環境によって、色の見え方が異なる場合がございます。<br>また、特有のクラック（内包された傷）やインクルージョン（内包物）がある場合がございますが、天然の証としてお楽しみいただければ幸いです。
-</div>
-</div>
-</div>
-<!-- Acc 3 -->
-<div class="border-b border-stone-200 accordion-group">
-<button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
-<div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. 天然石、原石のお手入れはどうすればいいですか？</div>
-<div class="relative w-3 h-3 flex-shrink-0">
-<span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
-<span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
-</div>
-</button>
-<div class="accordion-content">
-<div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
-A. 基本的には柔らかい布で優しく拭いてください。<br>石の種類によっては水や直射日光に弱いもの（アメジストの色褪せなど）もございます。
-</div>
-</div>
-</div>
-<!-- Acc 4 -->
-<div class="border-b border-stone-200 accordion-group">
-<button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
-<div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. クレジットカードや電子決済は使えますか？</div>
-<div class="relative w-3 h-3 flex-shrink-0">
-<span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
-<span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
-</div>
-</button>
-<div class="accordion-content">
-<div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
-A. はい、ご利用いただけます。クレジットカード他、PayPayなどの各種キャッシュレス決済もご利用いただけます。<br>                </div>
-</div>
-</div>
-<!-- Acc 5 -->
-<div class="border-b border-stone-200 accordion-group">
-<button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
-<div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. ゴムが切れてしまった場合、修理はお願いできますか？</div>
-<div class="relative w-3 h-3 flex-shrink-0">
-<span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
-<span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
-</div>
-</button>
-<div class="accordion-content">
-<div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
-A. はい、承っております（修理費用：550円 税込）。<br>当店でご購入いただいたお品物はもちろん、他店で購入されたブレスレットの修理も承ります。店舗へ直接お持ち込みいただくか、郵送での受付も行っております。
-</div>
-</div>
-</div>
-<!-- Acc 6 -->
-<div class="border-b border-stone-200 accordion-group">
-<button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
-<div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. 注文から発送までどのくらいかかりますか？</div>
-<div class="relative w-3 h-3 flex-shrink-0">
-<span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
-<span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
-</div>
-</button>
-<div class="accordion-content">
-<div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
-A. 通常、ご注文確定から2～3営業日以内に発送いたします。<br>加工依頼商品につきましては、目安として1ヶ月以内の発送とさせていただいております。詳しい納期は個別にご案内いたします。
-</div>
-</div>
-</div>
-</div>
+          <div class="space-y-0 fade-in delay-100 faq-list">
+            <div class="border-b border-stone-200 accordion-group">
+              <button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
+                <div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. 屋久杉製品は本物の屋久杉ですか？</div>
+                <div class="relative w-3 h-3 flex-shrink-0">
+                  <span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
+                  <span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
+                </div>
+              </button>
+              <div class="accordion-content">
+                <div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
+                  A. 本物の屋久杉でございます。<br>現在は伐採が禁止されている貴重な「屋久杉」の古材や倒木（土埋木）を使用した正真正銘の屋久杉製品です。特有の香りと緻密な木目をお楽しみください。
+                </div>
+              </div>
+            </div>
+            <!-- Acc 2 -->
+            <div class="border-b border-stone-200 accordion-group">
+              <button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
+                <div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. 写真と実物の色味が違うことはありますか？</div>
+                <div class="relative w-3 h-3 flex-shrink-0">
+                  <span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
+                  <span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
+                </div>
+              </button>
+              <div class="accordion-content">
+                <div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
+                  A. 天然石は光の当たり方やモニター環境によって、色の見え方が異なる場合がございます。<br>また、特有のクラック（内包された傷）やインクルージョン（内包物）がある場合がございますが、天然の証としてお楽しみいただければ幸いです。
+                </div>
+              </div>
+            </div>
+            <!-- Acc 3 -->
+            <div class="border-b border-stone-200 accordion-group">
+              <button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
+                <div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. 天然石、原石のお手入れはどうすればいいですか？</div>
+                <div class="relative w-3 h-3 flex-shrink-0">
+                  <span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
+                  <span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
+                </div>
+              </button>
+              <div class="accordion-content">
+                <div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
+                  A. 基本的には柔らかい布で優しく拭いてください。<br>石の種類によっては水や直射日光に弱いもの（アメジストの色褪せなど）もございます。
+                </div>
+              </div>
+            </div>
+            <!-- Acc 4 -->
+            <div class="border-b border-stone-200 accordion-group">
+              <button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
+                <div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. クレジットカードや電子決済は使えますか？</div>
+                <div class="relative w-3 h-3 flex-shrink-0">
+                  <span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
+                  <span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
+                </div>
+              </button>
+              <div class="accordion-content">
+                <div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
+                  A. はい、ご利用いただけます。クレジットカード他、PayPayなどの各種キャッシュレス決済もご利用いただけます。<br>                </div>
+              </div>
+            </div>
+            <!-- Acc 5 -->
+            <div class="border-b border-stone-200 accordion-group">
+              <button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
+                <div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. ゴムが切れてしまった場合、修理はお願いできますか？</div>
+                <div class="relative w-3 h-3 flex-shrink-0">
+                  <span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
+                  <span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
+                </div>
+              </button>
+              <div class="accordion-content">
+                <div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
+                  A. はい、承っております（修理費用：550円 税込）。<br>当店でご購入いただいたお品物はもちろん、他店で購入されたブレスレットの修理も承ります。店舗へ直接お持ち込みいただくか、郵送での受付も行っております。
+                </div>
+              </div>
+            </div>
+            <!-- Acc 6 -->
+            <div class="border-b border-stone-200 accordion-group">
+              <button class="accordion-btn w-full py-4 md:py-5 flex items-center justify-between text-left focus:outline-none group">
+                <div class="font-serif text-stone-800 text-[14px] md:text-[15px] flex-1 pr-8 tracking-widest">Q. 注文から発送までどのくらいかかりますか？</div>
+                <div class="relative w-3 h-3 flex-shrink-0">
+                  <span class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-400"></span>
+                  <span class="vertical-line absolute top-0 left-1/2 w-[1px] h-full bg-stone-400 transition-transform duration-500 ease-out"></span>
+                </div>
+              </button>
+              <div class="accordion-content">
+                <div class="pb-5 text-[13px] md:text-sm font-light text-stone-600 leading-[2.2] tracking-wide">
+                  A. 通常、ご注文確定から2～3営業日以内に発送いたします。<br>加工依頼商品につきましては、目安として1ヶ月以内の発送とさせていただいております。詳しい納期は個別にご案内いたします。
+                </div>
+              </div>
+            </div>
+          </div>
 
-<!-- 店舗案内 -->
-<div class="mt-32 border-t border-stone-200 pt-20 text-center fade-in">
-<p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] mb-12">店舗案内</p>
-<div class="grid md:grid-cols-2 gap-16 px-4">
-<div class="text-left space-y-6">
-<h4 class="text-lg font-serif text-[#1B2A47] mb-6">有限会社やまなみ銘石 <span class="text-[11px] font-sans text-stone-400">本店</span></h4>
-<div class="w-full aspect-[3/2] mb-2 overflow-hidden rounded bg-stone-100">
-<img src="/assets/mise1.jpg" alt="大阪・石切神社参道にある天然石専門店『やまなみ銘石 本店』の店舗外観" class="w-full h-full object-cover pointer-events-none">
-</div>
-<div class="w-full aspect-[3/2] mb-4 overflow-hidden rounded bg-stone-100">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.957997931086!2d135.64415841523178!3d34.68097958043965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600120b080470fc3%3A0xf69562ac19db8b89!2z44CSNTc5LTgwMTEg5aSn6Ziq5bqc5p2x5aSn6Ziq5biC5p2x55-z5YiH55S677yR5LiB55uu77yV4oiS77yR!5e0!3m2!1sja!2sjp!4v1683884747209!5m2!1sja!2sjp" width="100%" height="100%" style="border:0" loading="lazy" class="opacity-90"></iframe>
-</div>
-<div class="flex items-start justify-between group">
-<p class="text-[13px] font-light leading-[2.2] text-stone-600">
-〒579-8011<br>大阪府東大阪市東石切町1-5-1<br>
-<span class="text-[11px] text-stone-400">石切参道商店街内</span>
-</p>
-<button data-copy="〒579-8011 大阪府東大阪市東石切町1-5-1" class="p-2 text-stone-400 hover:text-stone-800 transition-colors" title="住所をコピー">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-</button>
-</div>
-<p class="text-[13px] font-light leading-[2.2] text-stone-600 mt-4"><span class="text-stone-400">TEL :</span> 072-985-0131</p>
-<p class="text-[13px] font-light leading-[2.2] text-stone-600"><span class="text-stone-400">営業時間 :</span> 平日 9:30-16:00 / 土日祝 9:30-16:30<br><span class="text-stone-400">定休日 :</span> 火曜・金曜</p>
-</div>
+          <!-- 店舗案内 -->
+          <div class="mt-32 border-t border-stone-200 pt-20 text-center fade-in">
+            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47] mb-12">店舗案内</p>
+            <div class="grid md:grid-cols-2 gap-16 px-4">
+              <div class="text-left space-y-6">
+                <h4 class="text-lg font-serif text-[#1B2A47] mb-6">有限会社やまなみ銘石 <span class="text-[11px] font-sans text-stone-400">本店</span></h4>
+                <div class="w-full aspect-[3/2] mb-2 overflow-hidden rounded bg-stone-100">
+                  <img src="/assets/mise1.jpg" alt="大阪・石切神社参道にある天然石専門店『やまなみ銘石 本店』の店舗外観" class="w-full h-full object-cover pointer-events-none">
+                </div>
+                <div class="w-full aspect-[3/2] mb-4 overflow-hidden rounded bg-stone-100">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.957997931086!2d135.64415841523178!3d34.68097958043965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600120b080470fc3%3A0xf69562ac19db8b89!2z44CSNTc5LTgwMTEg5aSn6Ziq5bqc5p2x5aSn6Ziq5biC5p2x55-z5YiH55S677yR5LiB55uu77yV4oiS77yR!5e0!3m2!1sja!2sjp!4v1683884747209!5m2!1sja!2sjp" width="100%" height="100%" style="border:0" loading="lazy" class="opacity-90"></iframe>
+                </div>
+                <div class="flex items-start justify-between group">
+                  <p class="text-[13px] font-light leading-[2.2] text-stone-600">
+                    〒579-8011<br>大阪府東大阪市東石切町1-5-1<br>
+                    <span class="text-[11px] text-stone-400">石切参道商店街内</span>
+                  </p>
+                  <button data-copy="〒579-8011 大阪府東大阪市東石切町1-5-1" class="p-2 text-stone-400 hover:text-stone-800 transition-colors" title="住所をコピー">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  </button>
+                </div>
+                <p class="text-[13px] font-light leading-[2.2] text-stone-600 mt-4"><span class="text-stone-400">TEL :</span> 072-985-0131</p>
+                <p class="text-[13px] font-light leading-[2.2] text-stone-600"><span class="text-stone-400">営業時間 :</span> 平日 9:30-16:00 / 土日祝 9:30-16:30<br><span class="text-stone-400">定休日 :</span> 火曜・金曜</p>
+              </div>
 
-<div class="text-left space-y-6">
-<h4 class="text-lg font-serif text-[#1B2A47] mb-6">石乃珠企画 <span class="text-[11px] font-sans text-stone-400">支店</span></h4>
-<div class="w-full aspect-[3/2] mb-2 overflow-hidden rounded bg-stone-100">
-<img src="/assets/mise2.jpg" alt="大阪 船場の天然石のお店 石乃珠企画 の様子" class="w-full h-full object-cover pointer-events-none">
-</div>
-<div class="w-full aspect-[3/2] mb-4 overflow-hidden rounded bg-stone-100">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.0827103138377!2d135.5005886!3d34.6778438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7195f22e847%3A0x8bd1a1cfd076f7f6!2z5oSP6KaL6KaL6KaL6KaLIeiIueWgt-OCu-ODs-OCv-ODvOODk-ODqyA45Y-36aSo!5e0!3m2!1sja!2sjp!4v1683884747209!5m2!1sja!2sjp" width="100%" height="100%" style="border:0" loading="lazy" class="opacity-90"></iframe>
-</div>
-<div class="flex items-start justify-between group">
-<p class="text-[13px] font-light leading-[2.2] text-stone-600">
-〒541-0055<br>大阪府大阪市中央区船場中央3丁目2-8-119<br>
-<span class="text-[11px] text-stone-400">船場センタービル8号館1階</span>
-</p>
-<button data-copy="〒541-0055 大阪府大阪市中央区船場中央3丁目2-8-119" class="p-2 text-stone-400 hover:text-stone-800 transition-colors" title="住所をコピー">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-</button>
-</div>
-<p class="text-[13px] font-light leading-[2.2] text-stone-600 mt-4"><span class="text-stone-400">TEL :</span> 06-6251-6633</p>
-<p class="text-[13px] font-light leading-[2.2] text-stone-600"><span class="text-stone-400">営業時間 :</span> 10:00-17:00<br><span class="text-stone-400">定休日 :</span> 日曜</p>
-</div>
-</div>
-</div>
-</div>
-</section>
+              <div class="text-left space-y-6">
+                <h4 class="text-lg font-serif text-[#1B2A47] mb-6">石乃珠企画 <span class="text-[11px] font-sans text-stone-400">支店</span></h4>
+                <div class="w-full aspect-[3/2] mb-2 overflow-hidden rounded bg-stone-100">
+                  <img src="/assets/mise2.jpg" alt="大阪 船場の天然石のお店 石乃珠企画 の様子" class="w-full h-full object-cover pointer-events-none">
+                </div>
+                <div class="w-full aspect-[3/2] mb-4 overflow-hidden rounded bg-stone-100">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.0827103138377!2d135.5005886!3d34.6778438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7195f22e847%3A0x8bd1a1cfd076f7f6!2z5oSP6KaL6KaL6KaL6KaLIeiIueWgt-OCu-ODs-OCv-ODvOODk-ODqyA45Y-36aSo!5e0!3m2!1sja!2sjp!4v1683884747209!5m2!1sja!2sjp" width="100%" height="100%" style="border:0" loading="lazy" class="opacity-90"></iframe>
+                </div>
+                <div class="flex items-start justify-between group">
+                  <p class="text-[13px] font-light leading-[2.2] text-stone-600">
+                    〒541-0055<br>大阪府大阪市中央区船場中央3丁目2-8-119<br>
+                    <span class="text-[11px] text-stone-400">船場センタービル8号館1階</span>
+                  </p>
+                  <button data-copy="〒541-0055 大阪府大阪市中央区船場中央3丁目2-8-119" class="p-2 text-stone-400 hover:text-stone-800 transition-colors" title="住所をコピー">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  </button>
+                </div>
+                <p class="text-[13px] font-light leading-[2.2] text-stone-600 mt-4"><span class="text-stone-400">TEL :</span> 06-6251-6633</p>
+                <p class="text-[13px] font-light leading-[2.2] text-stone-600"><span class="text-stone-400">営業時間 :</span> 10:00-17:00<br><span class="text-stone-400">定休日 :</span> 日曜</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- CONTACT -->
-<section id="contact" class="py-24 px-6 md:px-12 bg-stone-50 scroll-mt-20">
-<div class="max-w-2xl mx-auto">
-<div class="text-center mb-16 fade-in">
-<h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">CONTACT</h2>
-<p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">お問い合わせ</p>
-</div>
+      <!-- CONTACT -->
+      <section id="contact" class="py-24 px-6 md:px-12 bg-stone-50 scroll-mt-20">
+        <div class="max-w-2xl mx-auto">
+          <div class="text-center mb-16 fade-in">
+            <h2 class="text-sm tracking-[0.3em] indent-[0.3em] font-light text-stone-400 mb-6">CONTACT</h2>
+            <p class="text-3xl font-serif tracking-[0.1em] indent-[0.1em] text-[#1B2A47]">お問い合わせ</p>
+          </div>
+          
+          <div class="bg-white p-8 md:p-16 shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-stone-200 fade-in delay-200">
+            <form id="contact-form" class="space-y-8">
+              <div class="space-y-2">
+                <label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Name</label>
+                <input type="text" name="name" placeholder="お名前" class="w-full py-4 bg-transparent border-b border-stone-300 text-sm focus:outline-none focus:border-stone-800 transition-colors placeholder:text-stone-300" required>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Email</label>
+                <input type="email" name="email" placeholder="メールアドレス" class="w-full py-4 bg-transparent border-b border-stone-300 text-sm focus:outline-none focus:border-stone-800 transition-colors placeholder:text-stone-300" required>
+              </div>
+              <div class="space-y-2 relative">
+                <label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Category</label>
+                <div class="relative">
+                  <select name="category" class="w-full py-4 bg-transparent border-b border-stone-300 text-sm focus:outline-none focus:border-stone-800 transition-colors appearance-none cursor-pointer text-stone-400">
+                    <option value="" disabled selected>選択してください</option>
+                    <option value="天然石の加工（穴あけ・研磨・彫刻など）について">天然石の加工（穴あけ・研磨・彫刻など）について</option>
+                    <option value="法人様向けOEM・大口注文について">法人様向けOEM・大口注文について</option>
+                    <option value="ブレスレットの修理・サイズ直しについて">ブレスレットの修理・サイズ直しについて</option>
+                    <option value="商品についてのお問い合わせ">商品についてのお問い合わせ</option>
+                    <option value="その他">その他</option>
+                  </select>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 pointer-events-none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Message</label>
+                <textarea name="message" placeholder="お問い合わせ内容" rows="4" class="w-full py-4 bg-transparent border-b border-stone-300 text-sm focus:outline-none focus:border-stone-800 transition-colors resize-y placeholder:text-stone-300" required></textarea>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Attachment (Photo)</label>
+                <p class="text-[11px] text-stone-500 leading-relaxed mt-1 normal-case tracking-normal font-light">
+                  加工のご相談、ご依頼の際、対象の石のお写真を添付していただけますと、よりスムーズなご案内が可能となります。<span class="cursor-pointer text-stone-500 hover:text-stone-800 transition-colors border-b border-stone-300 pb-0.5" id="open-rei-img">（イメージ）</span><br>
+                  また、手書きで構いませんので、簡単な図解や完成イメージのお写真も併せて送付いただけますと幸いでございます。
+                </p>
+                <div class="relative py-4 border-b border-stone-300">
+                  <input type="file" accept="image/*" multiple class="block w-full text-sm text-stone-500 file:mr-4 file:py-2.5 file:px-6 file:rounded-none file:border-0 file:text-[10px] file:font-light file:tracking-[0.1em] file:bg-[#1B2A47] file:text-white hover:file:bg-[#1B2A47]/80 file:cursor-pointer file:transition-colors focus:outline-none">
+                </div>
+              </div>
+              
+              <!-- 掲載許可チェックボックス -->
+              <div class="pt-4 pb-2">
+                <label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase mb-4">Publication</label>
+                <label class="flex items-start gap-4 cursor-pointer group">
+                  <div class="relative flex items-center justify-center w-5 h-5 mt-0.5 flex-shrink-0">
+                    <input type="checkbox" name="allow_publish" value="yes" class="peer appearance-none w-5 h-5 border border-stone-300 bg-transparent checked:bg-[#1B2A47] checked:border-[#1B2A47] transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="absolute text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <div class="flex-1 text-left">
+                    <span class="text-[13px] text-stone-600 font-light group-hover:text-stone-800 transition-colors">当サイトの「過去の加工一覧」への画像掲載を許可する</span>
+                    <p class="text-[11px] text-stone-400 mt-1 leading-relaxed font-light">※個人が特定される情報は一切掲載されません。石のみの画像（ビフォーアフター等）として今後の参考に掲載させていただきます。宜しければ、ご協力いただけますと幸いです。</p>
+                  </div>
+                </label>
+              </div>
 
-<div class="bg-white p-8 md:p-16 shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-stone-200 fade-in delay-200">
-<form id="contact-form" class="space-y-8">
-<div class="space-y-2">
-<label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Name</label>
-<input type="text" name="name" placeholder="お名前" class="w-full py-4 bg-transparent border-b border-stone-300 text-sm focus:outline-none focus:border-stone-800 transition-colors placeholder:text-stone-300" required>
-</div>
-<div class="space-y-2">
-<label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Email</label>
-<input type="email" name="email" placeholder="メールアドレス" class="w-full py-4 bg-transparent border-b border-stone-300 text-sm focus:outline-none focus:border-stone-800 transition-colors placeholder:text-stone-300" required>
-</div>
-<div class="space-y-2 relative">
-<label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Category</label>
-<div class="relative">
-<select name="category" class="w-full py-4 bg-transparent border-b border-stone-300 text-sm focus:outline-none focus:border-stone-800 transition-colors appearance-none cursor-pointer text-stone-400">
-<option value="" disabled selected>選択してください</option>
-<option value="天然石の加工（穴あけ・研磨・彫刻など）について">天然石の加工（穴あけ・研磨・彫刻など）について</option>
-<option value="法人様向けOEM・大口注文について">法人様向けOEM・大口注文について</option>
-<option value="ブレスレットの修理・サイズ直しについて">ブレスレットの修理・サイズ直しについて</option>
-<option value="商品についてのお問い合わせ">商品についてのお問い合わせ</option>
-<option value="その他">その他</option>
-</select>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 pointer-events-none"><polyline points="6 9 12 15 18 9"></polyline></svg>
-</div>
-</div>
-<div class="space-y-2">
-<label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Message</label>
-<textarea name="message" placeholder="お問い合わせ内容" rows="4" class="w-full py-4 bg-transparent border-b border-stone-300 text-sm focus:outline-none focus:border-stone-800 transition-colors resize-y placeholder:text-stone-300" required></textarea>
-</div>
-<div class="space-y-2">
-<label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase">Attachment (Photo)</label>
-<p class="text-[11px] text-stone-500 leading-relaxed mt-1 normal-case tracking-normal font-light">
-加工のご相談、ご依頼の際、対象の石のお写真を添付していただけますと、よりスムーズなご案内が可能となります。<span class="cursor-pointer text-stone-500 hover:text-stone-800 transition-colors border-b border-stone-300 pb-0.5" id="open-rei-img">（イメージ）</span><br>
-また、手書きで構いませんので、簡単な図解や完成イメージのお写真も併せて送付いただけますと幸いでございます。
-</p>
-<div class="relative py-4 border-b border-stone-300">
-<input type="file" accept="image/*" multiple class="block w-full text-sm text-stone-500 file:mr-4 file:py-2.5 file:px-6 file:rounded-none file:border-0 file:text-[10px] file:font-light file:tracking-[0.1em] file:bg-[#1B2A47] file:text-white hover:file:bg-[#1B2A47]/80 file:cursor-pointer file:transition-colors focus:outline-none">
-</div>
-</div>
+              <div class="pt-10 text-center flex justify-center">
+                <button type="button" id="submit-btn" disabled class="inline-flex items-center justify-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-300 transition-colors duration-500 cursor-not-allowed w-full sm:w-auto min-w-[240px]">
+                  送信する
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
-<!-- 掲載許可チェックボックス -->
-<div class="pt-4 pb-2">
-<label class="block text-[10px] tracking-[0.1em] text-stone-400 uppercase mb-4">Publication</label>
-<label class="flex items-start gap-4 cursor-pointer group">
-<div class="relative flex items-center justify-center w-5 h-5 mt-0.5 flex-shrink-0">
-<input type="checkbox" name="allow_publish" value="yes" class="peer appearance-none w-5 h-5 border border-stone-300 bg-transparent checked:bg-[#1B2A47] checked:border-[#1B2A47] transition-colors cursor-pointer">
-<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="absolute text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"><polyline points="20 6 9 17 4 12"></polyline></svg>
-</div>
-<div class="flex-1 text-left">
-<span class="text-[13px] text-stone-600 font-light group-hover:text-stone-800 transition-colors">当サイトの「過去の加工一覧」への画像掲載を許可する</span>
-<p class="text-[11px] text-stone-400 mt-1 leading-relaxed font-light">※個人が特定される情報は一切掲載されません。石のみの画像（ビフォーアフター等）として今後の参考に掲載させていただきます。宜しければ、ご協力いただけますと幸いです。</p>
-</div>
-</label>
-</div>
+  <!-- SERVICES VIEW (Craft Details) -->
+  <div id="services-view" style="display: none;" class="pt-32 pb-40 px-6 md:px-12 max-w-5xl mx-auto min-h-screen">
+    <button data-route="home" href="#works" class="group flex items-center gap-4 text-[10px] tracking-[0.2em] text-stone-400 hover:text-stone-900 transition-colors mb-24">
+      <span class="w-8 h-[1px] bg-stone-400 group-hover:bg-stone-900 transition-colors transform origin-right group-hover:-translate-x-2"></span>
+      BACK
+    </button>
 
-<div class="pt-10 text-center flex justify-center">
-<button type="button" id="submit-btn" disabled class="inline-flex items-center justify-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-300 transition-colors duration-500 cursor-not-allowed w-full sm:w-auto min-w-[240px]">
-送信する
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-</button>
-</div>
-</form>
-</div>
-</div>
-</section>
-</main>
-</div>
+    <div class="text-center mb-40 mt-12 md:mt-24 fade-in">
+      <h2 class="text-xs tracking-[0.3em] indent-[0.3em] font-light text-stone-400 uppercase mb-6">Craft Details</h2>
+      <h1 class="text-3xl md:text-4xl font-serif indent-[0.1em] text-stone-800 tracking-[0.1em]">加工の詳細</h1>
+    </div>
 
-<!-- SERVICES VIEW (Craft Details) -->
-<div id="services-view" style="display: none;" class="pt-32 pb-40 px-6 md:px-12 max-w-5xl mx-auto min-h-screen">
-<button data-route="home" href="#works" class="group flex items-center gap-4 text-[10px] tracking-[0.2em] text-stone-400 hover:text-stone-900 transition-colors mb-24">
-<span class="w-8 h-[1px] bg-stone-400 group-hover:bg-stone-900 transition-colors transform origin-right group-hover:-translate-x-2"></span>
-BACK
-</button>
+    <!-- ここに加工内容をすべて「中央揃えタイトル」→「画像」→「詳細」の縦積みに直した構造を入れます（画像は全カラー表示） -->
+    <div class="space-y-40">
+      
+      <!-- 1 -->
+      <section class="flex flex-col max-w-3xl mx-auto items-center text-center fade-in">
+        <h3 class="text-[17px] sm:text-2xl md:text-3xl font-serif text-stone-800 tracking-widest mb-10 whitespace-nowrap">アクセサリー・ペンダント加工</h3>
+        <div class="w-full mb-10 group relative slider-component overflow-hidden rounded-sm">
+          <div class="flex w-full slides-container will-change-transform">
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/pen1.png" alt="自社工房での天然石アクセサリー・ペンダント加工のビフォーアフター事例1" class="w-full h-full object-contain">
+            </div>
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/pen2.png" alt="自社工房での天然石アクセサリー・ペンダント加工のビフォーアフター事例2" class="w-full h-full object-contain">
+            </div>
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/pen3.png" alt="自社工房での天然石アクセサリー・ペンダント加工のビフォーアフター事例3" class="w-full h-full object-contain">
+            </div>
+          </div>
+          <!-- Dots -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-2 dots-container z-10">
+            <button class="w-2 h-2 rounded-full bg-white opacity-100 transition-opacity slider-dot"></button>
+            <button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
+            <button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
+          </div>
+        </div>
+        <div class="w-full max-w-2xl px-4 md:px-0">
+          <p class="text-[13px] md:text-sm font-light text-stone-600 leading-[2.4] mb-10 tracking-wide">
+            思い出の石を、日常を彩るジュエリーへ。<br />
+            石のサイズや雰囲気に調和する最適な金具をご提案し、毎日身につけられる一点にお仕立てします。<br />
+            石に穴を開け、突刺付きのバチカン(チェーンを通す金具)を丁寧にお取り付けいたします。
+          </p>
+          <div class="text-[13px] font-light text-stone-600 space-y-4 border-t border-stone-200 pt-8 text-left inline-block w-full">
+             <p><span class="text-stone-400 w-24 inline-block tracking-widest">対応素材</span>K18 / プラチナ / シルバー / 真鍮 など</p>
+             <p><span class="text-stone-400 w-24 inline-block tracking-widest">価格</span>要相談</p>
+             <p class="text-[11px] text-stone-400 pt-2 block">※豊富な形状・サイズを取り揃えております。</p>
+          </div>
+        </div>
+      </section>
 
-<div class="text-center mb-40 mt-12 md:mt-24 fade-in">
-<h2 class="text-xs tracking-[0.3em] indent-[0.3em] font-light text-stone-400 uppercase mb-6">Craft Details</h2>
-<h1 class="text-3xl md:text-4xl font-serif indent-[0.1em] text-stone-800 tracking-[0.1em]">加工の詳細</h1>
-</div>
+      <!-- 2 -->
+      <section class="flex flex-col max-w-3xl mx-auto items-center text-center fade-in">
+        <h3 class="text-[17px] sm:text-2xl md:text-3xl font-serif text-stone-800 tracking-widest mb-10 whitespace-nowrap">彫刻加工</h3>
+        <div class="w-full mb-10 group relative slider-component overflow-hidden rounded-sm">
+          <div class="flex w-full slides-container will-change-transform">
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/tyo1.jpg" alt="自社工房での天然石への彫刻加工（文字入れ・模様刻印）の事例" class="w-full h-full object-contain">
+            </div>
+          </div>
+        </div>
+        <div class="w-full px-4 md:px-0">
+          <p class="text-[13px] md:text-sm font-light text-stone-600 leading-[2.4] mb-10 tracking-wide max-w-2xl mx-auto">
+            大切な石に、特別な意味を刻みます。<br />
+            お名前や記念日、オリジナルのロゴなどを、職人が一文字ずつ正確に彫り込みます。<br />
+            ご希望に応じて金・銀の色入れ無料で承ります。
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[13px] font-light text-stone-600 border-t border-stone-200 pt-8 text-left">
+            <div>
+              <h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>文字彫刻</h4>
+              <p class="mb-2">標準フォント 3文字以内</p>
+              <p>¥1,500〜</p>
+            </div>
+            <div>
+              <h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>ロゴ・模様彫刻</h4>
+              <p class="mb-2">50mm × 50mm 以内</p>
+              <p>¥2,500〜</p>
+              <p class="text-[11px] text-stone-400 mt-4 leading-relaxed">※画像データまたは原画をご用意ください。<br />※初回のみ、版代として別途 ¥5,000 を頂戴いたします。</p>
+            </div>
+          </div>
+          <!-- ご注意：ボーダーだけ残し、paddingを大幅に削り、上のリストからスムーズに繋がるように -->
+          <div class="text-[12px] text-stone-500 leading-[2.2] border-l border-stone-300 pl-4 mt-8 mx-auto text-left max-w-full">
+            <span class="text-stone-800 font-serif mb-2 block tracking-widest text-[11px]">彫刻加工についてのご注意</span>
+            <ul class="space-y-1">
+              <li>・彫刻は、石の「磨き面」のみ施工可能です。原石の自然な表面にはお入れできません。</li>
+              <li>・球体の場合、美しく彫刻できる範囲は表面積の約3分の1(中心角120度以内)となります。</li>
+              <li>・既存のブランドロゴなど、権利関係に抵触するデザインはお受けできかねます。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-<!-- ここに加工内容をすべて「中央揃えタイトル」→「画像」→「詳細」の縦積みに直した構造を入れます（画像は全カラー表示） -->
-<div class="space-y-40">
+      <!-- 3 -->
+      <section class="flex flex-col max-w-3xl mx-auto items-center text-center fade-in">
+        <h3 class="text-[17px] sm:text-2xl md:text-3xl font-serif text-stone-800 tracking-widest mb-10 whitespace-nowrap">穴あけ・拡張加工</h3>
+        <div class="w-full mb-10 group relative slider-component overflow-hidden rounded-sm">
+          <div class="flex w-full slides-container will-change-transform">
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/ana1.png" alt="自社工房での天然石ビーズの穴あけ・拡張加工の事例1" class="w-full h-full object-contain">
+            </div>
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/ana2.png" alt="自社工房での天然石ビーズの穴あけ・拡張加工の事例2" class="w-full h-full object-contain">
+            </div>
+          </div>
+          <!-- Dots -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-2 dots-container z-10">
+            <button class="w-2 h-2 rounded-full bg-white opacity-100 transition-opacity slider-dot"></button>
+            <button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
+          </div>
+        </div>
+        <div class="w-full px-4 md:px-0">
+          <p class="text-[13px] md:text-sm font-light text-stone-600 leading-[2.4] mb-10 tracking-wide max-w-2xl mx-auto">
+            ペンダントトップへの加工や、革紐・ピアス用など、ご希望の位置へ正確にアプローチいたします。<br />
+            また、お手持ちのビーズなどの穴を広げる拡張加工も承ります。
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[13px] font-light text-stone-600 border-t border-stone-200 pt-8 text-left">
+            <div>
+              <h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>穴あけ加工</h4>
+              <p class="mb-4">仕様：直径 1mm〜10mm / 深さ 30mm まで<br />穴を開けたい位置に印を付け、サイズと深さをご指示ください。</p>
+              <p>価格：¥1,000〜 <span class="text-[11px] text-stone-400">（素材・サイズにより変動）</span></p>
+            </div>
+            <div>
+              <h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>穴の拡張加工</h4>
+              <p class="mb-4">仕様例：シリコンゴム用（1.2mm） / 革紐・チェーン用（5mm）など<br />「シリコンゴムを通したい」「太めの革紐に替えたい」などご相談ください。</p>
+              <p>価格：¥200〜 <span class="text-[11px] text-stone-400">（素材・サイズにより変動）</span></p>
+              <p class="text-[11px] text-stone-400 mt-4 leading-[2.2]">※構造および加工の性質上、穴の内部はスリガラス状の質感に仕上がります。内部の研磨はできかねますのでご了承ください。</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- 1 -->
-<section class="flex flex-col max-w-3xl mx-auto items-center text-center fade-in">
-<h3 class="text-[17px] sm:text-2xl md:text-3xl font-serif text-stone-800 tracking-widest mb-10 whitespace-nowrap">アクセサリー・ペンダント加工</h3>
-<div class="w-full mb-10 group relative slider-component overflow-hidden rounded-sm">
-<div class="flex w-full slides-container will-change-transform">
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/pen1.png" alt="自社工房での天然石アクセサリー・ペンダント加工のビフォーアフター事例1" class="w-full h-full object-contain">
-</div>
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/pen2.png" alt="自社工房での天然石アクセサリー・ペンダント加工のビフォーアフター事例2" class="w-full h-full object-contain">
-</div>
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/pen3.png" alt="自社工房での天然石アクセサリー・ペンダント加工のビフォーアフター事例3" class="w-full h-full object-contain">
-</div>
-</div>
-<!-- Dots -->
-<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-2 dots-container z-10">
-<button class="w-2 h-2 rounded-full bg-white opacity-100 transition-opacity slider-dot"></button>
-<button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
-<button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
-</div>
-</div>
-<div class="w-full max-w-2xl px-4 md:px-0">
-<p class="text-[13px] md:text-sm font-light text-stone-600 leading-[2.4] mb-10 tracking-wide">
-思い出の石を、日常を彩るジュエリーへ。<br />
-石のサイズや雰囲気に調和する最適な金具をご提案し、毎日身につけられる一点にお仕立てします。<br />
-石に穴を開け、突刺付きのバチカン(チェーンを通す金具)を丁寧にお取り付けいたします。
-</p>
-<div class="text-[13px] font-light text-stone-600 space-y-4 border-t border-stone-200 pt-8 text-left inline-block w-full">
-<p><span class="text-stone-400 w-24 inline-block tracking-widest">対応素材</span>K18 / プラチナ / シルバー / 真鍮 など</p>
-<p><span class="text-stone-400 w-24 inline-block tracking-widest">価格</span>要相談</p>
-<p class="text-[11px] text-stone-400 pt-2 block">※豊富な形状・サイズを取り揃えております。</p>
-</div>
-</div>
-</section>
+      <!-- 4 -->
+      <section class="flex flex-col max-w-3xl mx-auto items-center text-center fade-in">
+        <h3 class="text-[17px] sm:text-2xl md:text-3xl font-serif text-stone-800 tracking-widest mb-10 whitespace-nowrap">切断・研磨加工</h3>
+        <div class="w-full mb-10 group relative slider-component overflow-hidden rounded-sm">
+          <div class="flex w-full slides-container will-change-transform">
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/ken1.png" alt="自社工房での原石の切断・研磨加工の事例1" class="w-full h-full object-contain">
+            </div>
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/ken2.png" alt="自社工房での原石の切断・研磨加工の事例2" class="w-full h-full object-contain">
+            </div>
+            <div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
+              <img src="/assets/ken3.png" alt="自社工房での原石の切断・研磨加工の事例3" class="w-full h-full object-contain">
+            </div>
+          </div>
+          <!-- Dots -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-2 dots-container z-10">
+            <button class="w-2 h-2 rounded-full bg-white opacity-100 transition-opacity slider-dot"></button>
+            <button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
+            <button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
+          </div>
+        </div>
+        <div class="w-full px-4 md:px-0">
+          <p class="text-[13px] md:text-sm font-light text-stone-600 leading-[2.4] mb-10 tracking-wide max-w-2xl mx-auto">
+             専用機材と熟練の技術で、石が持つ本来の輝きと美しさを引き出します。<br />
+             大きな原石の分割から、鏡面仕上げまで、様々なご要望にお応えします。
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[13px] font-light text-stone-600 border-t border-stone-200 pt-8 text-left">
+            <div>
+              <h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>切断加工</h4>
+              <p class="mb-4">大きな原石の分割や、ペンダントに最適なサイズへの調整など、専用ディスクを用いて精緻に切断いたします。</p>
+              <p class="mb-4">仕様：切断面の直径 50mm 以内（※機材構造上の制限）</p>
+              <p class="text-[11px] text-stone-400 mt-4 leading-[2.2]">※切断面はスリガラス状になります。鏡面仕上げをご希望の場合は、別途「研磨加工」をお申し付けください。</p>
+            </div>
+            <div>
+              <h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>研磨加工</h4>
+              <p class="mb-4">切断面を滑らかに磨き上げ、石の透明感を引き出します。一部のみの研磨から、全面研磨、大きなシンボルビーズの仕上げまで承ります。</p>
+              <p>参考価格：1面研磨 ¥5,000〜 / 2面研磨 ¥8,000〜 / 6面研磨 ¥20,000〜</p>
+              <p class="text-[11px] text-stone-400 mt-4 leading-[2.2]">※サイズ・素材により価格は変動いたします。詳しくは無料でお見積りいたします。</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- 2 -->
-<section class="flex flex-col max-w-3xl mx-auto items-center text-center fade-in">
-<h3 class="text-[17px] sm:text-2xl md:text-3xl font-serif text-stone-800 tracking-widest mb-10 whitespace-nowrap">彫刻加工</h3>
-<div class="w-full mb-10 group relative slider-component overflow-hidden rounded-sm">
-<div class="flex w-full slides-container will-change-transform">
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/tyo1.jpg" alt="自社工房での天然石への彫刻加工（文字入れ・模様刻印）の事例" class="w-full h-full object-contain">
-</div>
-</div>
-</div>
-<div class="w-full px-4 md:px-0">
-<p class="text-[13px] md:text-sm font-light text-stone-600 leading-[2.4] mb-10 tracking-wide max-w-2xl mx-auto">
-大切な石に、特別な意味を刻みます。<br />
-お名前や記念日、オリジナルのロゴなどを、職人が一文字ずつ正確に彫り込みます。<br />
-ご希望に応じて金・銀の色入れ無料で承ります。
-</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[13px] font-light text-stone-600 border-t border-stone-200 pt-8 text-left">
-<div>
-<h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>文字彫刻</h4>
-<p class="mb-2">標準フォント 3文字以内</p>
-<p>¥1,500〜</p>
-</div>
-<div>
-<h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>ロゴ・模様彫刻</h4>
-<p class="mb-2">50mm × 50mm 以内</p>
-<p>¥2,500〜</p>
-<p class="text-[11px] text-stone-400 mt-4 leading-relaxed">※画像データまたは原画をご用意ください。<br />※初回のみ、版代として別途 ¥5,000 を頂戴いたします。</p>
-</div>
-</div>
-<!-- ご注意：ボーダーだけ残し、paddingを大幅に削り、上のリストからスムーズに繋がるように -->
-<div class="text-[12px] text-stone-500 leading-[2.2] border-l border-stone-300 pl-4 mt-8 mx-auto text-left max-w-full">
-<span class="text-stone-800 font-serif mb-2 block tracking-widest text-[11px]">彫刻加工についてのご注意</span>
-<ul class="space-y-1">
-<li>・彫刻は、石の「磨き面」のみ施工可能です。原石の自然な表面にはお入れできません。</li>
-<li>・球体の場合、美しく彫刻できる範囲は表面積の約3分の1(中心角120度以内)となります。</li>
-<li>・既存のブランドロゴなど、権利関係に抵触するデザインはお受けできかねます。</li>
-</ul>
-</div>
-</div>
-</section>
+    </div>
 
-<!-- 3 -->
-<section class="flex flex-col max-w-3xl mx-auto items-center text-center fade-in">
-<h3 class="text-[17px] sm:text-2xl md:text-3xl font-serif text-stone-800 tracking-widest mb-10 whitespace-nowrap">穴あけ・拡張加工</h3>
-<div class="w-full mb-10 group relative slider-component overflow-hidden rounded-sm">
-<div class="flex w-full slides-container will-change-transform">
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/ana1.png" alt="自社工房での天然石ビーズの穴あけ・拡張加工の事例1" class="w-full h-full object-contain">
-</div>
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/ana2.png" alt="自社工房での天然石ビーズの穴あけ・拡張加工の事例2" class="w-full h-full object-contain">
-</div>
-</div>
-<!-- Dots -->
-<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-2 dots-container z-10">
-<button class="w-2 h-2 rounded-full bg-white opacity-100 transition-opacity slider-dot"></button>
-<button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
-</div>
-</div>
-<div class="w-full px-4 md:px-0">
-<p class="text-[13px] md:text-sm font-light text-stone-600 leading-[2.4] mb-10 tracking-wide max-w-2xl mx-auto">
-ペンダントトップへの加工や、革紐・ピアス用など、ご希望の位置へ正確にアプローチいたします。<br />
-また、お手持ちのビーズなどの穴を広げる拡張加工も承ります。
-</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[13px] font-light text-stone-600 border-t border-stone-200 pt-8 text-left">
-<div>
-<h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>穴あけ加工</h4>
-<p class="mb-4">仕様：直径 1mm〜10mm / 深さ 30mm まで<br />穴を開けたい位置に印を付け、サイズと深さをご指示ください。</p>
-<p>価格：¥1,000〜 <span class="text-[11px] text-stone-400">（素材・サイズにより変動）</span></p>
-</div>
-<div>
-<h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>穴の拡張加工</h4>
-<p class="mb-4">仕様例：シリコンゴム用（1.2mm） / 革紐・チェーン用（5mm）など<br />「シリコンゴムを通したい」「太めの革紐に替えたい」などご相談ください。</p>
-<p>価格：¥200〜 <span class="text-[11px] text-stone-400">（素材・サイズにより変動）</span></p>
-<p class="text-[11px] text-stone-400 mt-4 leading-[2.2]">※構造および加工の性質上、穴の内部はスリガラス状の質感に仕上がります。内部の研磨はできかねますのでご了承ください。</p>
-</div>
-</div>
-</div>
-</section>
+    <div class="mt-40 mb-20 max-w-3xl mx-auto p-12 bg-white border border-stone-200 rounded-sm shadow-[0_2px_20px_rgba(0,0,0,0.03)] relative overflow-hidden fade-in">
+      <div class="absolute top-0 left-0 w-1 h-full bg-stone-300"></div>
+      <h3 class="text-base tracking-[0.2em] text-stone-800 font-serif mb-8 flex items-center gap-4">
+        <span class="w-12 h-[1px] bg-stone-300"></span>
+        天然石加工に関する大切なお願い
+      </h3>
+      <p class="text-[13px] font-light text-stone-600 leading-[2.6] text-left">
+        天然石には、目に見えない「石目」（内部の微細な歪みや、結晶の成長痕）が存在いたします。<br />
+        私どもは職人の経験に基づき、細心の注意を払って加工に臨んでおりますが、この石目の影響により、ごく稀に予期せぬ破損が生じることがございます。<br /><br />
+        誠に恐れ入りますが、加工中に生じた破損につきましては、天然石という素材の特性上、補償や代替品のご用意はいたしかねます。<br /><br />
+        お客様の大切な石を最善の形でお仕上げするため、全力を尽くしてまいります。<br />
+        天然石ならではの特性をご理解のうえ、お申し込みくださいますよう心よりお願い申し上げます。
+      </p>
+    </div>
 
-<!-- 4 -->
-<section class="flex flex-col max-w-3xl mx-auto items-center text-center fade-in">
-<h3 class="text-[17px] sm:text-2xl md:text-3xl font-serif text-stone-800 tracking-widest mb-10 whitespace-nowrap">切断・研磨加工</h3>
-<div class="w-full mb-10 group relative slider-component overflow-hidden rounded-sm">
-<div class="flex w-full slides-container will-change-transform">
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/ken1.png" alt="自社工房での原石の切断・研磨加工の事例1" class="w-full h-full object-contain">
-</div>
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/ken2.png" alt="自社工房での原石の切断・研磨加工の事例2" class="w-full h-full object-contain">
-</div>
-<div class="min-w-full aspect-video overflow-hidden bg-stone-100 relative max-w-full flex-shrink-0">
-<img src="/assets/ken3.png" alt="自社工房での原石の切断・研磨加工の事例3" class="w-full h-full object-contain">
-</div>
-</div>
-<!-- Dots -->
-<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-2 dots-container z-10">
-<button class="w-2 h-2 rounded-full bg-white opacity-100 transition-opacity slider-dot"></button>
-<button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
-<button class="w-2 h-2 rounded-full bg-white opacity-40 hover:opacity-100 transition-opacity slider-dot"></button>
-</div>
-</div>
-<div class="w-full px-4 md:px-0">
-<p class="text-[13px] md:text-sm font-light text-stone-600 leading-[2.4] mb-10 tracking-wide max-w-2xl mx-auto">
-専用機材と熟練の技術で、石が持つ本来の輝きと美しさを引き出します。<br />
-大きな原石の分割から、鏡面仕上げまで、様々なご要望にお応えします。
-</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[13px] font-light text-stone-600 border-t border-stone-200 pt-8 text-left">
-<div>
-<h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>切断加工</h4>
-<p class="mb-4">大きな原石の分割や、ペンダントに最適なサイズへの調整など、専用ディスクを用いて精緻に切断いたします。</p>
-<p class="mb-4">仕様：切断面の直径 50mm 以内（※機材構造上の制限）</p>
-<p class="text-[11px] text-stone-400 mt-4 leading-[2.2]">※切断面はスリガラス状になります。鏡面仕上げをご希望の場合は、別途「研磨加工」をお申し付けください。</p>
-</div>
-<div>
-<h4 class="text-stone-800 font-serif mb-4 flex items-center gap-3"><span class="w-4 h-[1px] bg-stone-300"></span>研磨加工</h4>
-<p class="mb-4">切断面を滑らかに磨き上げ、石の透明感を引き出します。一部のみの研磨から、全面研磨、大きなシンボルビーズの仕上げまで承ります。</p>
-<p>参考価格：1面研磨 ¥5,000〜 / 2面研磨 ¥8,000〜 / 6面研磨 ¥20,000〜</p>
-<p class="text-[11px] text-stone-400 mt-4 leading-[2.2]">※サイズ・素材により価格は変動いたします。詳しくは無料でお見積りいたします。</p>
-</div>
-</div>
-</div>
-</section>
+    <div class="mb-32 text-center max-w-2xl mx-auto px-4 fade-in">
+      <p class="text-[13px] text-stone-500 leading-[2.6] font-light mb-8">
+        天然石の加工に関するご相談・お見積もりは、下記の専用フォームより承っております。<br class="hidden md:block">
+        掲載していない加工のご相談も大歓迎です。石切本店への直接のお持ち込みも可能です。
+      </p>
+      
+      <div class="mb-12">
+          <a href="#" id="open-works-modal-btn-services" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-600 hover:border-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
+            過去の加工一覧を見る
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+      </div>
 
-</div>
+      <div class="mt-8">
+          <a href="#contact" data-route="home" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] text-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500 border-b">
+            ご相談フォームへ
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+      </div>
+    </div>
 
-<div class="mt-40 mb-20 max-w-3xl mx-auto p-12 bg-white border border-stone-200 rounded-sm shadow-[0_2px_20px_rgba(0,0,0,0.03)] relative overflow-hidden fade-in">
-<div class="absolute top-0 left-0 w-1 h-full bg-stone-300"></div>
-<h3 class="text-base tracking-[0.2em] text-stone-800 font-serif mb-8 flex items-center gap-4">
-<span class="w-12 h-[1px] bg-stone-300"></span>
-天然石加工に関する大切なお願い
-</h3>
-<p class="text-[13px] font-light text-stone-600 leading-[2.6] text-left">
-天然石には、目に見えない「石目」（内部の微細な歪みや、結晶の成長痕）が存在いたします。<br />
-私どもは職人の経験に基づき、細心の注意を払って加工に臨んでおりますが、この石目の影響により、ごく稀に予期せぬ破損が生じることがございます。<br /><br />
-誠に恐れ入りますが、加工中に生じた破損につきましては、天然石という素材の特性上、補償や代替品のご用意はいたしかねます。<br /><br />
-お客様の大切な石を最善の形でお仕上げするため、全力を尽くしてまいります。<br />
-天然石ならではの特性をご理解のうえ、お申し込みくださいますよう心よりお願い申し上げます。
-</p>
-</div>
+    <div class="pb-24 text-center">
+       <button data-route="home" href="#works" class="text-[10px] tracking-[0.3em] font-light text-stone-800 hover:text-stone-400 transition-colors uppercase border-b border-stone-800 hover:border-stone-400 pb-2">
+         RETURN TO HOME
+       </button>
+    </div>
 
-<div class="mb-32 text-center max-w-2xl mx-auto px-4 fade-in">
-<p class="text-[13px] text-stone-500 leading-[2.6] font-light mb-8">
-天然石の加工に関するご相談・お見積もりは、下記の専用フォームより承っております。<br class="hidden md:block">
-掲載していない加工のご相談も大歓迎です。石切本店への直接のお持ち込みも可能です。
-</p>
+  </div> <!-- End Services View -->
 
-<div class="mb-12">
-<a href="#" id="open-works-modal-btn-services" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-stone-300 text-stone-600 hover:border-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500">
-過去の加工一覧を見る
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-</a>
-</div>
+  <!-- FOOTER -->
+  <footer class="footer py-16 px-6 text-center border-t border-stone-200 bg-stone-50 mt-12 bg-white">
+    <div class="max-w-4xl mx-auto flex flex-col items-center">
+      <div class="text-sm font-serif tracking-[0.2em] font-light text-stone-400 mb-6">
+        有限会社 やまなみ銘石
+      </div>
 
-<div class="mt-8">
-<a href="#contact" data-route="home" class="inline-flex items-center gap-4 text-[11px] tracking-[0.2em] px-12 py-5 border border-[#1B2A47] text-[#1B2A47] hover:bg-[#1B2A47] hover:text-white transition-colors duration-500 border-b">
-ご相談フォームへ
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-</a>
-</div>
-</div>
+      <div class="mb-8 flex justify-center">
+        <a href="https://www.instagram.com/ymnami_/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-stone-400 hover:text-stone-600 transition-colors group">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          <span class="text-[11px] font-serif tracking-widest mt-0.5">@ymnami_</span>
+        </a>
+      </div>
 
-<div class="pb-24 text-center">
-<button data-route="home" href="#works" class="text-[10px] tracking-[0.3em] font-light text-stone-800 hover:text-stone-400 transition-colors uppercase border-b border-stone-800 hover:border-stone-400 pb-2">
-RETURN TO HOME
-</button>
-</div>
+      <div class="w-full max-w-3xl mb-12">
+        <div class="flex justify-center items-center gap-6 md:gap-12 mb-8">
+           <button class="text-[10px] md:text-[11px] font-serif tracking-[0.2em] font-light text-stone-400 hover:text-stone-600 transition-colors cursor-pointer legal-btn" data-target="legal-tokusho">特定商取引法に関する表示</button>
+           <button class="text-[10px] md:text-[11px] font-serif tracking-[0.2em] font-light text-stone-400 hover:text-stone-600 transition-colors cursor-pointer legal-btn" data-target="legal-privacy">個人情報の取り扱いについて</button>
+        </div>
+        
+        <div id="legal-tokusho" class="hidden w-full bg-stone-50 border-t border-b border-stone-200 py-8 px-4 text-left text-[11px] md:text-[12px] text-stone-600 font-light leading-[2] mb-8">
+          <h4 class="font-bold mb-6 font-serif text-stone-800 text-center text-sm tracking-widest">特定商取引法に関する表示</h4>
+          <h5 class="font-bold mb-4 font-serif text-stone-800 mt-2">■ 店舗情報</h5>
+          <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-4 gap-y-4 mb-10">
+            <div class="text-stone-400">販売業者</div><div>有限会社やまなみ銘石</div>
+            <div class="text-stone-400">販売責任者</div><div>飯田　孝幸</div>
+            <div class="text-stone-400">所在地</div><div>〒579-8011 大阪府東大阪市東石切町1-5-1</div>
+            <div class="text-stone-400">電話番号</div><div>072-985-0131</div>
+            <div class="text-stone-400">FAX番号</div><div>072-985-0844</div>
+            <div class="text-stone-400">メールアドレス</div><div>info@ishiya-san.com</div>
+            <div class="text-stone-400">ホームページ</div><div><a href="https://www.ishiya-san.com/" target="_blank" class="underline hover:no-underline hover:text-stone-400 transition-colors">https://www.ishiya-san.com/</a></div>
+            <div class="text-stone-400">取扱商品</div><div>天然石、原石、ストーンビーズ、ペンダント、ネックレス、パーツ部材、お念珠、ヘアアクセサリー。</div>
+            <div class="text-stone-400">許認可・資格</div><div>必要なし。</div>
+            <div class="text-stone-400">販売数量</div><div>商品は在庫限りとさせていただきます。ご注文いただきました商品が在庫切れの場合は、TEL、またはメールでご連絡差し上げます。</div>
+            <div class="text-stone-400">商品代金以外の<br class="hidden md:block">必要料金</div><div>送料、代金引換手数料は原則としてお客様負担にてお願いいたします。<br>消費税は全て商品代金(税込価格)に含んで表示しています。</div>
+            <div class="text-stone-400">申込の有効期限</div><div>ご注文後7日以内にお支払下さい。なお、ご注文から7日以内にご入金が確認できない場合は、ご注文をキャンセル扱いとさせていただきます。</div>
+            <div class="text-stone-400">引き渡し時期</div><div>注文日より2営業日以内に発送いたします。</div>
+            <div class="text-stone-400">お支払方法について</div><div>商品、オリジナルブレスレットに関してはBASE決済。加工については銀行振込になります。</div>
+          </div>
+          <h5 class="font-bold mb-4 font-serif text-stone-800 pt-6 border-t border-stone-200">■ 返品・不良品について</h5>
+          <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-4 gap-y-4">
+            <div class="text-stone-400">返品期限・条件</div><div>商品到着日より7日以内とさせていただきます。<br>それを過ぎますと、返品、交換のご要望はお受けできなくなりますので、ご了承ください。</div>
+            <div class="text-stone-400">返品送料</div><div>お客様都合の場合はご容赦ください。ただし、不良品交換、誤品配送交換は当社負担とさせていただきます。</div>
+            <div class="text-stone-400">不良品</div><div>万一不良品等がございましたら、当店の在庫状況を確認のうえ、新品、または同等品と交換させていただきます。<br>商品到着後7日以内にメールまたは電話でご連絡ください。それを過ぎますと返品交換のご要望はお受けできなくなりますので、ご了承ください。</div>
+          </div>
+        </div>
 
-</div> <!-- End Services View -->
+        <div id="legal-privacy" class="hidden w-full bg-stone-50 border-t border-b border-stone-200 py-8 px-4 text-left text-[11px] md:text-[12px] text-stone-600 font-light leading-[2] mb-8">
+          <h4 class="font-bold mb-6 font-serif text-stone-800 text-center text-sm tracking-widest">個人情報の取り扱いについて</h4>
+          <p class="mb-2 mt-2"><strong class="text-stone-800 font-serif">はじめに</strong></p>
+          <p class="mb-6">個人情報保護の重要性を認識し、適切に利用し、保護することが社会的責任であると考え、個人情報の保護に努めることをお約束いたします。</p>
+          <p class="mb-2"><strong class="text-stone-800 font-serif">（個人情報の定義）</strong></p>
+          <p class="mb-6">個人情報とは、個人に関する情報であり、氏名、生年月日、性別、電話番号、電子メールアドレス、職業、勤務先等、特定の個人を識別し得る情報をいいます。</p>
+          <p class="mb-2"><strong class="text-stone-800 font-serif">（個人情報の収集・利用）</strong></p>
+          <p class="mb-2">当社は、以下の目的のため、その範囲内においてのみ、個人情報を収集・利用いたします。<br>当社による個人情報の収集・利用は、お客様の自発的な提供によるものであり、お客様が個人情報を提供された場合は、当社が本方針に則って個人情報を利用することをお客様が許諾したものとします。</p>
+          <ul class="list-disc pl-5 mb-6 space-y-1">
+            <li>ご注文された当社の商品をお届けするうえで必要な業務</li>
+            <li>新商品の案内など、お客様に有益かつ必要と思われる情報の提供</li>
+            <li>業務遂行上で必要となる当社からの問い合わせ、確認、およびサービス向上のための意見収集</li>
+            <li>各種のお問い合わせ対応</li>
+          </ul>
+          <p class="mb-2"><strong class="text-stone-800 font-serif">（個人情報の第三者提供）</strong></p>
+          <p class="mb-6">当社は、法令に基づく場合等正当な理由によらない限り、事前に本人の同意を得ることなく、個人情報を第三者に開示・提供することはありません。</p>
+          <p class="mb-2"><strong class="text-stone-800 font-serif">（委託先の監督）</strong></p>
+          <p class="mb-6">当店は、お客様へ商品やサービスを提供する等の業務遂行上、個人情報の一部を外部の委託先へ提供する場合があります。その場合、業務委託先が適切に個人情報を取り扱うように管理いたします。</p>
+          <p class="mb-2"><strong class="text-stone-800 font-serif">（個人情報の管理）</strong></p>
+          <p class="mb-6">当社は、個人情報の漏洩、滅失、毀損等を防止するために、個人情報保護管理責任者を設置し、十分な安全保護に努め、また、個人情報を正確に、また最新なものに保つよう、お預かりした個人情報の適切な管理を行います。</p>
+          <p class="mb-2"><strong class="text-stone-800 font-serif">（情報内容の照会、修正または削除）</strong></p>
+          <p class="mb-6">当社は、お客様が当社にご提供いただいた個人情報の照会、修正または削除を希望される場合は、ご本人であることを確認させていただいたうえで、合理的な範囲ですみやかに対応させていただきます。</p>
+          <p class="mb-2"><strong class="text-stone-800 font-serif">（セキュリティーについて）</strong></p>
+          <p>SSL暗号通信によりお客様のウェブブラウザとサーバ間の通信がすべて暗号化されるので、お買い物カゴでご記入された内容は安全に送信されます。</p>
+        </div>
+      </div>
 
-<!-- FOOTER -->
-<footer class="footer py-16 px-6 text-center border-t border-stone-200 bg-stone-50 mt-12 bg-white">
-<div class="max-w-4xl mx-auto flex flex-col items-center">
-<div class="text-sm font-serif tracking-[0.2em] font-light text-stone-400 mb-6">
-有限会社 やまなみ銘石
-</div>
+      <div class="text-[10px] text-stone-400 tracking-[0.1em] font-light" id="copyright-year">
+        &copy; 2026 YAMANAMI MEISEKI. All rights reserved.
+      </div>
+    </div>
+  </footer>
 
-<div class="mb-8 flex justify-center">
-<a href="https://www.instagram.com/ymnami_/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-stone-400 hover:text-stone-600 transition-colors group">
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-<span class="text-[11px] font-serif tracking-widest mt-0.5">@ymnami_</span>
-</a>
-</div>
-
-<div class="w-full max-w-3xl mb-12">
-<div class="flex justify-center items-center gap-6 md:gap-12 mb-8">
-<button class="text-[10px] md:text-[11px] font-serif tracking-[0.2em] font-light text-stone-400 hover:text-stone-600 transition-colors cursor-pointer legal-btn" data-target="legal-tokusho">特定商取引法に関する表示</button>
-<button class="text-[10px] md:text-[11px] font-serif tracking-[0.2em] font-light text-stone-400 hover:text-stone-600 transition-colors cursor-pointer legal-btn" data-target="legal-privacy">個人情報の取り扱いについて</button>
-</div>
-
-<div id="legal-tokusho" class="hidden w-full bg-stone-50 border-t border-b border-stone-200 py-8 px-4 text-left text-[11px] md:text-[12px] text-stone-600 font-light leading-[2] mb-8">
-<h4 class="font-bold mb-6 font-serif text-stone-800 text-center text-sm tracking-widest">特定商取引法に関する表示</h4>
-<h5 class="font-bold mb-4 font-serif text-stone-800 mt-2">■ 店舗情報</h5>
-<div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-4 gap-y-4 mb-10">
-<div class="text-stone-400">販売業者</div><div>有限会社やまなみ銘石</div>
-<div class="text-stone-400">販売責任者</div><div>飯田　孝幸</div>
-<div class="text-stone-400">所在地</div><div>〒579-8011 大阪府東大阪市東石切町1-5-1</div>
-<div class="text-stone-400">電話番号</div><div>072-985-0131</div>
-<div class="text-stone-400">FAX番号</div><div>072-985-0844</div>
-<div class="text-stone-400">メールアドレス</div><div>info@ishiya-san.com</div>
-<div class="text-stone-400">ホームページ</div><div><a href="https://www.ishiya-san.com/" target="_blank" class="underline hover:no-underline hover:text-stone-400 transition-colors">https://www.ishiya-san.com/</a></div>
-<div class="text-stone-400">取扱商品</div><div>天然石、原石、ストーンビーズ、ペンダント、ネックレス、パーツ部材、お念珠、ヘアアクセサリー。</div>
-<div class="text-stone-400">許認可・資格</div><div>必要なし。</div>
-<div class="text-stone-400">販売数量</div><div>商品は在庫限りとさせていただきます。ご注文いただきました商品が在庫切れの場合は、TEL、またはメールでご連絡差し上げます。</div>
-<div class="text-stone-400">商品代金以外の<br class="hidden md:block">必要料金</div><div>送料、代金引換手数料は原則としてお客様負担にてお願いいたします。<br>消費税は全て商品代金(税込価格)に含んで表示しています。</div>
-<div class="text-stone-400">申込の有効期限</div><div>ご注文後7日以内にお支払下さい。なお、ご注文から7日以内にご入金が確認できない場合は、ご注文をキャンセル扱いとさせていただきます。</div>
-<div class="text-stone-400">引き渡し時期</div><div>注文日より2営業日以内に発送いたします。</div>
-<div class="text-stone-400">お支払方法について</div><div>商品、オリジナルブレスレットに関してはBASE決済。加工については銀行振込になります。</div>
-</div>
-<h5 class="font-bold mb-4 font-serif text-stone-800 pt-6 border-t border-stone-200">■ 返品・不良品について</h5>
-<div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-4 gap-y-4">
-<div class="text-stone-400">返品期限・条件</div><div>商品到着日より7日以内とさせていただきます。<br>それを過ぎますと、返品、交換のご要望はお受けできなくなりますので、ご了承ください。</div>
-<div class="text-stone-400">返品送料</div><div>お客様都合の場合はご容赦ください。ただし、不良品交換、誤品配送交換は当社負担とさせていただきます。</div>
-<div class="text-stone-400">不良品</div><div>万一不良品等がございましたら、当店の在庫状況を確認のうえ、新品、または同等品と交換させていただきます。<br>商品到着後7日以内にメールまたは電話でご連絡ください。それを過ぎますと返品交換のご要望はお受けできなくなりますので、ご了承ください。</div>
-</div>
-</div>
-
-<div id="legal-privacy" class="hidden w-full bg-stone-50 border-t border-b border-stone-200 py-8 px-4 text-left text-[11px] md:text-[12px] text-stone-600 font-light leading-[2] mb-8">
-<h4 class="font-bold mb-6 font-serif text-stone-800 text-center text-sm tracking-widest">個人情報の取り扱いについて</h4>
-<p class="mb-2 mt-2"><strong class="text-stone-800 font-serif">はじめに</strong></p>
-<p class="mb-6">個人情報保護の重要性を認識し、適切に利用し、保護することが社会的責任であると考え、個人情報の保護に努めることをお約束いたします。</p>
-<p class="mb-2"><strong class="text-stone-800 font-serif">（個人情報の定義）</strong></p>
-<p class="mb-6">個人情報とは、個人に関する情報であり、氏名、生年月日、性別、電話番号、電子メールアドレス、職業、勤務先等、特定の個人を識別し得る情報をいいます。</p>
-<p class="mb-2"><strong class="text-stone-800 font-serif">（個人情報の収集・利用）</strong></p>
-<p class="mb-2">当社は、以下の目的のため、その範囲内においてのみ、個人情報を収集・利用いたします。<br>当社による個人情報の収集・利用は、お客様の自発的な提供によるものであり、お客様が個人情報を提供された場合は、当社が本方針に則って個人情報を利用することをお客様が許諾したものとします。</p>
-<ul class="list-disc pl-5 mb-6 space-y-1">
-<li>ご注文された当社の商品をお届けするうえで必要な業務</li>
-<li>新商品の案内など、お客様に有益かつ必要と思われる情報の提供</li>
-<li>業務遂行上で必要となる当社からの問い合わせ、確認、およびサービス向上のための意見収集</li>
-<li>各種のお問い合わせ対応</li>
-</ul>
-<p class="mb-2"><strong class="text-stone-800 font-serif">（個人情報の第三者提供）</strong></p>
-<p class="mb-6">当社は、法令に基づく場合等正当な理由によらない限り、事前に本人の同意を得ることなく、個人情報を第三者に開示・提供することはありません。</p>
-<p class="mb-2"><strong class="text-stone-800 font-serif">（委託先の監督）</strong></p>
-<p class="mb-6">当店は、お客様へ商品やサービスを提供する等の業務遂行上、個人情報の一部を外部の委託先へ提供する場合があります。その場合、業務委託先が適切に個人情報を取り扱うように管理いたします。</p>
-<p class="mb-2"><strong class="text-stone-800 font-serif">（個人情報の管理）</strong></p>
-<p class="mb-6">当社は、個人情報の漏洩、滅失、毀損等を防止するために、個人情報保護管理責任者を設置し、十分な安全保護に努め、また、個人情報を正確に、また最新なものに保つよう、お預かりした個人情報の適切な管理を行います。</p>
-<p class="mb-2"><strong class="text-stone-800 font-serif">（情報内容の照会、修正または削除）</strong></p>
-<p class="mb-6">当社は、お客様が当社にご提供いただいた個人情報の照会、修正または削除を希望される場合は、ご本人であることを確認させていただいたうえで、合理的な範囲ですみやかに対応させていただきます。</p>
-<p class="mb-2"><strong class="text-stone-800 font-serif">（セキュリティーについて）</strong></p>
-<p>SSL暗号通信によりお客様のウェブブラウザとサーバ間の通信がすべて暗号化されるので、お買い物カゴでご記入された内容は安全に送信されます。</p>
-</div>
-</div>
-
-<div class="text-[10px] text-stone-400 tracking-[0.1em] font-light" id="copyright-year">
-&copy; 2026 YAMANAMI MEISEKI. All rights reserved.
-</div>
-</div>
-</footer>
-
-<script>
-document.getElementById('copyright-year').innerHTML = '&copy; ' + new Date().getFullYear() + ' YAMANAMI MEISEKI. All rights reserved.';
-</script>
+  <script>
+    document.getElementById('copyright-year').innerHTML = '&copy; ' + new Date().getFullYear() + ' YAMANAMI MEISEKI. All rights reserved.';
+  </script>
 </body>
 </html>
