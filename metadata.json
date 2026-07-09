@@ -1,6 +1,7 @@
 {
-  "name": "",
-  "description": "",
-  "requestFramePermissions": [],
+  "name": "天然石の加工/ブレスレット･原石･屋久杉販売店｜やまなみ銘石(東大阪・石切)",
+  "description": "創業1990年、大阪・石切神社参道の天然石・屋久杉専門店「やまなみ銘石」。こだわりの原石やパワーストーンブレスレット、数珠の販売をはじめ、自社工房での天然石加工（穴あけ・切断・研磨・彫刻・OEM）を承ります。ご自身でデザインを楽しめるWEB限定「オリジナルブレスレット作成シミュレーター（通販専用）」も公開中です！",
+  "requestFramePermissions": ["camera", "microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
+
