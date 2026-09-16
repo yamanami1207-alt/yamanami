@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
-    window.scrollTo(0, 0);
-    
+
     // ロゴの起動演出は使用せず、本文をすぐに表示する
     const foucPrevention = document.getElementById('fouc-prevention');
     if (foucPrevention) foucPrevention.remove();
@@ -24,7 +23,19 @@ document.addEventListener('DOMContentLoaded', () => {
         heroBg.style.transform = 'scale(1)';
     }
 
-    if (!targetHash) {
+    if (targetHash) {
+        // 他ページ（/oem/, /stonework/ など）から #contact 等のハッシュ付きで
+        // 遷移してきた場合、該当セクションへスクロールする
+        const targetElement = document.querySelector(targetHash);
+        if (targetElement) {
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        } else {
+            window.scrollTo(0, 0);
+        }
+    } else {
         window.scrollTo(0, 0);
     }
 
