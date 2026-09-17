@@ -161,6 +161,80 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
+       Contact Form (real submission)
+       ========================================= */
+    const contactForm = document.getElementById('contact-form');
+    const contactSubmitBtn = document.getElementById('contact-submit-btn');
+    const contactSubmitLabel = document.getElementById('contact-submit-label');
+    const contactResult = document.getElementById('contact-result');
+    const photosInput = document.getElementById('input-photos');
+    const photosError = document.getElementById('photos-error');
+
+    const MAX_FILES = 3;
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
+    const MAX_TOTAL_SIZE = 15 * 1024 * 1024;
+
+    if (photosInput) {
+        photosInput.addEventListener('change', () => {
+            const files = Array.from(photosInput.files || []);
+            let error = '';
+            if (files.length > MAX_FILES) {
+                error = `写真は${MAX_FILES}枚までにしてください。`;
+            } else {
+                const totalSize = files.reduce((sum, f) => sum + f.size, 0);
+                const tooLarge = files.find((f) => f.size > MAX_FILE_SIZE);
+                if (tooLarge) {
+                    error = `「${tooLarge.name}」のサイズが大きすぎます（1枚5MBまで）。`;
+                } else if (totalSize > MAX_TOTAL_SIZE) {
+                    error = '添付ファイルの合計サイズが大きすぎます（15MBまで）。';
+                }
+            }
+            if (photosError) {
+                photosError.textContent = error;
+                photosError.classList.toggle('hidden', !error);
+            }
+            if (error) photosInput.value = '';
+        });
+    }
+
+    window.submitContactForm = async () => {
+        if (!contactForm) return;
+        if (!contactForm.reportValidity()) return;
+        if (photosError && !photosError.classList.contains('hidden')) return;
+
+        contactSubmitBtn.disabled = true;
+        if (contactSubmitLabel) contactSubmitLabel.textContent = '送信中...';
+        if (contactResult) {
+            contactResult.textContent = '';
+            contactResult.classList.remove('text-red-600', 'text-green-600');
+        }
+
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch('/api/contact', { method: 'POST', body: formData });
+            const data = await response.json();
+
+            if (data.ok) {
+                if (contactSubmitLabel) contactSubmitLabel.textContent = '送信済み';
+                if (contactResult) {
+                    contactResult.textContent = 'お問い合わせありがとうございます。担当より折り返しご連絡いたします。';
+                    contactResult.classList.add('text-green-600');
+                }
+                contactForm.reset();
+            } else {
+                throw new Error(data.error || '送信に失敗しました。');
+            }
+        } catch (error) {
+            contactSubmitBtn.disabled = false;
+            if (contactSubmitLabel) contactSubmitLabel.textContent = '送信する';
+            if (contactResult) {
+                contactResult.textContent = error.message || '送信に失敗しました。時間をおいて再度お試しください。';
+                contactResult.classList.add('text-red-600');
+            }
+        }
+    };
+
+    /* =========================================
        Image Modal
        ========================================= */
     const imageModal = document.getElementById('image-modal');

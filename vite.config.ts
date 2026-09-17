@@ -1,16 +1,26 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import path from 'path';
+import { defineConfig } from 'vite';
 
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        stonework: resolve(__dirname, 'stonework/index.html'),
+export default defineConfig(() => {
+  return {
+    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, '.'),
       },
     },
-  },
+    build: {
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          stonework: path.resolve(__dirname, 'stonework/index.html'),
+        },
+      },
+    },
+    server: {
+      hmr: process.env.DISABLE_HMR !== 'true',
+      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+    },
+  };
 });
