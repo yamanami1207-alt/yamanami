@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ishiya-san.com/sitemap.xml
