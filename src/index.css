@@ -22,6 +22,15 @@ h1, h2, h3, h4, .font-serif {
   overflow-wrap: break-word;
 }
 
+/* aspect-ratio未対応の古いブラウザ（一部アプリ内ブラウザ等）向けフォールバック。
+   対応していないと#homeの高さが確定せず、動画が正しい幅で表示されないため。 */
+@supports not (aspect-ratio: 16 / 9) {
+  #home {
+    height: 56.25vw;
+    max-height: 100vh;
+  }
+}
+
 * {
   -webkit-tap-highlight-color: transparent !important;
   outline: none !important;
