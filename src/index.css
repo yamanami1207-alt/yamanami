@@ -13,13 +13,11 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* 見出し等（font-serif）で「受託製造」のような単語の途中で
-   改行されてしまうのを防ぐ（単語の区切りでのみ折り返す） */
-h1, h2, h3, h4, .font-serif {
+  /* 「受託製造」のような単語の途中で改行されるのを防ぎつつ（keep-all）、
+     区切りの無い長い一文が画面幅からはみ出す場合のみ折り返しを許可する（anywhere）。
+     両方とも継承されるプロパティなので、bodyに書けばサイト全体に効く。 */
   word-break: keep-all;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 /* aspect-ratio未対応の古いブラウザ（一部アプリ内ブラウザ等）向けフォールバック。
