@@ -15,6 +15,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 見出し等（font-serif）で「受託製造」のような単語の途中で
+   改行されてしまうのを防ぐ（単語の区切りでのみ折り返す） */
+h1, h2, h3, h4, .font-serif {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 * {
   -webkit-tap-highlight-color: transparent !important;
   outline: none !important;
