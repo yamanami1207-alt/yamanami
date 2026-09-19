@@ -150,6 +150,14 @@ const setupSliders = () => {
         }, 1200);
       }
     };
+    const prev = () => {
+      if (currentIndex <= 0) {
+        update(currentIndex);
+        return;
+      }
+      currentIndex -= 1;
+      update(currentIndex);
+    };
     const start = () => {
       window.clearInterval(timer);
       timer = window.setInterval(next, 4000);
@@ -163,6 +171,42 @@ const setupSliders = () => {
     });
     slider.addEventListener('mouseenter', () => window.clearInterval(timer));
     slider.addEventListener('mouseleave', start);
+
+    // タッチ操作：自動送りは継続しつつ、ユーザーが指で触れたらその動きを優先する
+    let touchStartX = 0;
+    let isDragging = false;
+    let sliderWidth = 0;
+    slider.addEventListener('touchstart', (event) => {
+      isDragging = true;
+      touchStartX = event.touches[0].clientX;
+      sliderWidth = slider.offsetWidth || 1;
+      window.clearInterval(timer);
+      container.style.transition = 'none';
+    }, { passive: true });
+    slider.addEventListener('touchmove', (event) => {
+      if (!isDragging) return;
+      const deltaX = event.touches[0].clientX - touchStartX;
+      const percentDelta = (deltaX / sliderWidth) * 100;
+      container.style.transform = `translate3d(${-(currentIndex * 100) + percentDelta}%, 0, 0)`;
+    }, { passive: true });
+    const endTouch = (event) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const touch = event.changedTouches[0];
+      const deltaX = touch ? touch.clientX - touchStartX : 0;
+      const threshold = sliderWidth * 0.15;
+      if (deltaX <= -threshold) {
+        next();
+      } else if (deltaX >= threshold) {
+        prev();
+      } else {
+        update(currentIndex);
+      }
+      start();
+    };
+    slider.addEventListener('touchend', endTouch);
+    slider.addEventListener('touchcancel', endTouch);
+
     start();
   });
 };
@@ -199,7 +243,23 @@ const setupStoneworkMenu = () => {
   });
 };
 
+const setupBackToTop = () => {
+  const button = document.getElementById('back-to-top');
+  if (!button) return;
+  const toggle = () => {
+    const show = window.scrollY > 600;
+    button.classList.toggle('opacity-0', !show);
+    button.classList.toggle('pointer-events-none', !show);
+  };
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+  button.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+};
+
 revealDetailContent();
 setupSliders();
 setupStoneworkMenu();
+setupBackToTop();
 loadWorks();
