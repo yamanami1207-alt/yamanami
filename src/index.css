@@ -113,6 +113,14 @@ h1, h2, h3, h4 {
 }
 
 
+/* STONEWORK 加工事例スライダー：横スワイプをJS側で処理するため、
+   縦スクロールだけブラウザ標準の挙動に譲る（横方向はJSに委ねる）。
+   これが無いと、スマホ実機ではブラウザが先に「縦スクロールの試み」と
+   判断してしまい、touchmoveが指の動き通りに反映されないことがある。 */
+.slider-component {
+  touch-action: pan-y;
+}
+
 /* Marquee */
 .marquee-container {
   display: flex;
