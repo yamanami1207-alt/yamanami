@@ -26,13 +26,41 @@ const formatDate = (value) => {
   }).replace(/\//g, '.');
 };
 
-const imageMarkup = (image, label, stoneType) => {
-  if (!image?.url) return '';
-  const alt = `${stoneType || '天然石'}の${label}写真｜過去の加工一覧`;
-  return `<figure class="flex flex-col gap-2">
+// 複数画像フィールドは配列、旧データの単一画像はオブジェクトで届くため両方を配列にそろえる
+const toImageList = (value) => (Array.isArray(value) ? value : [value]).filter((image) => image?.url);
+
+// 1枚目を4:3で大きく表示し、2枚目以降をサムネイルとして下に並べる。サムネイルを押すと1枚目と入れ替わる
+const imageMarkup = (images, label, stoneType) => {
+  const list = toImageList(images);
+  if (!list.length) return '';
+  const alt = (index) => escapeHtml(`${stoneType || '天然石'}の${label}写真${list.length > 1 ? index + 1 : ''}｜過去の加工一覧`);
+  const [main, ...rest] = list;
+  const thumbs = rest.length
+    ? `<div class="grid grid-cols-4 sm:grid-cols-5 gap-2">${rest.map((image, index) => `<button type="button" class="work-thumb block aspect-[4/3] overflow-hidden rounded-sm bg-stone-100 opacity-70 hover:opacity-100 transition-opacity" data-url="${escapeHtml(image.url)}" data-alt="${alt(index + 1)}" aria-label="${label}写真${index + 2}を大きく表示">
+        <img src="${escapeHtml(image.url)}?w=300" class="w-full h-full object-cover" loading="lazy" alt="">
+      </button>`).join('')}</div>`
+    : '';
+  return `<figure class="work-gallery flex flex-col gap-2">
     <figcaption class="text-[10px] tracking-widest text-stone-400 bg-stone-100 self-start px-2 py-1 rounded-sm">${label}</figcaption>
-    <img src="${escapeHtml(image.url)}?w=1200" class="w-full h-auto rounded-sm object-cover bg-stone-100" loading="lazy" alt="${escapeHtml(alt)}">
+    <div class="aspect-[4/3] overflow-hidden rounded-sm bg-stone-100">
+      <img src="${escapeHtml(main.url)}?w=1200" class="work-main w-full h-full object-cover" data-url="${escapeHtml(main.url)}" loading="lazy" alt="${alt(0)}">
+    </div>
+    ${thumbs}
   </figure>`;
+};
+
+const swapWorkImage = (thumb) => {
+  const mainImage = thumb.closest('.work-gallery')?.querySelector('.work-main');
+  const thumbImage = thumb.querySelector('img');
+  if (!mainImage || !thumbImage) return;
+  const next = { url: thumb.dataset.url, alt: thumb.dataset.alt };
+  const prev = { url: mainImage.dataset.url, alt: mainImage.alt };
+  mainImage.src = `${next.url}?w=1200`;
+  mainImage.dataset.url = next.url;
+  mainImage.alt = next.alt;
+  thumbImage.src = `${prev.url}?w=300`;
+  thumb.dataset.url = prev.url;
+  thumb.dataset.alt = prev.alt;
 };
 
 const renderWork = (work) => {
@@ -42,7 +70,7 @@ const renderWork = (work) => {
   const processingType = escapeHtml(work.processing_type || '天然石加工');
   const imageItems = [
     imageMarkup(work.image_before, 'BEFORE', stoneType),
-    imageMarkup(work.image_after, 'AFTER', stoneType),
+    imageMarkup(work.images_after || work.image_after, 'AFTER', stoneType),
   ].filter(Boolean);
   const images = imageItems.length
     ? `<div class="grid grid-cols-1 ${imageItems.length > 1 ? 'md:grid-cols-2' : ''} gap-4 md:gap-8 mb-6 mt-8">${imageItems.join('')}</div>`
@@ -105,6 +133,13 @@ const loadWorks = async () => {
     worksList.innerHTML = '<p class="text-center text-sm text-stone-400 py-8">加工事例の読み込みに失敗しました。</p>';
   }
 };
+
+if (worksList) {
+  worksList.addEventListener('click', (event) => {
+    const thumb = event.target.closest('.work-thumb');
+    if (thumb) swapWorkImage(thumb);
+  });
+}
 
 if (worksMoreButton) {
   worksMoreButton.addEventListener('click', () => {
