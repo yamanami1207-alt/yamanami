@@ -27,23 +27,29 @@ const formatDate = (value) => {
 };
 
 // 複数画像フィールドは配列、旧データの単一画像はオブジェクトで届くため両方を配列にそろえる
-const toImageList = (value) => (Array.isArray(value) ? value : [value]).filter((image) => image?.url);
+const toImageList = (...values) => {
+  const value = values.find((candidate) => candidate && (!Array.isArray(candidate) || candidate.length));
+  return (Array.isArray(value) ? value : [value]).filter((image) => typeof image?.url === 'string' && image.url);
+};
 
-// 1枚目を4:3で大きく表示し、2枚目以降をサムネイルとして下に並べる。サムネイルを押すと1枚目と入れ替わる
-const imageMarkup = (images, label, stoneType) => {
-  const list = toImageList(images);
+// microCMSの画像URLに幅指定を付ける（既にクエリがあっても壊れないようにする）
+const sizedUrl = (url, width) => `${url}${url.includes('?') ? '&' : '?'}w=${width}`;
+
+// 1枚目を4:3の枠で大きく表示し、2枚目以降をサムネイルとして下に並べる。
+// サムネイルを押すと1枚目と入れ替わる。写真の端が切れないよう枠内に収めて表示する。
+const imageMarkup = (list, label, stoneType) => {
   if (!list.length) return '';
-  const alt = (index) => escapeHtml(`${stoneType || '天然石'}の${label}写真${list.length > 1 ? index + 1 : ''}｜過去の加工一覧`);
+  const alt = (index) => `${stoneType || '天然石'}の${label}写真${list.length > 1 ? index + 1 : ''}｜過去の加工一覧`;
   const [main, ...rest] = list;
   const thumbs = rest.length
-    ? `<div class="grid grid-cols-4 sm:grid-cols-5 gap-2">${rest.map((image, index) => `<button type="button" class="work-thumb block aspect-[4/3] overflow-hidden rounded-sm bg-stone-100 opacity-70 hover:opacity-100 transition-opacity" data-url="${escapeHtml(image.url)}" data-alt="${alt(index + 1)}" aria-label="${label}写真${index + 2}を大きく表示">
-        <img src="${escapeHtml(image.url)}?w=300" class="w-full h-full object-cover" loading="lazy" alt="">
+    ? `<div class="grid grid-cols-4 gap-2">${rest.map((image, index) => `<button type="button" class="work-thumb block aspect-[4/3] overflow-hidden rounded-sm bg-stone-100 border border-stone-200 opacity-80 hover:opacity-100 hover:border-stone-400 transition" data-url="${escapeHtml(image.url)}" data-alt="${escapeHtml(alt(index + 1))}" aria-label="${label}写真${index + 2}を大きく表示">
+        <img src="${escapeHtml(sizedUrl(image.url, 400))}" class="w-full h-full object-contain pointer-events-none" loading="lazy" alt="">
       </button>`).join('')}</div>`
     : '';
-  return `<figure class="work-gallery flex flex-col gap-2">
+  return `<figure class="work-gallery flex flex-col gap-2 min-w-0">
     <figcaption class="text-[10px] tracking-widest text-stone-400 bg-stone-100 self-start px-2 py-1 rounded-sm">${label}</figcaption>
     <div class="aspect-[4/3] overflow-hidden rounded-sm bg-stone-100">
-      <img src="${escapeHtml(main.url)}?w=1200" class="work-main w-full h-full object-cover" data-url="${escapeHtml(main.url)}" loading="lazy" alt="${alt(0)}">
+      <img src="${escapeHtml(sizedUrl(main.url, 1200))}" class="work-main w-full h-full object-contain transition-opacity duration-300" data-url="${escapeHtml(main.url)}" alt="${escapeHtml(alt(0))}">
     </div>
     ${thumbs}
   </figure>`;
@@ -55,10 +61,10 @@ const swapWorkImage = (thumb) => {
   if (!mainImage || !thumbImage) return;
   const next = { url: thumb.dataset.url, alt: thumb.dataset.alt };
   const prev = { url: mainImage.dataset.url, alt: mainImage.alt };
-  mainImage.src = `${next.url}?w=1200`;
+  mainImage.src = sizedUrl(next.url, 1200);
   mainImage.dataset.url = next.url;
   mainImage.alt = next.alt;
-  thumbImage.src = `${prev.url}?w=300`;
+  thumbImage.src = sizedUrl(prev.url, 400);
   thumb.dataset.url = prev.url;
   thumb.dataset.alt = prev.alt;
 };
@@ -66,14 +72,15 @@ const swapWorkImage = (thumb) => {
 const renderWork = (work) => {
   const dateValue = work.date || work.publishedAt || work.createdAt;
   const date = formatDate(dateValue);
-  const stoneType = escapeHtml(work.stone_type || work.title || '加工実績');
+  const stoneTypeText = work.stone_type || work.title || '加工実績';
+  const stoneType = escapeHtml(stoneTypeText);
   const processingType = escapeHtml(work.processing_type || '天然石加工');
   const imageItems = [
-    imageMarkup(work.image_before, 'BEFORE', stoneType),
-    imageMarkup(work.images_after || work.image_after, 'AFTER', stoneType),
+    imageMarkup(toImageList(work.image_before, work.images_before), 'BEFORE', stoneTypeText),
+    imageMarkup(toImageList(work.images_after, work.image_after), 'AFTER', stoneTypeText),
   ].filter(Boolean);
   const images = imageItems.length
-    ? `<div class="grid grid-cols-1 ${imageItems.length > 1 ? 'md:grid-cols-2' : ''} gap-4 md:gap-8 mb-6 mt-8">${imageItems.join('')}</div>`
+    ? `<div class="grid grid-cols-1 ${imageItems.length > 1 ? 'md:grid-cols-2' : 'max-w-2xl'} gap-8 mb-6 mt-8">${imageItems.join('')}</div>`
     : '';
   const content = work.content
     ? `<div class="blog-content text-[14px] leading-loose text-stone-600 max-w-none mt-6">${work.content}</div>`
